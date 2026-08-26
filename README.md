@@ -1,6 +1,6 @@
-# Demo 固件工程
+# STM32 固件工程模板
 
-Demo 包含两个相互独立的固件工程：
+仓库根目录包含两个相互独立的固件工程：
 
 - `bootloader`：系统启动与固件升级。
 - `application`：FreeRTOS 与产品业务功能。
@@ -22,7 +22,7 @@ arm-none-eabi-gcc --version
 进入工程目录：
 
 ```bash
-cd demo/bootloader
+cd bootloader
 ```
 
 Debug 配置和构建：
@@ -50,7 +50,7 @@ cmake --build --preset debug
 进入工程目录：
 
 ```bash
-cd demo/application
+cd application
 ```
 
 Debug 配置和构建：
