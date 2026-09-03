@@ -116,4 +116,4 @@ application/build/compile_commands.json
 cmake --build --preset debug --target clean
 ```
 
-Flash 分区、链接地址和 MCU 平台迁移说明见根目录的 `firmware_arch.md`。
+Flash 分区、链接地址和 MCU 平台迁移说明见 [`docs/firmware_arch.md`](docs/firmware_arch.md)。
