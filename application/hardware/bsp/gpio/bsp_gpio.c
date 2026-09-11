@@ -1,3 +1,8 @@
+/**
+ * @file bsp_gpio.c
+ * @brief Configures board GPIO and controls the active-low status LED.
+ */
+
 #include "bsp_gpio.h"
 
 #include "stm32f1xx_hal.h"
@@ -25,4 +30,10 @@ void bsp_gpio_init(void)
 void bsp_gpio_led_toggle(void)
 {
     HAL_GPIO_TogglePin(BSP_GPIO_LED_PORT, BSP_GPIO_LED_PIN);
+}
+
+void bsp_gpio_safe_state(void)
+{
+    /** Current board only has an active-low LED. Extend for actual actuators. */
+    BSP_GPIO_LED_PORT->BSRR = BSP_GPIO_LED_PIN;
 }

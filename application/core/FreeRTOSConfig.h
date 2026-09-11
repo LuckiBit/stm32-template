@@ -26,8 +26,19 @@
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
 
+#include "rtos_fault.h"
+#include "tasks.h"
 #include <stddef.h>
 #include <stdint.h>
+
+#define configASSERT(condition)                                                                    \
+    do                                                                                             \
+    {                                                                                              \
+        if(!(condition))                                                                           \
+        {                                                                                          \
+            rtos_fault_stop(RTOS_FAULT_ASSERT);                                                    \
+        }                                                                                          \
+    } while(0)
 
 extern uint32_t SystemCoreClock;
 
@@ -39,7 +50,6 @@ extern uint32_t SystemCoreClock;
 #define configTICK_RATE_HZ                        ((TickType_t)1000)
 #define configMAX_PRIORITIES                      7
 #define configMINIMAL_STACK_SIZE                  ((unsigned short)128)
-#define configTOTAL_HEAP_SIZE                     ((size_t)(17 * 1024))
 #define configMAX_TASK_NAME_LEN                   16
 #define configUSE_TRACE_FACILITY                  0
 #define configTICK_TYPE_WIDTH_IN_BITS             TICK_TYPE_WIDTH_32_BITS
@@ -54,8 +64,9 @@ extern uint32_t SystemCoreClock;
 #define configQUEUE_REGISTRY_SIZE                 8
 #define configUSE_QUEUE_SETS                      0
 #define configUSE_NEWLIB_REENTRANT                0
-#define configSUPPORT_STATIC_ALLOCATION           0
-#define configSUPPORT_DYNAMIC_ALLOCATION          1
+#define configSUPPORT_STATIC_ALLOCATION           1
+#define configSUPPORT_DYNAMIC_ALLOCATION          0
+#define configKERNEL_PROVIDED_STATIC_MEMORY       1
 #define configAPPLICATION_ALLOCATED_HEAP          0
 #define configSTACK_ALLOCATION_FROM_SEPARATE_HEAP 0
 #define configENABLE_HEAP_PROTECTOR               0
@@ -64,7 +75,7 @@ extern uint32_t SystemCoreClock;
 #define configUSE_STREAM_BUFFERS                  1
 #define configGENERATE_RUN_TIME_STATS             0
 #define configCHECK_FOR_STACK_OVERFLOW            2
-#define configUSE_MALLOC_FAILED_HOOK              1
+#define configUSE_MALLOC_FAILED_HOOK              0
 #define configUSE_TICKLESS_IDLE                   0
 #define configCHECK_HANDLER_INSTALLATION          0
 #define configENABLE_FPU                          0
@@ -76,8 +87,8 @@ extern uint32_t SystemCoreClock;
 #define configUSE_CO_ROUTINES           0
 #define configMAX_CO_ROUTINE_PRIORITIES 2
 
-/* Software timer definitions. Priority 6 is reserved above the five demo tasks. */
-#define configUSE_TIMERS             1
+/* Software timer priority 6 remains above the manager and demo tasks. */
+#define configUSE_TIMERS             TASK_SOFTWARE_TIMERS_ENABLED
 #define configTIMER_TASK_PRIORITY    (configMAX_PRIORITIES - 1)
 #define configTIMER_QUEUE_LENGTH     10
 #define configTIMER_TASK_STACK_DEPTH (configMINIMAL_STACK_SIZE * 2)
@@ -91,7 +102,7 @@ extern uint32_t SystemCoreClock;
 #define INCLUDE_vTaskDelayUntil        1
 #define INCLUDE_vTaskDelay             1
 #define INCLUDE_xTaskGetSchedulerState 1
-#define INCLUDE_xTimerPendFunctionCall 1
+#define INCLUDE_xTimerPendFunctionCall configUSE_TIMERS
 
 /* STM32F103 implements four NVIC priority bits. */
 #define configPRIO_BITS                              4

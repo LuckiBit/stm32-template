@@ -8,4 +8,7 @@
 
 void system_init(void);
 
+/** @brief Disables interrupts and stops execution after a hardware initialization failure. */
+void Error_Handler(void);
+
 #endif /* SYSTEM_INIT_H */

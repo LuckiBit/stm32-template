@@ -5,20 +5,32 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# Expose the compiler-detected target C library to clangd through the database.
+# clangd does not query GCC's system paths unless its client enables query-driver.
+foreach(SYSTEM_INCLUDE_DIR IN LISTS CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES)
+    if(EXISTS "${SYSTEM_INCLUDE_DIR}/stdlib.h")
+        list(APPEND CMAKE_C_STANDARD_INCLUDE_DIRECTORIES "${SYSTEM_INCLUDE_DIR}")
+    endif()
+endforeach()
+
 set(FIRMWARE_TARGET ${PROJECT_NAME})
 set(HAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/hardware/stm32f1xx_hal_driver)
 set(FREERTOS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/middleware/freertos)
 
 add_executable(${FIRMWARE_TARGET}
     app/led/led.c
+    app/tasks/tasks.c
+    app/system_manager/system_manager.c
     core/main.c
     core/system_init.c
     core/rtos_start.c
+    core/rtos_fault.c
     core/stm32f1xx_it.c
     core/startup/startup_stm32f103xe.s
     core/system_clock/system_clock.c
     core/system_clock/system_stm32f1xx.c
     hardware/bsp/gpio/bsp_gpio.c
+    hardware/bsp/uart/bsp_uart.c
     hardware/bsp/stm32f1xx_hal_msp.c
     service/led/led_service.c
     ${HAL_DIR}/src/stm32f1xx_hal.c
@@ -32,6 +44,7 @@ add_executable(${FIRMWARE_TARGET}
     ${HAL_DIR}/src/stm32f1xx_hal_pwr.c
     ${HAL_DIR}/src/stm32f1xx_hal_rcc.c
     ${HAL_DIR}/src/stm32f1xx_hal_rcc_ex.c
+    ${HAL_DIR}/src/stm32f1xx_hal_uart.c
     ${FREERTOS_DIR}/source/croutine.c
     ${FREERTOS_DIR}/source/event_groups.c
     ${FREERTOS_DIR}/source/list.c
@@ -40,14 +53,16 @@ add_executable(${FIRMWARE_TARGET}
     ${FREERTOS_DIR}/source/tasks.c
     ${FREERTOS_DIR}/source/timers.c
     ${FREERTOS_DIR}/portable/gcc/arm_cm3/port.c
-    ${FREERTOS_DIR}/portable/mem_mang/heap_4.c
 )
 
 target_include_directories(${FIRMWARE_TARGET} PRIVATE
     app/led
+    app/tasks
+    app/system_manager
     core
     core/system_clock
     hardware/bsp/gpio
+    hardware/bsp/uart
     service/led
     hardware/cmsis/core/include
     hardware/cmsis/device/include
