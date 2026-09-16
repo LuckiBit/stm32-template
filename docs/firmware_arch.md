@@ -263,9 +263,14 @@ SRAM 范围为 `0x20000000`～`0x2000C000`，容量 48 KiB。
 - [Bootloader 分区常量](../bootloader/core/flash_layout.h)。
 - [Application 分区常量](../application/core/flash_layout.h)。
 - [Bootloader 链接入口](../bootloader/core/linker/bootloader.ld)及其
-  [实际内存布局](../bootloader/core/linker/stm32f103rct_reference.ld)。
+  [实际内存布局](../bootloader/core/linker/stm32f103rc.ld)。
 - [Application 链接入口](../application/core/linker/application.ld)及其
-  [实际内存布局](../application/core/linker/stm32f103rct_reference.ld)。
+  [实际内存布局](../application/core/linker/stm32f103rc.ld)。
+
+两个工程的 `core/linker/` 均保存 `stm32f103rc.ld` 和 `stm32f103ze.ld`，当前入口
+`bootloader.ld` / `application.ld` 通过 `INCLUDE stm32f103rc.ld` 选择 RC 布局。
+`stm32f103ze.ld` 保留原始 512 KiB Flash、64 KiB RAM 的完整芯片布局，作为迁移模板。
+切换 ZE 前需按工程调整 Flash 分区，并同步两份 `core/flash_layout.h`，再修改入口的 `INCLUDE`。
 
 两份 `flash_layout.h` 分别维护，修改分区时必须同步，链接脚本的数值也必须一致。
 Bootloader 检查和跳转使用 `APP_START_ADDRESS`；Application 的

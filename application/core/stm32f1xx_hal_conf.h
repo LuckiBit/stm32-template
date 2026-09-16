@@ -34,50 +34,188 @@ extern "C"
      * @brief This is the list of modules to be used in the HAL driver
      */
 
-#define HAL_MODULE_ENABLED
-    /*#define HAL_ADC_MODULE_ENABLED   */
-/*#define HAL_CRYP_MODULE_ENABLED   */
-/*#define HAL_CAN_MODULE_ENABLED   */
-/*#define HAL_CAN_LEGACY_MODULE_ENABLED   */
-/*#define HAL_CEC_MODULE_ENABLED   */
-/*#define HAL_CORTEX_MODULE_ENABLED   */
-/*#define HAL_CRC_MODULE_ENABLED   */
-/*#define HAL_DAC_MODULE_ENABLED   */
-/*#define HAL_DMA_MODULE_ENABLED   */
-/*#define HAL_ETH_MODULE_ENABLED   */
-/*#define HAL_FLASH_MODULE_ENABLED   */
-#define HAL_GPIO_MODULE_ENABLED
-    /*#define HAL_I2C_MODULE_ENABLED   */
-    /*#define HAL_I2S_MODULE_ENABLED   */
-    /*#define HAL_IRDA_MODULE_ENABLED   */
-    /*#define HAL_IWDG_MODULE_ENABLED   */
-    /*#define HAL_NOR_MODULE_ENABLED   */
-    /*#define HAL_NAND_MODULE_ENABLED   */
-    /*#define HAL_PCCARD_MODULE_ENABLED   */
-    /*#define HAL_PCD_MODULE_ENABLED   */
-    /*#define HAL_HCD_MODULE_ENABLED   */
-    /*#define HAL_PWR_MODULE_ENABLED   */
-    /*#define HAL_RCC_MODULE_ENABLED   */
-    /*#define HAL_RTC_MODULE_ENABLED   */
-    /*#define HAL_SD_MODULE_ENABLED   */
-    /*#define HAL_MMC_MODULE_ENABLED   */
-    /*#define HAL_SDRAM_MODULE_ENABLED   */
-    /*#define HAL_SMARTCARD_MODULE_ENABLED   */
-    /*#define HAL_SPI_MODULE_ENABLED   */
-    /*#define HAL_SRAM_MODULE_ENABLED   */
-    /*#define HAL_TIM_MODULE_ENABLED   */
-    /*#define HAL_UART_MODULE_ENABLED   */
-    /*#define HAL_USART_MODULE_ENABLED   */
-    /*#define HAL_WWDG_MODULE_ENABLED   */
+/* Module switches: 1 = enabled, 0 = disabled. */
+#define HAL_MODULE_ENABLE                1
+#define HAL_ADC_MODULE_ENABLE            0
+#define HAL_CRYP_MODULE_ENABLE           0
+#define HAL_CAN_MODULE_ENABLE            0
+#define HAL_CAN_LEGACY_MODULE_ENABLE     0
+#define HAL_CEC_MODULE_ENABLE            0
+#define HAL_CORTEX_MODULE_ENABLE         1
+#define HAL_CRC_MODULE_ENABLE            0
+#define HAL_DAC_MODULE_ENABLE            0
+#define HAL_DMA_MODULE_ENABLE            1
+#define HAL_ETH_MODULE_ENABLE            0
+#define HAL_EXTI_MODULE_ENABLE           1
+#define HAL_FLASH_MODULE_ENABLE          1
+#define HAL_GPIO_MODULE_ENABLE           1
+#define HAL_I2C_MODULE_ENABLE            0
+#define HAL_I2S_MODULE_ENABLE            0
+#define HAL_IRDA_MODULE_ENABLE           0
+#define HAL_IWDG_MODULE_ENABLE           0
+#define HAL_NOR_MODULE_ENABLE            0
+#define HAL_NAND_MODULE_ENABLE           0
+#define HAL_PCCARD_MODULE_ENABLE         0
+#define HAL_PCD_MODULE_ENABLE            0
+#define HAL_HCD_MODULE_ENABLE            0
+#define HAL_PWR_MODULE_ENABLE            1
+#define HAL_RCC_MODULE_ENABLE            1
+#define HAL_RTC_MODULE_ENABLE            0
+#define HAL_SD_MODULE_ENABLE             0
+#define HAL_MMC_MODULE_ENABLE            0
+#define HAL_SDRAM_MODULE_ENABLE          0
+#define HAL_SMARTCARD_MODULE_ENABLE      0
+#define HAL_SPI_MODULE_ENABLE            0
+#define HAL_SRAM_MODULE_ENABLE           0
+#define HAL_TIM_MODULE_ENABLE            0
+#define HAL_UART_MODULE_ENABLE           1
+#define HAL_USART_MODULE_ENABLE          0
+#define HAL_WWDG_MODULE_ENABLE           0
 
+/* Map module switches to the presence macros used by the HAL driver. */
+#if HAL_MODULE_ENABLE
+#define HAL_MODULE_ENABLED
+#endif
+
+#if HAL_ADC_MODULE_ENABLE
+#define HAL_ADC_MODULE_ENABLED
+#endif
+
+#if HAL_CRYP_MODULE_ENABLE
+#define HAL_CRYP_MODULE_ENABLED
+#endif
+
+#if HAL_CAN_MODULE_ENABLE
+#define HAL_CAN_MODULE_ENABLED
+#endif
+
+#if HAL_CAN_LEGACY_MODULE_ENABLE
+#define HAL_CAN_LEGACY_MODULE_ENABLED
+#endif
+
+#if HAL_CEC_MODULE_ENABLE
+#define HAL_CEC_MODULE_ENABLED
+#endif
+
+#if HAL_CORTEX_MODULE_ENABLE
 #define HAL_CORTEX_MODULE_ENABLED
+#endif
+
+#if HAL_CRC_MODULE_ENABLE
+#define HAL_CRC_MODULE_ENABLED
+#endif
+
+#if HAL_DAC_MODULE_ENABLE
+#define HAL_DAC_MODULE_ENABLED
+#endif
+
+#if HAL_DMA_MODULE_ENABLE
 #define HAL_DMA_MODULE_ENABLED
-#define HAL_FLASH_MODULE_ENABLED
+#endif
+
+#if HAL_ETH_MODULE_ENABLE
+#define HAL_ETH_MODULE_ENABLED
+#endif
+
+#if HAL_EXTI_MODULE_ENABLE
 #define HAL_EXTI_MODULE_ENABLED
+#endif
+
+#if HAL_FLASH_MODULE_ENABLE
+#define HAL_FLASH_MODULE_ENABLED
+#endif
+
+#if HAL_GPIO_MODULE_ENABLE
 #define HAL_GPIO_MODULE_ENABLED
+#endif
+
+#if HAL_I2C_MODULE_ENABLE
+#define HAL_I2C_MODULE_ENABLED
+#endif
+
+#if HAL_I2S_MODULE_ENABLE
+#define HAL_I2S_MODULE_ENABLED
+#endif
+
+#if HAL_IRDA_MODULE_ENABLE
+#define HAL_IRDA_MODULE_ENABLED
+#endif
+
+#if HAL_IWDG_MODULE_ENABLE
+#define HAL_IWDG_MODULE_ENABLED
+#endif
+
+#if HAL_NOR_MODULE_ENABLE
+#define HAL_NOR_MODULE_ENABLED
+#endif
+
+#if HAL_NAND_MODULE_ENABLE
+#define HAL_NAND_MODULE_ENABLED
+#endif
+
+#if HAL_PCCARD_MODULE_ENABLE
+#define HAL_PCCARD_MODULE_ENABLED
+#endif
+
+#if HAL_PCD_MODULE_ENABLE
+#define HAL_PCD_MODULE_ENABLED
+#endif
+
+#if HAL_HCD_MODULE_ENABLE
+#define HAL_HCD_MODULE_ENABLED
+#endif
+
+#if HAL_PWR_MODULE_ENABLE
 #define HAL_PWR_MODULE_ENABLED
+#endif
+
+#if HAL_RCC_MODULE_ENABLE
 #define HAL_RCC_MODULE_ENABLED
+#endif
+
+#if HAL_RTC_MODULE_ENABLE
+#define HAL_RTC_MODULE_ENABLED
+#endif
+
+#if HAL_SD_MODULE_ENABLE
+#define HAL_SD_MODULE_ENABLED
+#endif
+
+#if HAL_MMC_MODULE_ENABLE
+#define HAL_MMC_MODULE_ENABLED
+#endif
+
+#if HAL_SDRAM_MODULE_ENABLE
+#define HAL_SDRAM_MODULE_ENABLED
+#endif
+
+#if HAL_SMARTCARD_MODULE_ENABLE
+#define HAL_SMARTCARD_MODULE_ENABLED
+#endif
+
+#if HAL_SPI_MODULE_ENABLE
+#define HAL_SPI_MODULE_ENABLED
+#endif
+
+#if HAL_SRAM_MODULE_ENABLE
+#define HAL_SRAM_MODULE_ENABLED
+#endif
+
+#if HAL_TIM_MODULE_ENABLE
+#define HAL_TIM_MODULE_ENABLED
+#endif
+
+#if HAL_UART_MODULE_ENABLE
 #define HAL_UART_MODULE_ENABLED
+#endif
+
+#if HAL_USART_MODULE_ENABLE
+#define HAL_USART_MODULE_ENABLED
+#endif
+
+#if HAL_WWDG_MODULE_ENABLE
+#define HAL_WWDG_MODULE_ENABLED
+#endif
 
 /* ########################## Oscillator Values adaptation ####################*/
 /**
