@@ -1,0 +1,40 @@
+BasedOnStyle: LLVM
+BreakBeforeBraces: Allman
+ColumnLimit: 100
+IndentWidth: 4
+UseTab: Never
+PointerAlignment: Right
+SpaceBeforeParens: Never
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 0
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortBlocksOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeTernaryOperators: true
+BreakBeforeBinaryOperators: None
+ContinuationIndentWidth: 4
+IndentCaseLabels: true
+SpacesInLineCommentPrefix:
+  Minimum: 1
+  Maximum: 1
+SpacesBeforeTrailingComments: 2
