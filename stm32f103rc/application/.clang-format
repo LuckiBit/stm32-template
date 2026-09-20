@@ -34,6 +34,8 @@ BreakBeforeTernaryOperators: true
 BreakBeforeBinaryOperators: None
 ContinuationIndentWidth: 4
 IndentCaseLabels: true
+MaxEmptyLinesToKeep: 1
+SeparateDefinitionBlocks: Always
 SpacesInLineCommentPrefix:
   Minimum: 1
   Maximum: 1
