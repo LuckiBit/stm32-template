@@ -6,19 +6,19 @@
 #include "bsp_uart.h"
 #include "stm32f4xx_hal.h"
 
-#if BSP_UART_ENABLE_1
+#ifdef BSP_UART_1_ENABLED
 static UART_HandleTypeDef s_uart_handle_1;
 #endif
-#if BSP_UART_ENABLE_2
+#ifdef BSP_UART_2_ENABLED
 static UART_HandleTypeDef s_uart_handle_2;
 #endif
-#if BSP_UART_ENABLE_3
+#ifdef BSP_UART_3_ENABLED
 static UART_HandleTypeDef s_uart_handle_3;
 #endif
-#if BSP_UART_ENABLE_4
+#ifdef BSP_UART_4_ENABLED
 static UART_HandleTypeDef s_uart_handle_4;
 #endif
-#if BSP_UART_ENABLE_5
+#ifdef BSP_UART_5_ENABLED
 static UART_HandleTypeDef s_uart_handle_5;
 #endif
 
@@ -28,27 +28,27 @@ static UART_HandleTypeDef *bsp_uart_get_handle(uint8_t uart_number)
 
     switch(uart_number)
     {
-#if BSP_UART_ENABLE_1
+#ifdef BSP_UART_1_ENABLED
         case 1U:
             uart_handle = &s_uart_handle_1;
             break;
 #endif
-#if BSP_UART_ENABLE_2
+#ifdef BSP_UART_2_ENABLED
         case 2U:
             uart_handle = &s_uart_handle_2;
             break;
 #endif
-#if BSP_UART_ENABLE_3
+#ifdef BSP_UART_3_ENABLED
         case 3U:
             uart_handle = &s_uart_handle_3;
             break;
 #endif
-#if BSP_UART_ENABLE_4
+#ifdef BSP_UART_4_ENABLED
         case 4U:
             uart_handle = &s_uart_handle_4;
             break;
 #endif
-#if BSP_UART_ENABLE_5
+#ifdef BSP_UART_5_ENABLED
         case 5U:
             uart_handle = &s_uart_handle_5;
             break;
@@ -77,7 +77,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
 
     (void)uart_handle;
 
-#if BSP_UART_ENABLE_1
+#ifdef BSP_UART_1_ENABLED
     {
         bool is_uart = uart_handle->Instance == USART1;
 
@@ -86,16 +86,16 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
             __HAL_RCC_USART1_CLK_ENABLE();
             BSP_UART_TX_CLOCK_ENABLE_1();
             BSP_UART_RX_CLOCK_ENABLE_1();
-            tx_port = BSP_UART_TX_PORT_1;
-            rx_port = BSP_UART_RX_PORT_1;
-            tx_pin  = BSP_UART_TX_PIN_1;
-            rx_pin  = BSP_UART_RX_PIN_1;
+            tx_port   = BSP_UART_TX_PORT_1;
+            rx_port   = BSP_UART_RX_PORT_1;
+            tx_pin    = BSP_UART_TX_PIN_1;
+            rx_pin    = BSP_UART_RX_PIN_1;
             alternate = BSP_UART_ALTERNATE_FUNCTION_1;
         }
     }
 #endif
 
-#if BSP_UART_ENABLE_2
+#ifdef BSP_UART_2_ENABLED
     {
         bool is_uart = uart_handle->Instance == USART2;
 
@@ -104,16 +104,16 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
             __HAL_RCC_USART2_CLK_ENABLE();
             BSP_UART_TX_CLOCK_ENABLE_2();
             BSP_UART_RX_CLOCK_ENABLE_2();
-            tx_port = BSP_UART_TX_PORT_2;
-            rx_port = BSP_UART_RX_PORT_2;
-            tx_pin  = BSP_UART_TX_PIN_2;
-            rx_pin  = BSP_UART_RX_PIN_2;
+            tx_port   = BSP_UART_TX_PORT_2;
+            rx_port   = BSP_UART_RX_PORT_2;
+            tx_pin    = BSP_UART_TX_PIN_2;
+            rx_pin    = BSP_UART_RX_PIN_2;
             alternate = BSP_UART_ALTERNATE_FUNCTION_2;
         }
     }
 #endif
 
-#if BSP_UART_ENABLE_3
+#ifdef BSP_UART_3_ENABLED
     {
         bool is_uart = uart_handle->Instance == USART3;
 
@@ -122,16 +122,16 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
             __HAL_RCC_USART3_CLK_ENABLE();
             BSP_UART_TX_CLOCK_ENABLE_3();
             BSP_UART_RX_CLOCK_ENABLE_3();
-            tx_port = BSP_UART_TX_PORT_3;
-            rx_port = BSP_UART_RX_PORT_3;
-            tx_pin  = BSP_UART_TX_PIN_3;
-            rx_pin  = BSP_UART_RX_PIN_3;
+            tx_port   = BSP_UART_TX_PORT_3;
+            rx_port   = BSP_UART_RX_PORT_3;
+            tx_pin    = BSP_UART_TX_PIN_3;
+            rx_pin    = BSP_UART_RX_PIN_3;
             alternate = BSP_UART_ALTERNATE_FUNCTION_3;
         }
     }
 #endif
 
-#if BSP_UART_ENABLE_4
+#ifdef BSP_UART_4_ENABLED
     {
         bool is_uart = uart_handle->Instance == UART4;
 
@@ -140,16 +140,16 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
             __HAL_RCC_UART4_CLK_ENABLE();
             BSP_UART_TX_CLOCK_ENABLE_4();
             BSP_UART_RX_CLOCK_ENABLE_4();
-            tx_port = BSP_UART_TX_PORT_4;
-            rx_port = BSP_UART_RX_PORT_4;
-            tx_pin  = BSP_UART_TX_PIN_4;
-            rx_pin  = BSP_UART_RX_PIN_4;
+            tx_port   = BSP_UART_TX_PORT_4;
+            rx_port   = BSP_UART_RX_PORT_4;
+            tx_pin    = BSP_UART_TX_PIN_4;
+            rx_pin    = BSP_UART_RX_PIN_4;
             alternate = BSP_UART_ALTERNATE_FUNCTION_4;
         }
     }
 #endif
 
-#if BSP_UART_ENABLE_5
+#ifdef BSP_UART_5_ENABLED
     {
         bool is_uart = uart_handle->Instance == UART5;
 
@@ -158,10 +158,10 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
             __HAL_RCC_UART5_CLK_ENABLE();
             BSP_UART_TX_CLOCK_ENABLE_5();
             BSP_UART_RX_CLOCK_ENABLE_5();
-            tx_port = BSP_UART_TX_PORT_5;
-            rx_port = BSP_UART_RX_PORT_5;
-            tx_pin  = BSP_UART_TX_PIN_5;
-            rx_pin  = BSP_UART_RX_PIN_5;
+            tx_port   = BSP_UART_TX_PORT_5;
+            rx_port   = BSP_UART_RX_PORT_5;
+            tx_pin    = BSP_UART_TX_PIN_5;
+            rx_pin    = BSP_UART_RX_PIN_5;
             alternate = BSP_UART_ALTERNATE_FUNCTION_5;
         }
     }
@@ -173,10 +173,10 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
         return;
     }
 
-    gpio_config.Pin   = tx_pin;
-    gpio_config.Mode  = GPIO_MODE_AF_PP;
-    gpio_config.Pull  = GPIO_PULLUP;
-    gpio_config.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    gpio_config.Pin       = tx_pin;
+    gpio_config.Mode      = GPIO_MODE_AF_PP;
+    gpio_config.Pull      = GPIO_PULLUP;
+    gpio_config.Speed     = GPIO_SPEED_FREQ_VERY_HIGH;
     gpio_config.Alternate = alternate;
     HAL_GPIO_Init(tx_port, &gpio_config);
 
@@ -188,13 +188,13 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
 bool bsp_uart_init(void)
 {
     bool initialized = true;
-#if BSP_UART_ENABLE_1 || BSP_UART_ENABLE_2 || BSP_UART_ENABLE_3 || BSP_UART_ENABLE_4 ||            \
-    BSP_UART_ENABLE_5
+#if defined(BSP_UART_1_ENABLED) || defined(BSP_UART_2_ENABLED) || defined(BSP_UART_3_ENABLED) ||   \
+    defined(BSP_UART_4_ENABLED) || defined(BSP_UART_5_ENABLED)
     bool              current = false;
     HAL_StatusTypeDef result  = HAL_ERROR;
 #endif
 
-#if BSP_UART_ENABLE_1
+#ifdef BSP_UART_1_ENABLED
     s_uart_handle_1.Instance          = USART1;
     s_uart_handle_1.Init.BaudRate     = BSP_UART_BAUD_RATE_1;
     s_uart_handle_1.Init.WordLength   = BSP_UART_WORD_LENGTH_1;
@@ -208,7 +208,7 @@ bool bsp_uart_init(void)
     current     = result == HAL_OK;
     initialized = initialized && current;
 #endif
-#if BSP_UART_ENABLE_2
+#ifdef BSP_UART_2_ENABLED
     s_uart_handle_2.Instance          = USART2;
     s_uart_handle_2.Init.BaudRate     = BSP_UART_BAUD_RATE_2;
     s_uart_handle_2.Init.WordLength   = BSP_UART_WORD_LENGTH_2;
@@ -222,7 +222,7 @@ bool bsp_uart_init(void)
     current     = result == HAL_OK;
     initialized = initialized && current;
 #endif
-#if BSP_UART_ENABLE_3
+#ifdef BSP_UART_3_ENABLED
     s_uart_handle_3.Instance          = USART3;
     s_uart_handle_3.Init.BaudRate     = BSP_UART_BAUD_RATE_3;
     s_uart_handle_3.Init.WordLength   = BSP_UART_WORD_LENGTH_3;
@@ -236,7 +236,7 @@ bool bsp_uart_init(void)
     current     = result == HAL_OK;
     initialized = initialized && current;
 #endif
-#if BSP_UART_ENABLE_4
+#ifdef BSP_UART_4_ENABLED
     s_uart_handle_4.Instance          = UART4;
     s_uart_handle_4.Init.BaudRate     = BSP_UART_BAUD_RATE_4;
     s_uart_handle_4.Init.WordLength   = BSP_UART_WORD_LENGTH_4;
@@ -250,7 +250,7 @@ bool bsp_uart_init(void)
     current     = result == HAL_OK;
     initialized = initialized && current;
 #endif
-#if BSP_UART_ENABLE_5
+#ifdef BSP_UART_5_ENABLED
     s_uart_handle_5.Instance          = UART5;
     s_uart_handle_5.Init.BaudRate     = BSP_UART_BAUD_RATE_5;
     s_uart_handle_5.Init.WordLength   = BSP_UART_WORD_LENGTH_5;

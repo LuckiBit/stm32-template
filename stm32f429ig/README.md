@@ -32,8 +32,9 @@ Application 在 `system_init()` 中按开关初始化 F4 的 5 路串口，默�
 无硬件流控。当前仅启用串口 1：PA9 为 TX、PA10 为 RX。
 连接 3.3 V USB 转串口模块时，PA9 接模块 RX、PA10 接模块 TX，并共地。
 
-`hardware/bsp/uart/bsp_uart.h` 中的 `BSP_UART_ENABLE_1` 至 `BSP_UART_ENABLE_5` 控制每路串口是否初始化，
-发送统一使用 `bsp_uart_transmit()`。调用时指定有限超时，多任务使用时需在调用层串行化访问；当前尚未重定向 `printf`。
+`hardware/bsp/uart/bsp_uart.h` 中的 `BSP_UART_1_ENABLE` 至 `BSP_UART_5_ENABLE` 控制每路串口是否初始化，
+原始发送统一使用 `bsp_uart_transmit()`。格式化发送使用 `service/my_printf` 提供的 `my_printf()`，
+默认仅向串口 1 输出，可在 `my_printf_config.h` 中分别启用 1～5 路输出并修改缓冲区容量和超时；服务通过静态互斥量串行化多任务发送，未重定向 libc `printf`。
 
 每路配置独立成组：`BSP_UART_BAUD_RATE_n`、`BSP_UART_WORD_LENGTH_n`、
 `BSP_UART_STOP_BITS_n`、`BSP_UART_PARITY_n`、`BSP_UART_MODE_n`、

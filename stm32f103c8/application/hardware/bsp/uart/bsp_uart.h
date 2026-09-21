@@ -11,9 +11,50 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#ifndef BSP_UART_ENABLE_1
-#define BSP_UART_ENABLE_1 1
+/* UART switches: 1 = enabled, 0 = disabled. */
+#define BSP_UART_1_ENABLE 1
+#define BSP_UART_2_ENABLE 0
+#define BSP_UART_3_ENABLE 0
+#define BSP_UART_4_ENABLE 0
+#define BSP_UART_5_ENABLE 0
+
+#if(BSP_UART_1_ENABLE != 0) && (BSP_UART_1_ENABLE != 1)
+#error "BSP_UART_1_ENABLE must be 0 or 1"
 #endif
+#if(BSP_UART_2_ENABLE != 0) && (BSP_UART_2_ENABLE != 1)
+#error "BSP_UART_2_ENABLE must be 0 or 1"
+#endif
+#if(BSP_UART_3_ENABLE != 0) && (BSP_UART_3_ENABLE != 1)
+#error "BSP_UART_3_ENABLE must be 0 or 1"
+#endif
+#if(BSP_UART_4_ENABLE != 0) && (BSP_UART_4_ENABLE != 1)
+#error "BSP_UART_4_ENABLE must be 0 or 1"
+#endif
+#if(BSP_UART_5_ENABLE != 0) && (BSP_UART_5_ENABLE != 1)
+#error "BSP_UART_5_ENABLE must be 0 or 1"
+#endif
+
+/* Map UART switches to presence macros used by the BSP. */
+#if BSP_UART_1_ENABLE
+#define BSP_UART_1_ENABLED
+#endif
+
+#if BSP_UART_2_ENABLE
+#define BSP_UART_2_ENABLED
+#endif
+
+#if BSP_UART_3_ENABLE
+#define BSP_UART_3_ENABLED
+#endif
+
+#if BSP_UART_4_ENABLE
+#define BSP_UART_4_ENABLED
+#endif
+
+#if BSP_UART_5_ENABLE
+#define BSP_UART_5_ENABLED
+#endif
+
 #define BSP_UART_BAUD_RATE_1         115200U
 #define BSP_UART_WORD_LENGTH_1       UART_WORDLENGTH_8B
 #define BSP_UART_STOP_BITS_1         UART_STOPBITS_1
@@ -29,9 +70,6 @@
 #define BSP_UART_RX_CLOCK_ENABLE_1() __HAL_RCC_GPIOA_CLK_ENABLE()
 #define BSP_UART_REMAP_1()           __HAL_AFIO_REMAP_USART1_DISABLE()
 
-#ifndef BSP_UART_ENABLE_2
-#define BSP_UART_ENABLE_2 0
-#endif
 #define BSP_UART_BAUD_RATE_2         115200U
 #define BSP_UART_WORD_LENGTH_2       UART_WORDLENGTH_8B
 #define BSP_UART_STOP_BITS_2         UART_STOPBITS_1
@@ -47,9 +85,6 @@
 #define BSP_UART_RX_CLOCK_ENABLE_2() __HAL_RCC_GPIOA_CLK_ENABLE()
 #define BSP_UART_REMAP_2()           __HAL_AFIO_REMAP_USART2_DISABLE()
 
-#ifndef BSP_UART_ENABLE_3
-#define BSP_UART_ENABLE_3 0
-#endif
 #define BSP_UART_BAUD_RATE_3         115200U
 #define BSP_UART_WORD_LENGTH_3       UART_WORDLENGTH_8B
 #define BSP_UART_STOP_BITS_3         UART_STOPBITS_1
@@ -65,9 +100,6 @@
 #define BSP_UART_RX_CLOCK_ENABLE_3() __HAL_RCC_GPIOB_CLK_ENABLE()
 #define BSP_UART_REMAP_3()           __HAL_AFIO_REMAP_USART3_DISABLE()
 
-#ifndef BSP_UART_ENABLE_4
-#define BSP_UART_ENABLE_4 0
-#endif
 #define BSP_UART_BAUD_RATE_4         115200U
 #define BSP_UART_WORD_LENGTH_4       UART_WORDLENGTH_8B
 #define BSP_UART_STOP_BITS_4         UART_STOPBITS_1
@@ -82,9 +114,6 @@
 #define BSP_UART_TX_CLOCK_ENABLE_4() __HAL_RCC_GPIOC_CLK_ENABLE()
 #define BSP_UART_RX_CLOCK_ENABLE_4() __HAL_RCC_GPIOC_CLK_ENABLE()
 
-#ifndef BSP_UART_ENABLE_5
-#define BSP_UART_ENABLE_5 0
-#endif
 #define BSP_UART_BAUD_RATE_5         115200U
 #define BSP_UART_WORD_LENGTH_5       UART_WORDLENGTH_8B
 #define BSP_UART_STOP_BITS_5         UART_STOPBITS_1

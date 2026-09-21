@@ -83,9 +83,11 @@ stm32-template/
     │   ├── cmsis/
     │   └── stm32f4xx_hal_driver/
     ├── service/
-    │   └── led/led_service.c
+    │   ├── led/led_service.c
+    │   └── my_printf/
     ├── middleware/
-    │   └── freertos/
+    │   ├── freertos/
+    │   └── nanoprintf/
     ├── cmake/gcc-arm-none-eabi.cmake
     ├── CMakeLists.txt
     └── CMakePresets.json
@@ -160,7 +162,9 @@ Application 重新执行自己的启动代码和硬件初始化。
 引脚、GPIO 时钟和复用功能配置同样集中在 `bsp_uart.h`，
 由 `bsp_uart.c` 中的 `HAL_UART_MspInit()` 配置外设时钟和引脚；
 公共 `stm32f4xx_hal_msp.c` 负责全局 MSP 初始化。当前仅启用串口 1（PA9 TX、PA10 RX），
-不启用串口中断或 DMA，也未重定向 `printf`；多任务发送由调用层串行化访问。
+不启用串口中断或 DMA，也未重定向 libc `printf`。`service/my_printf` 使用 nanoprintf
+格式化到固定局部缓冲区，再依次通过所有已启用输出串口整块发送；默认仅输出到串口 1，
+服务自持静态互斥量串行化多任务发送。
 
 实现位置：[`rtos_start.c`](../application/core/rtos_start.c)、
 [`system_manager.c`](../application/app/system_manager/system_manager.c)、
@@ -227,6 +231,8 @@ core/main → core/system_init → 时钟、HAL、BSP
 app/system_manager ──启动回调──→ tasks_start
 app/tasks → system_manager_report_ready / system_manager_wait_running
 app/tasks.task_4 → app/led → service/led → hardware/bsp/gpio
+core/rtos_start → service/my_printf（创建静态互斥量）
+service/my_printf → middleware/nanoprintf、hardware/bsp/uart、middleware/freertos
 app/system_manager、app/tasks、app/led → middleware/freertos
 致命 RTOS 故障 → core/rtos_fault → hardware/bsp/gpio
 ```

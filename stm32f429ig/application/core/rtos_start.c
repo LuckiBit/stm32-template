@@ -5,6 +5,7 @@
 
 #include "rtos_start.h"
 #include "FreeRTOS.h"
+#include "my_printf.h"
 #include "rtos_fault.h"
 #include "system_manager.h"
 #include "task.h"
@@ -15,8 +16,15 @@
 _Noreturn void rtos_start(void)
 {
     bool       create_failed = false;
-    BaseType_t create_result = system_manager_create(tasks_start, REQUIRED_TASKS);
+    BaseType_t create_result = pdFAIL;
 
+    create_failed = !my_printf_init();
+    if(create_failed)
+    {
+        rtos_fault_stop(RTOS_FAULT_SERVICE_CREATE);
+    }
+
+    create_result = system_manager_create(tasks_start, REQUIRED_TASKS);
     create_failed = create_result != pdPASS;
     if(create_failed)
     {

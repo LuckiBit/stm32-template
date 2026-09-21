@@ -16,6 +16,7 @@ endforeach()
 set(FIRMWARE_TARGET ${PROJECT_NAME})
 set(HAL_DIR ${CMAKE_CURRENT_SOURCE_DIR}/hardware/stm32f1xx_hal_driver)
 set(FREERTOS_DIR ${CMAKE_CURRENT_SOURCE_DIR}/middleware/freertos)
+set(NANOPRINTF_DIR ${CMAKE_CURRENT_SOURCE_DIR}/middleware/nanoprintf)
 
 add_executable(${FIRMWARE_TARGET}
     app/led/led.c
@@ -33,6 +34,8 @@ add_executable(${FIRMWARE_TARGET}
     hardware/bsp/uart/bsp_uart.c
     hardware/bsp/stm32f1xx_hal_msp.c
     service/led/led_service.c
+    service/my_printf/my_printf.c
+    ${NANOPRINTF_DIR}/npf_config.c
     ${HAL_DIR}/src/stm32f1xx_hal.c
     ${HAL_DIR}/src/stm32f1xx_hal_cortex.c
     ${HAL_DIR}/src/stm32f1xx_hal_dma.c
@@ -64,12 +67,14 @@ target_include_directories(${FIRMWARE_TARGET} PRIVATE
     hardware/bsp/gpio
     hardware/bsp/uart
     service/led
+    service/my_printf
     hardware/cmsis/core/include
     hardware/cmsis/device/include
     ${HAL_DIR}/inc
     ${HAL_DIR}/inc/legacy
     ${FREERTOS_DIR}/include
     ${FREERTOS_DIR}/portable/gcc/arm_cm3
+    ${NANOPRINTF_DIR}
 )
 
 target_compile_definitions(${FIRMWARE_TARGET} PRIVATE USE_HAL_DRIVER STM32F103xB)
