@@ -101,7 +101,7 @@ stm32-template/
 | `app` | 应用流程、启动策略、任务入口、业务状态机和资源生命周期 | `system_manager`、`tasks`、`led` |
 | `service` | 可供应用使用的设备能力 | LED 控制；Bootloader 的阻塞延时 |
 | `middleware` | 操作系统及通用组件 | FreeRTOS 内核与移植层 |
-| `hardware` | CMSIS、HAL、板级资源和具体器件驱动 | GPIO、PA5 LED、Application 串口、芯片支持代码 |
+| `hardware` | CMSIS、HAL、板级资源和具体器件驱动 | 通用 GPIO 引脚、未使用引脚管理、Application 串口、芯片支持代码 |
 
 `system_manager` 决定何时放行业务以及故障后如何处理，因此属于 `app`。
 它的名字不代表该模块负责芯片启动。`core/rtos_start.c` 负责创建入口和启动调度器，
@@ -237,8 +237,10 @@ app/system_manager、app/tasks、app/led → middleware/freertos
 致命 RTOS 故障 → core/rtos_fault → hardware/bsp/gpio
 ```
 
-LED 示例先按 300 ms 间隔翻转 100 次，再按 500 ms 间隔持续翻转。
-这些时间表示翻转间隔，不是完整亮灭周期。BSP 当前使用低有效 PA5 LED。
+LED 任务使用单一的 500 ms 周期，每个周期翻转一次输出电平。GPIO BSP 使用明确的物理引脚标识，BSP_GPIOA_5 对应 PA5；
+封装实际引出的每个 GPIO 都有独立的端口、引脚、初始化开关、模式、上下拉、速度、初始电平和安全电平宏；
+修改引脚用途时只需修改对应引脚的配置宏。LED Service 负责低电平有效的设备语义。未使用 GPIO
+默认初始化为模拟模式、无上下拉；HSE 和调试引脚保留独立配置块，但默认关闭 GPIO 初始化。
 
 ### 4.3 内存和故障边界
 

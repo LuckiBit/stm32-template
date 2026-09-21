@@ -25,6 +25,7 @@ Application 的 `app/tasks/tasks.h` 集中控制 16 个编号任务槽位和配�
 - [整个工程的结构、职责、Bootloader 流程和 Flash 布局](docs/firmware_arch.md)。
 - [Application 的任务清单、启动协议、静态资源与故障处理](docs/rtos_startup.md)。
 - [C 编码规范与项目约定](docs/c_coding_standard.md)。
+- [GPIO 引脚分配、功能与用途](docs/pin_assignment.md)。
 
 ## 调试串口
 

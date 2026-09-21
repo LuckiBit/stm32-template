@@ -1,39 +1,1881 @@
 /**
  * @file bsp_gpio.c
- * @brief Configures board GPIO and controls the active-low status LED.
+ * @brief Configures every package GPIO from an independent per-pin macro block.
  */
 
 #include "bsp_gpio.h"
 
 #include "stm32f4xx_hal.h"
 
-#define BSP_GPIO_LED_PIN  GPIO_PIN_5
-#define BSP_GPIO_LED_PORT GPIOA
+#include <stddef.h>
+#include <stdint.h>
+
+/*
+ * Modify only the macros in the required pin block when its electrical
+ * configuration changes. HSE and debug pins remain listed but INITIALIZE is false.
+ */
+/* GPIOA pin 0 configuration. */
+#define BSP_GPIOA_0_PORT          GPIOA
+#define BSP_GPIOA_0_PIN           GPIO_PIN_0
+#define BSP_GPIOA_0_INITIALIZE    true
+#define BSP_GPIOA_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_0_PULL          GPIO_NOPULL
+#define BSP_GPIOA_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_0_IS_OUTPUT     false
+
+/* GPIOA pin 1 configuration. */
+#define BSP_GPIOA_1_PORT          GPIOA
+#define BSP_GPIOA_1_PIN           GPIO_PIN_1
+#define BSP_GPIOA_1_INITIALIZE    true
+#define BSP_GPIOA_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_1_PULL          GPIO_NOPULL
+#define BSP_GPIOA_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_1_IS_OUTPUT     false
+
+/* GPIOA pin 2 configuration. */
+#define BSP_GPIOA_2_PORT          GPIOA
+#define BSP_GPIOA_2_PIN           GPIO_PIN_2
+#define BSP_GPIOA_2_INITIALIZE    true
+#define BSP_GPIOA_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_2_PULL          GPIO_NOPULL
+#define BSP_GPIOA_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_2_IS_OUTPUT     false
+
+/* GPIOA pin 3 configuration. */
+#define BSP_GPIOA_3_PORT          GPIOA
+#define BSP_GPIOA_3_PIN           GPIO_PIN_3
+#define BSP_GPIOA_3_INITIALIZE    true
+#define BSP_GPIOA_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_3_PULL          GPIO_NOPULL
+#define BSP_GPIOA_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_3_IS_OUTPUT     false
+
+/* GPIOA pin 4 configuration. */
+#define BSP_GPIOA_4_PORT          GPIOA
+#define BSP_GPIOA_4_PIN           GPIO_PIN_4
+#define BSP_GPIOA_4_INITIALIZE    true
+#define BSP_GPIOA_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_4_PULL          GPIO_NOPULL
+#define BSP_GPIOA_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_4_IS_OUTPUT     false
+
+/* GPIOA pin 5 configuration. */
+#define BSP_GPIOA_5_PORT          GPIOA
+#define BSP_GPIOA_5_PIN           GPIO_PIN_5
+#define BSP_GPIOA_5_INITIALIZE    true
+#define BSP_GPIOA_5_MODE          GPIO_MODE_OUTPUT_PP
+#define BSP_GPIOA_5_PULL          GPIO_NOPULL
+#define BSP_GPIOA_5_SPEED         GPIO_SPEED_FREQ_HIGH
+#define BSP_GPIOA_5_INITIAL_STATE GPIO_PIN_SET
+#define BSP_GPIOA_5_SAFE_STATE    GPIO_PIN_SET
+#define BSP_GPIOA_5_IS_OUTPUT     true
+
+/* GPIOA pin 6 configuration. */
+#define BSP_GPIOA_6_PORT          GPIOA
+#define BSP_GPIOA_6_PIN           GPIO_PIN_6
+#define BSP_GPIOA_6_INITIALIZE    true
+#define BSP_GPIOA_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_6_PULL          GPIO_NOPULL
+#define BSP_GPIOA_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_6_IS_OUTPUT     false
+
+/* GPIOA pin 7 configuration. */
+#define BSP_GPIOA_7_PORT          GPIOA
+#define BSP_GPIOA_7_PIN           GPIO_PIN_7
+#define BSP_GPIOA_7_INITIALIZE    true
+#define BSP_GPIOA_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_7_PULL          GPIO_NOPULL
+#define BSP_GPIOA_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_7_IS_OUTPUT     false
+
+/* GPIOA pin 8 configuration. */
+#define BSP_GPIOA_8_PORT          GPIOA
+#define BSP_GPIOA_8_PIN           GPIO_PIN_8
+#define BSP_GPIOA_8_INITIALIZE    true
+#define BSP_GPIOA_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_8_PULL          GPIO_NOPULL
+#define BSP_GPIOA_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_8_IS_OUTPUT     false
+
+/* GPIOA pin 9 configuration. */
+#define BSP_GPIOA_9_PORT          GPIOA
+#define BSP_GPIOA_9_PIN           GPIO_PIN_9
+#define BSP_GPIOA_9_INITIALIZE    true
+#define BSP_GPIOA_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_9_PULL          GPIO_NOPULL
+#define BSP_GPIOA_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_9_IS_OUTPUT     false
+
+/* GPIOA pin 10 configuration. */
+#define BSP_GPIOA_10_PORT          GPIOA
+#define BSP_GPIOA_10_PIN           GPIO_PIN_10
+#define BSP_GPIOA_10_INITIALIZE    true
+#define BSP_GPIOA_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_10_PULL          GPIO_NOPULL
+#define BSP_GPIOA_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_10_IS_OUTPUT     false
+
+/* GPIOA pin 11 configuration. */
+#define BSP_GPIOA_11_PORT          GPIOA
+#define BSP_GPIOA_11_PIN           GPIO_PIN_11
+#define BSP_GPIOA_11_INITIALIZE    true
+#define BSP_GPIOA_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_11_PULL          GPIO_NOPULL
+#define BSP_GPIOA_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_11_IS_OUTPUT     false
+
+/* GPIOA pin 12 configuration. */
+#define BSP_GPIOA_12_PORT          GPIOA
+#define BSP_GPIOA_12_PIN           GPIO_PIN_12
+#define BSP_GPIOA_12_INITIALIZE    true
+#define BSP_GPIOA_12_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_12_PULL          GPIO_NOPULL
+#define BSP_GPIOA_12_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_12_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_12_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_12_IS_OUTPUT     false
+
+/* GPIOA pin 13 configuration. */
+#define BSP_GPIOA_13_PORT          GPIOA
+#define BSP_GPIOA_13_PIN           GPIO_PIN_13
+#define BSP_GPIOA_13_INITIALIZE    false
+#define BSP_GPIOA_13_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_13_PULL          GPIO_NOPULL
+#define BSP_GPIOA_13_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_13_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_13_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_13_IS_OUTPUT     false
+
+/* GPIOA pin 14 configuration. */
+#define BSP_GPIOA_14_PORT          GPIOA
+#define BSP_GPIOA_14_PIN           GPIO_PIN_14
+#define BSP_GPIOA_14_INITIALIZE    false
+#define BSP_GPIOA_14_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_14_PULL          GPIO_NOPULL
+#define BSP_GPIOA_14_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_14_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_14_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_14_IS_OUTPUT     false
+
+/* GPIOA pin 15 configuration. */
+#define BSP_GPIOA_15_PORT          GPIOA
+#define BSP_GPIOA_15_PIN           GPIO_PIN_15
+#define BSP_GPIOA_15_INITIALIZE    false
+#define BSP_GPIOA_15_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOA_15_PULL          GPIO_NOPULL
+#define BSP_GPIOA_15_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOA_15_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOA_15_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOA_15_IS_OUTPUT     false
+
+/* GPIOB pin 0 configuration. */
+#define BSP_GPIOB_0_PORT          GPIOB
+#define BSP_GPIOB_0_PIN           GPIO_PIN_0
+#define BSP_GPIOB_0_INITIALIZE    true
+#define BSP_GPIOB_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_0_PULL          GPIO_NOPULL
+#define BSP_GPIOB_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_0_IS_OUTPUT     false
+
+/* GPIOB pin 1 configuration. */
+#define BSP_GPIOB_1_PORT          GPIOB
+#define BSP_GPIOB_1_PIN           GPIO_PIN_1
+#define BSP_GPIOB_1_INITIALIZE    true
+#define BSP_GPIOB_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_1_PULL          GPIO_NOPULL
+#define BSP_GPIOB_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_1_IS_OUTPUT     false
+
+/* GPIOB pin 2 configuration. */
+#define BSP_GPIOB_2_PORT          GPIOB
+#define BSP_GPIOB_2_PIN           GPIO_PIN_2
+#define BSP_GPIOB_2_INITIALIZE    true
+#define BSP_GPIOB_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_2_PULL          GPIO_NOPULL
+#define BSP_GPIOB_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_2_IS_OUTPUT     false
+
+/* GPIOB pin 3 configuration. */
+#define BSP_GPIOB_3_PORT          GPIOB
+#define BSP_GPIOB_3_PIN           GPIO_PIN_3
+#define BSP_GPIOB_3_INITIALIZE    false
+#define BSP_GPIOB_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_3_PULL          GPIO_NOPULL
+#define BSP_GPIOB_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_3_IS_OUTPUT     false
+
+/* GPIOB pin 4 configuration. */
+#define BSP_GPIOB_4_PORT          GPIOB
+#define BSP_GPIOB_4_PIN           GPIO_PIN_4
+#define BSP_GPIOB_4_INITIALIZE    false
+#define BSP_GPIOB_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_4_PULL          GPIO_NOPULL
+#define BSP_GPIOB_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_4_IS_OUTPUT     false
+
+/* GPIOB pin 5 configuration. */
+#define BSP_GPIOB_5_PORT          GPIOB
+#define BSP_GPIOB_5_PIN           GPIO_PIN_5
+#define BSP_GPIOB_5_INITIALIZE    true
+#define BSP_GPIOB_5_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_5_PULL          GPIO_NOPULL
+#define BSP_GPIOB_5_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_5_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_5_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_5_IS_OUTPUT     false
+
+/* GPIOB pin 6 configuration. */
+#define BSP_GPIOB_6_PORT          GPIOB
+#define BSP_GPIOB_6_PIN           GPIO_PIN_6
+#define BSP_GPIOB_6_INITIALIZE    true
+#define BSP_GPIOB_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_6_PULL          GPIO_NOPULL
+#define BSP_GPIOB_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_6_IS_OUTPUT     false
+
+/* GPIOB pin 7 configuration. */
+#define BSP_GPIOB_7_PORT          GPIOB
+#define BSP_GPIOB_7_PIN           GPIO_PIN_7
+#define BSP_GPIOB_7_INITIALIZE    true
+#define BSP_GPIOB_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_7_PULL          GPIO_NOPULL
+#define BSP_GPIOB_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_7_IS_OUTPUT     false
+
+/* GPIOB pin 8 configuration. */
+#define BSP_GPIOB_8_PORT          GPIOB
+#define BSP_GPIOB_8_PIN           GPIO_PIN_8
+#define BSP_GPIOB_8_INITIALIZE    true
+#define BSP_GPIOB_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_8_PULL          GPIO_NOPULL
+#define BSP_GPIOB_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_8_IS_OUTPUT     false
+
+/* GPIOB pin 9 configuration. */
+#define BSP_GPIOB_9_PORT          GPIOB
+#define BSP_GPIOB_9_PIN           GPIO_PIN_9
+#define BSP_GPIOB_9_INITIALIZE    true
+#define BSP_GPIOB_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_9_PULL          GPIO_NOPULL
+#define BSP_GPIOB_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_9_IS_OUTPUT     false
+
+/* GPIOB pin 10 configuration. */
+#define BSP_GPIOB_10_PORT          GPIOB
+#define BSP_GPIOB_10_PIN           GPIO_PIN_10
+#define BSP_GPIOB_10_INITIALIZE    true
+#define BSP_GPIOB_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_10_PULL          GPIO_NOPULL
+#define BSP_GPIOB_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_10_IS_OUTPUT     false
+
+/* GPIOB pin 11 configuration. */
+#define BSP_GPIOB_11_PORT          GPIOB
+#define BSP_GPIOB_11_PIN           GPIO_PIN_11
+#define BSP_GPIOB_11_INITIALIZE    true
+#define BSP_GPIOB_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_11_PULL          GPIO_NOPULL
+#define BSP_GPIOB_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_11_IS_OUTPUT     false
+
+/* GPIOB pin 12 configuration. */
+#define BSP_GPIOB_12_PORT          GPIOB
+#define BSP_GPIOB_12_PIN           GPIO_PIN_12
+#define BSP_GPIOB_12_INITIALIZE    true
+#define BSP_GPIOB_12_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_12_PULL          GPIO_NOPULL
+#define BSP_GPIOB_12_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_12_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_12_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_12_IS_OUTPUT     false
+
+/* GPIOB pin 13 configuration. */
+#define BSP_GPIOB_13_PORT          GPIOB
+#define BSP_GPIOB_13_PIN           GPIO_PIN_13
+#define BSP_GPIOB_13_INITIALIZE    true
+#define BSP_GPIOB_13_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_13_PULL          GPIO_NOPULL
+#define BSP_GPIOB_13_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_13_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_13_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_13_IS_OUTPUT     false
+
+/* GPIOB pin 14 configuration. */
+#define BSP_GPIOB_14_PORT          GPIOB
+#define BSP_GPIOB_14_PIN           GPIO_PIN_14
+#define BSP_GPIOB_14_INITIALIZE    true
+#define BSP_GPIOB_14_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_14_PULL          GPIO_NOPULL
+#define BSP_GPIOB_14_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_14_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_14_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_14_IS_OUTPUT     false
+
+/* GPIOB pin 15 configuration. */
+#define BSP_GPIOB_15_PORT          GPIOB
+#define BSP_GPIOB_15_PIN           GPIO_PIN_15
+#define BSP_GPIOB_15_INITIALIZE    true
+#define BSP_GPIOB_15_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOB_15_PULL          GPIO_NOPULL
+#define BSP_GPIOB_15_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOB_15_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOB_15_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOB_15_IS_OUTPUT     false
+
+/* GPIOC pin 0 configuration. */
+#define BSP_GPIOC_0_PORT          GPIOC
+#define BSP_GPIOC_0_PIN           GPIO_PIN_0
+#define BSP_GPIOC_0_INITIALIZE    true
+#define BSP_GPIOC_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_0_PULL          GPIO_NOPULL
+#define BSP_GPIOC_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_0_IS_OUTPUT     false
+
+/* GPIOC pin 1 configuration. */
+#define BSP_GPIOC_1_PORT          GPIOC
+#define BSP_GPIOC_1_PIN           GPIO_PIN_1
+#define BSP_GPIOC_1_INITIALIZE    true
+#define BSP_GPIOC_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_1_PULL          GPIO_NOPULL
+#define BSP_GPIOC_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_1_IS_OUTPUT     false
+
+/* GPIOC pin 2 configuration. */
+#define BSP_GPIOC_2_PORT          GPIOC
+#define BSP_GPIOC_2_PIN           GPIO_PIN_2
+#define BSP_GPIOC_2_INITIALIZE    true
+#define BSP_GPIOC_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_2_PULL          GPIO_NOPULL
+#define BSP_GPIOC_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_2_IS_OUTPUT     false
+
+/* GPIOC pin 3 configuration. */
+#define BSP_GPIOC_3_PORT          GPIOC
+#define BSP_GPIOC_3_PIN           GPIO_PIN_3
+#define BSP_GPIOC_3_INITIALIZE    true
+#define BSP_GPIOC_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_3_PULL          GPIO_NOPULL
+#define BSP_GPIOC_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_3_IS_OUTPUT     false
+
+/* GPIOC pin 4 configuration. */
+#define BSP_GPIOC_4_PORT          GPIOC
+#define BSP_GPIOC_4_PIN           GPIO_PIN_4
+#define BSP_GPIOC_4_INITIALIZE    true
+#define BSP_GPIOC_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_4_PULL          GPIO_NOPULL
+#define BSP_GPIOC_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_4_IS_OUTPUT     false
+
+/* GPIOC pin 5 configuration. */
+#define BSP_GPIOC_5_PORT          GPIOC
+#define BSP_GPIOC_5_PIN           GPIO_PIN_5
+#define BSP_GPIOC_5_INITIALIZE    true
+#define BSP_GPIOC_5_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_5_PULL          GPIO_NOPULL
+#define BSP_GPIOC_5_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_5_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_5_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_5_IS_OUTPUT     false
+
+/* GPIOC pin 6 configuration. */
+#define BSP_GPIOC_6_PORT          GPIOC
+#define BSP_GPIOC_6_PIN           GPIO_PIN_6
+#define BSP_GPIOC_6_INITIALIZE    true
+#define BSP_GPIOC_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_6_PULL          GPIO_NOPULL
+#define BSP_GPIOC_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_6_IS_OUTPUT     false
+
+/* GPIOC pin 7 configuration. */
+#define BSP_GPIOC_7_PORT          GPIOC
+#define BSP_GPIOC_7_PIN           GPIO_PIN_7
+#define BSP_GPIOC_7_INITIALIZE    true
+#define BSP_GPIOC_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_7_PULL          GPIO_NOPULL
+#define BSP_GPIOC_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_7_IS_OUTPUT     false
+
+/* GPIOC pin 8 configuration. */
+#define BSP_GPIOC_8_PORT          GPIOC
+#define BSP_GPIOC_8_PIN           GPIO_PIN_8
+#define BSP_GPIOC_8_INITIALIZE    true
+#define BSP_GPIOC_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_8_PULL          GPIO_NOPULL
+#define BSP_GPIOC_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_8_IS_OUTPUT     false
+
+/* GPIOC pin 9 configuration. */
+#define BSP_GPIOC_9_PORT          GPIOC
+#define BSP_GPIOC_9_PIN           GPIO_PIN_9
+#define BSP_GPIOC_9_INITIALIZE    true
+#define BSP_GPIOC_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_9_PULL          GPIO_NOPULL
+#define BSP_GPIOC_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_9_IS_OUTPUT     false
+
+/* GPIOC pin 10 configuration. */
+#define BSP_GPIOC_10_PORT          GPIOC
+#define BSP_GPIOC_10_PIN           GPIO_PIN_10
+#define BSP_GPIOC_10_INITIALIZE    true
+#define BSP_GPIOC_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_10_PULL          GPIO_NOPULL
+#define BSP_GPIOC_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_10_IS_OUTPUT     false
+
+/* GPIOC pin 11 configuration. */
+#define BSP_GPIOC_11_PORT          GPIOC
+#define BSP_GPIOC_11_PIN           GPIO_PIN_11
+#define BSP_GPIOC_11_INITIALIZE    true
+#define BSP_GPIOC_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_11_PULL          GPIO_NOPULL
+#define BSP_GPIOC_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_11_IS_OUTPUT     false
+
+/* GPIOC pin 12 configuration. */
+#define BSP_GPIOC_12_PORT          GPIOC
+#define BSP_GPIOC_12_PIN           GPIO_PIN_12
+#define BSP_GPIOC_12_INITIALIZE    true
+#define BSP_GPIOC_12_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_12_PULL          GPIO_NOPULL
+#define BSP_GPIOC_12_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_12_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_12_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_12_IS_OUTPUT     false
+
+/* GPIOC pin 13 configuration. */
+#define BSP_GPIOC_13_PORT          GPIOC
+#define BSP_GPIOC_13_PIN           GPIO_PIN_13
+#define BSP_GPIOC_13_INITIALIZE    true
+#define BSP_GPIOC_13_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_13_PULL          GPIO_NOPULL
+#define BSP_GPIOC_13_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_13_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_13_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_13_IS_OUTPUT     false
+
+/* GPIOC pin 14 configuration. */
+#define BSP_GPIOC_14_PORT          GPIOC
+#define BSP_GPIOC_14_PIN           GPIO_PIN_14
+#define BSP_GPIOC_14_INITIALIZE    true
+#define BSP_GPIOC_14_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_14_PULL          GPIO_NOPULL
+#define BSP_GPIOC_14_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_14_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_14_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_14_IS_OUTPUT     false
+
+/* GPIOC pin 15 configuration. */
+#define BSP_GPIOC_15_PORT          GPIOC
+#define BSP_GPIOC_15_PIN           GPIO_PIN_15
+#define BSP_GPIOC_15_INITIALIZE    true
+#define BSP_GPIOC_15_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOC_15_PULL          GPIO_NOPULL
+#define BSP_GPIOC_15_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOC_15_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOC_15_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOC_15_IS_OUTPUT     false
+
+/* GPIOD pin 0 configuration. */
+#define BSP_GPIOD_0_PORT          GPIOD
+#define BSP_GPIOD_0_PIN           GPIO_PIN_0
+#define BSP_GPIOD_0_INITIALIZE    true
+#define BSP_GPIOD_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_0_PULL          GPIO_NOPULL
+#define BSP_GPIOD_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_0_IS_OUTPUT     false
+
+/* GPIOD pin 1 configuration. */
+#define BSP_GPIOD_1_PORT          GPIOD
+#define BSP_GPIOD_1_PIN           GPIO_PIN_1
+#define BSP_GPIOD_1_INITIALIZE    true
+#define BSP_GPIOD_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_1_PULL          GPIO_NOPULL
+#define BSP_GPIOD_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_1_IS_OUTPUT     false
+
+/* GPIOD pin 2 configuration. */
+#define BSP_GPIOD_2_PORT          GPIOD
+#define BSP_GPIOD_2_PIN           GPIO_PIN_2
+#define BSP_GPIOD_2_INITIALIZE    true
+#define BSP_GPIOD_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_2_PULL          GPIO_NOPULL
+#define BSP_GPIOD_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_2_IS_OUTPUT     false
+
+/* GPIOD pin 3 configuration. */
+#define BSP_GPIOD_3_PORT          GPIOD
+#define BSP_GPIOD_3_PIN           GPIO_PIN_3
+#define BSP_GPIOD_3_INITIALIZE    true
+#define BSP_GPIOD_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_3_PULL          GPIO_NOPULL
+#define BSP_GPIOD_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_3_IS_OUTPUT     false
+
+/* GPIOD pin 4 configuration. */
+#define BSP_GPIOD_4_PORT          GPIOD
+#define BSP_GPIOD_4_PIN           GPIO_PIN_4
+#define BSP_GPIOD_4_INITIALIZE    true
+#define BSP_GPIOD_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_4_PULL          GPIO_NOPULL
+#define BSP_GPIOD_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_4_IS_OUTPUT     false
+
+/* GPIOD pin 5 configuration. */
+#define BSP_GPIOD_5_PORT          GPIOD
+#define BSP_GPIOD_5_PIN           GPIO_PIN_5
+#define BSP_GPIOD_5_INITIALIZE    true
+#define BSP_GPIOD_5_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_5_PULL          GPIO_NOPULL
+#define BSP_GPIOD_5_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_5_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_5_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_5_IS_OUTPUT     false
+
+/* GPIOD pin 6 configuration. */
+#define BSP_GPIOD_6_PORT          GPIOD
+#define BSP_GPIOD_6_PIN           GPIO_PIN_6
+#define BSP_GPIOD_6_INITIALIZE    true
+#define BSP_GPIOD_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_6_PULL          GPIO_NOPULL
+#define BSP_GPIOD_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_6_IS_OUTPUT     false
+
+/* GPIOD pin 7 configuration. */
+#define BSP_GPIOD_7_PORT          GPIOD
+#define BSP_GPIOD_7_PIN           GPIO_PIN_7
+#define BSP_GPIOD_7_INITIALIZE    true
+#define BSP_GPIOD_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_7_PULL          GPIO_NOPULL
+#define BSP_GPIOD_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_7_IS_OUTPUT     false
+
+/* GPIOD pin 8 configuration. */
+#define BSP_GPIOD_8_PORT          GPIOD
+#define BSP_GPIOD_8_PIN           GPIO_PIN_8
+#define BSP_GPIOD_8_INITIALIZE    true
+#define BSP_GPIOD_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_8_PULL          GPIO_NOPULL
+#define BSP_GPIOD_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_8_IS_OUTPUT     false
+
+/* GPIOD pin 9 configuration. */
+#define BSP_GPIOD_9_PORT          GPIOD
+#define BSP_GPIOD_9_PIN           GPIO_PIN_9
+#define BSP_GPIOD_9_INITIALIZE    true
+#define BSP_GPIOD_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_9_PULL          GPIO_NOPULL
+#define BSP_GPIOD_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_9_IS_OUTPUT     false
+
+/* GPIOD pin 10 configuration. */
+#define BSP_GPIOD_10_PORT          GPIOD
+#define BSP_GPIOD_10_PIN           GPIO_PIN_10
+#define BSP_GPIOD_10_INITIALIZE    true
+#define BSP_GPIOD_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_10_PULL          GPIO_NOPULL
+#define BSP_GPIOD_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_10_IS_OUTPUT     false
+
+/* GPIOD pin 11 configuration. */
+#define BSP_GPIOD_11_PORT          GPIOD
+#define BSP_GPIOD_11_PIN           GPIO_PIN_11
+#define BSP_GPIOD_11_INITIALIZE    true
+#define BSP_GPIOD_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_11_PULL          GPIO_NOPULL
+#define BSP_GPIOD_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_11_IS_OUTPUT     false
+
+/* GPIOD pin 12 configuration. */
+#define BSP_GPIOD_12_PORT          GPIOD
+#define BSP_GPIOD_12_PIN           GPIO_PIN_12
+#define BSP_GPIOD_12_INITIALIZE    true
+#define BSP_GPIOD_12_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_12_PULL          GPIO_NOPULL
+#define BSP_GPIOD_12_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_12_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_12_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_12_IS_OUTPUT     false
+
+/* GPIOD pin 13 configuration. */
+#define BSP_GPIOD_13_PORT          GPIOD
+#define BSP_GPIOD_13_PIN           GPIO_PIN_13
+#define BSP_GPIOD_13_INITIALIZE    true
+#define BSP_GPIOD_13_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_13_PULL          GPIO_NOPULL
+#define BSP_GPIOD_13_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_13_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_13_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_13_IS_OUTPUT     false
+
+/* GPIOD pin 14 configuration. */
+#define BSP_GPIOD_14_PORT          GPIOD
+#define BSP_GPIOD_14_PIN           GPIO_PIN_14
+#define BSP_GPIOD_14_INITIALIZE    true
+#define BSP_GPIOD_14_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_14_PULL          GPIO_NOPULL
+#define BSP_GPIOD_14_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_14_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_14_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_14_IS_OUTPUT     false
+
+/* GPIOD pin 15 configuration. */
+#define BSP_GPIOD_15_PORT          GPIOD
+#define BSP_GPIOD_15_PIN           GPIO_PIN_15
+#define BSP_GPIOD_15_INITIALIZE    true
+#define BSP_GPIOD_15_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOD_15_PULL          GPIO_NOPULL
+#define BSP_GPIOD_15_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOD_15_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOD_15_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOD_15_IS_OUTPUT     false
+
+/* GPIOE pin 0 configuration. */
+#define BSP_GPIOE_0_PORT          GPIOE
+#define BSP_GPIOE_0_PIN           GPIO_PIN_0
+#define BSP_GPIOE_0_INITIALIZE    true
+#define BSP_GPIOE_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_0_PULL          GPIO_NOPULL
+#define BSP_GPIOE_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_0_IS_OUTPUT     false
+
+/* GPIOE pin 1 configuration. */
+#define BSP_GPIOE_1_PORT          GPIOE
+#define BSP_GPIOE_1_PIN           GPIO_PIN_1
+#define BSP_GPIOE_1_INITIALIZE    true
+#define BSP_GPIOE_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_1_PULL          GPIO_NOPULL
+#define BSP_GPIOE_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_1_IS_OUTPUT     false
+
+/* GPIOE pin 2 configuration. */
+#define BSP_GPIOE_2_PORT          GPIOE
+#define BSP_GPIOE_2_PIN           GPIO_PIN_2
+#define BSP_GPIOE_2_INITIALIZE    true
+#define BSP_GPIOE_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_2_PULL          GPIO_NOPULL
+#define BSP_GPIOE_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_2_IS_OUTPUT     false
+
+/* GPIOE pin 3 configuration. */
+#define BSP_GPIOE_3_PORT          GPIOE
+#define BSP_GPIOE_3_PIN           GPIO_PIN_3
+#define BSP_GPIOE_3_INITIALIZE    true
+#define BSP_GPIOE_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_3_PULL          GPIO_NOPULL
+#define BSP_GPIOE_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_3_IS_OUTPUT     false
+
+/* GPIOE pin 4 configuration. */
+#define BSP_GPIOE_4_PORT          GPIOE
+#define BSP_GPIOE_4_PIN           GPIO_PIN_4
+#define BSP_GPIOE_4_INITIALIZE    true
+#define BSP_GPIOE_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_4_PULL          GPIO_NOPULL
+#define BSP_GPIOE_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_4_IS_OUTPUT     false
+
+/* GPIOE pin 5 configuration. */
+#define BSP_GPIOE_5_PORT          GPIOE
+#define BSP_GPIOE_5_PIN           GPIO_PIN_5
+#define BSP_GPIOE_5_INITIALIZE    true
+#define BSP_GPIOE_5_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_5_PULL          GPIO_NOPULL
+#define BSP_GPIOE_5_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_5_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_5_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_5_IS_OUTPUT     false
+
+/* GPIOE pin 6 configuration. */
+#define BSP_GPIOE_6_PORT          GPIOE
+#define BSP_GPIOE_6_PIN           GPIO_PIN_6
+#define BSP_GPIOE_6_INITIALIZE    true
+#define BSP_GPIOE_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_6_PULL          GPIO_NOPULL
+#define BSP_GPIOE_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_6_IS_OUTPUT     false
+
+/* GPIOE pin 7 configuration. */
+#define BSP_GPIOE_7_PORT          GPIOE
+#define BSP_GPIOE_7_PIN           GPIO_PIN_7
+#define BSP_GPIOE_7_INITIALIZE    true
+#define BSP_GPIOE_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_7_PULL          GPIO_NOPULL
+#define BSP_GPIOE_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_7_IS_OUTPUT     false
+
+/* GPIOE pin 8 configuration. */
+#define BSP_GPIOE_8_PORT          GPIOE
+#define BSP_GPIOE_8_PIN           GPIO_PIN_8
+#define BSP_GPIOE_8_INITIALIZE    true
+#define BSP_GPIOE_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_8_PULL          GPIO_NOPULL
+#define BSP_GPIOE_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_8_IS_OUTPUT     false
+
+/* GPIOE pin 9 configuration. */
+#define BSP_GPIOE_9_PORT          GPIOE
+#define BSP_GPIOE_9_PIN           GPIO_PIN_9
+#define BSP_GPIOE_9_INITIALIZE    true
+#define BSP_GPIOE_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_9_PULL          GPIO_NOPULL
+#define BSP_GPIOE_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_9_IS_OUTPUT     false
+
+/* GPIOE pin 10 configuration. */
+#define BSP_GPIOE_10_PORT          GPIOE
+#define BSP_GPIOE_10_PIN           GPIO_PIN_10
+#define BSP_GPIOE_10_INITIALIZE    true
+#define BSP_GPIOE_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_10_PULL          GPIO_NOPULL
+#define BSP_GPIOE_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_10_IS_OUTPUT     false
+
+/* GPIOE pin 11 configuration. */
+#define BSP_GPIOE_11_PORT          GPIOE
+#define BSP_GPIOE_11_PIN           GPIO_PIN_11
+#define BSP_GPIOE_11_INITIALIZE    true
+#define BSP_GPIOE_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_11_PULL          GPIO_NOPULL
+#define BSP_GPIOE_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_11_IS_OUTPUT     false
+
+/* GPIOE pin 12 configuration. */
+#define BSP_GPIOE_12_PORT          GPIOE
+#define BSP_GPIOE_12_PIN           GPIO_PIN_12
+#define BSP_GPIOE_12_INITIALIZE    true
+#define BSP_GPIOE_12_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_12_PULL          GPIO_NOPULL
+#define BSP_GPIOE_12_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_12_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_12_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_12_IS_OUTPUT     false
+
+/* GPIOE pin 13 configuration. */
+#define BSP_GPIOE_13_PORT          GPIOE
+#define BSP_GPIOE_13_PIN           GPIO_PIN_13
+#define BSP_GPIOE_13_INITIALIZE    true
+#define BSP_GPIOE_13_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_13_PULL          GPIO_NOPULL
+#define BSP_GPIOE_13_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_13_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_13_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_13_IS_OUTPUT     false
+
+/* GPIOE pin 14 configuration. */
+#define BSP_GPIOE_14_PORT          GPIOE
+#define BSP_GPIOE_14_PIN           GPIO_PIN_14
+#define BSP_GPIOE_14_INITIALIZE    true
+#define BSP_GPIOE_14_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_14_PULL          GPIO_NOPULL
+#define BSP_GPIOE_14_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_14_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_14_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_14_IS_OUTPUT     false
+
+/* GPIOE pin 15 configuration. */
+#define BSP_GPIOE_15_PORT          GPIOE
+#define BSP_GPIOE_15_PIN           GPIO_PIN_15
+#define BSP_GPIOE_15_INITIALIZE    true
+#define BSP_GPIOE_15_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOE_15_PULL          GPIO_NOPULL
+#define BSP_GPIOE_15_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOE_15_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOE_15_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOE_15_IS_OUTPUT     false
+
+/* GPIOF pin 0 configuration. */
+#define BSP_GPIOF_0_PORT          GPIOF
+#define BSP_GPIOF_0_PIN           GPIO_PIN_0
+#define BSP_GPIOF_0_INITIALIZE    true
+#define BSP_GPIOF_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_0_PULL          GPIO_NOPULL
+#define BSP_GPIOF_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_0_IS_OUTPUT     false
+
+/* GPIOF pin 1 configuration. */
+#define BSP_GPIOF_1_PORT          GPIOF
+#define BSP_GPIOF_1_PIN           GPIO_PIN_1
+#define BSP_GPIOF_1_INITIALIZE    true
+#define BSP_GPIOF_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_1_PULL          GPIO_NOPULL
+#define BSP_GPIOF_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_1_IS_OUTPUT     false
+
+/* GPIOF pin 2 configuration. */
+#define BSP_GPIOF_2_PORT          GPIOF
+#define BSP_GPIOF_2_PIN           GPIO_PIN_2
+#define BSP_GPIOF_2_INITIALIZE    true
+#define BSP_GPIOF_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_2_PULL          GPIO_NOPULL
+#define BSP_GPIOF_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_2_IS_OUTPUT     false
+
+/* GPIOF pin 3 configuration. */
+#define BSP_GPIOF_3_PORT          GPIOF
+#define BSP_GPIOF_3_PIN           GPIO_PIN_3
+#define BSP_GPIOF_3_INITIALIZE    true
+#define BSP_GPIOF_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_3_PULL          GPIO_NOPULL
+#define BSP_GPIOF_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_3_IS_OUTPUT     false
+
+/* GPIOF pin 4 configuration. */
+#define BSP_GPIOF_4_PORT          GPIOF
+#define BSP_GPIOF_4_PIN           GPIO_PIN_4
+#define BSP_GPIOF_4_INITIALIZE    true
+#define BSP_GPIOF_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_4_PULL          GPIO_NOPULL
+#define BSP_GPIOF_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_4_IS_OUTPUT     false
+
+/* GPIOF pin 5 configuration. */
+#define BSP_GPIOF_5_PORT          GPIOF
+#define BSP_GPIOF_5_PIN           GPIO_PIN_5
+#define BSP_GPIOF_5_INITIALIZE    true
+#define BSP_GPIOF_5_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_5_PULL          GPIO_NOPULL
+#define BSP_GPIOF_5_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_5_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_5_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_5_IS_OUTPUT     false
+
+/* GPIOF pin 6 configuration. */
+#define BSP_GPIOF_6_PORT          GPIOF
+#define BSP_GPIOF_6_PIN           GPIO_PIN_6
+#define BSP_GPIOF_6_INITIALIZE    true
+#define BSP_GPIOF_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_6_PULL          GPIO_NOPULL
+#define BSP_GPIOF_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_6_IS_OUTPUT     false
+
+/* GPIOF pin 7 configuration. */
+#define BSP_GPIOF_7_PORT          GPIOF
+#define BSP_GPIOF_7_PIN           GPIO_PIN_7
+#define BSP_GPIOF_7_INITIALIZE    true
+#define BSP_GPIOF_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_7_PULL          GPIO_NOPULL
+#define BSP_GPIOF_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_7_IS_OUTPUT     false
+
+/* GPIOF pin 8 configuration. */
+#define BSP_GPIOF_8_PORT          GPIOF
+#define BSP_GPIOF_8_PIN           GPIO_PIN_8
+#define BSP_GPIOF_8_INITIALIZE    true
+#define BSP_GPIOF_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_8_PULL          GPIO_NOPULL
+#define BSP_GPIOF_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_8_IS_OUTPUT     false
+
+/* GPIOF pin 9 configuration. */
+#define BSP_GPIOF_9_PORT          GPIOF
+#define BSP_GPIOF_9_PIN           GPIO_PIN_9
+#define BSP_GPIOF_9_INITIALIZE    true
+#define BSP_GPIOF_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_9_PULL          GPIO_NOPULL
+#define BSP_GPIOF_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_9_IS_OUTPUT     false
+
+/* GPIOF pin 10 configuration. */
+#define BSP_GPIOF_10_PORT          GPIOF
+#define BSP_GPIOF_10_PIN           GPIO_PIN_10
+#define BSP_GPIOF_10_INITIALIZE    true
+#define BSP_GPIOF_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_10_PULL          GPIO_NOPULL
+#define BSP_GPIOF_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_10_IS_OUTPUT     false
+
+/* GPIOF pin 11 configuration. */
+#define BSP_GPIOF_11_PORT          GPIOF
+#define BSP_GPIOF_11_PIN           GPIO_PIN_11
+#define BSP_GPIOF_11_INITIALIZE    true
+#define BSP_GPIOF_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_11_PULL          GPIO_NOPULL
+#define BSP_GPIOF_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_11_IS_OUTPUT     false
+
+/* GPIOF pin 12 configuration. */
+#define BSP_GPIOF_12_PORT          GPIOF
+#define BSP_GPIOF_12_PIN           GPIO_PIN_12
+#define BSP_GPIOF_12_INITIALIZE    true
+#define BSP_GPIOF_12_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_12_PULL          GPIO_NOPULL
+#define BSP_GPIOF_12_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_12_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_12_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_12_IS_OUTPUT     false
+
+/* GPIOF pin 13 configuration. */
+#define BSP_GPIOF_13_PORT          GPIOF
+#define BSP_GPIOF_13_PIN           GPIO_PIN_13
+#define BSP_GPIOF_13_INITIALIZE    true
+#define BSP_GPIOF_13_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_13_PULL          GPIO_NOPULL
+#define BSP_GPIOF_13_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_13_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_13_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_13_IS_OUTPUT     false
+
+/* GPIOF pin 14 configuration. */
+#define BSP_GPIOF_14_PORT          GPIOF
+#define BSP_GPIOF_14_PIN           GPIO_PIN_14
+#define BSP_GPIOF_14_INITIALIZE    true
+#define BSP_GPIOF_14_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_14_PULL          GPIO_NOPULL
+#define BSP_GPIOF_14_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_14_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_14_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_14_IS_OUTPUT     false
+
+/* GPIOF pin 15 configuration. */
+#define BSP_GPIOF_15_PORT          GPIOF
+#define BSP_GPIOF_15_PIN           GPIO_PIN_15
+#define BSP_GPIOF_15_INITIALIZE    true
+#define BSP_GPIOF_15_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOF_15_PULL          GPIO_NOPULL
+#define BSP_GPIOF_15_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOF_15_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOF_15_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOF_15_IS_OUTPUT     false
+
+/* GPIOG pin 0 configuration. */
+#define BSP_GPIOG_0_PORT          GPIOG
+#define BSP_GPIOG_0_PIN           GPIO_PIN_0
+#define BSP_GPIOG_0_INITIALIZE    true
+#define BSP_GPIOG_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_0_PULL          GPIO_NOPULL
+#define BSP_GPIOG_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_0_IS_OUTPUT     false
+
+/* GPIOG pin 1 configuration. */
+#define BSP_GPIOG_1_PORT          GPIOG
+#define BSP_GPIOG_1_PIN           GPIO_PIN_1
+#define BSP_GPIOG_1_INITIALIZE    true
+#define BSP_GPIOG_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_1_PULL          GPIO_NOPULL
+#define BSP_GPIOG_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_1_IS_OUTPUT     false
+
+/* GPIOG pin 2 configuration. */
+#define BSP_GPIOG_2_PORT          GPIOG
+#define BSP_GPIOG_2_PIN           GPIO_PIN_2
+#define BSP_GPIOG_2_INITIALIZE    true
+#define BSP_GPIOG_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_2_PULL          GPIO_NOPULL
+#define BSP_GPIOG_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_2_IS_OUTPUT     false
+
+/* GPIOG pin 3 configuration. */
+#define BSP_GPIOG_3_PORT          GPIOG
+#define BSP_GPIOG_3_PIN           GPIO_PIN_3
+#define BSP_GPIOG_3_INITIALIZE    true
+#define BSP_GPIOG_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_3_PULL          GPIO_NOPULL
+#define BSP_GPIOG_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_3_IS_OUTPUT     false
+
+/* GPIOG pin 4 configuration. */
+#define BSP_GPIOG_4_PORT          GPIOG
+#define BSP_GPIOG_4_PIN           GPIO_PIN_4
+#define BSP_GPIOG_4_INITIALIZE    true
+#define BSP_GPIOG_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_4_PULL          GPIO_NOPULL
+#define BSP_GPIOG_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_4_IS_OUTPUT     false
+
+/* GPIOG pin 5 configuration. */
+#define BSP_GPIOG_5_PORT          GPIOG
+#define BSP_GPIOG_5_PIN           GPIO_PIN_5
+#define BSP_GPIOG_5_INITIALIZE    true
+#define BSP_GPIOG_5_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_5_PULL          GPIO_NOPULL
+#define BSP_GPIOG_5_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_5_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_5_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_5_IS_OUTPUT     false
+
+/* GPIOG pin 6 configuration. */
+#define BSP_GPIOG_6_PORT          GPIOG
+#define BSP_GPIOG_6_PIN           GPIO_PIN_6
+#define BSP_GPIOG_6_INITIALIZE    true
+#define BSP_GPIOG_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_6_PULL          GPIO_NOPULL
+#define BSP_GPIOG_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_6_IS_OUTPUT     false
+
+/* GPIOG pin 7 configuration. */
+#define BSP_GPIOG_7_PORT          GPIOG
+#define BSP_GPIOG_7_PIN           GPIO_PIN_7
+#define BSP_GPIOG_7_INITIALIZE    true
+#define BSP_GPIOG_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_7_PULL          GPIO_NOPULL
+#define BSP_GPIOG_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_7_IS_OUTPUT     false
+
+/* GPIOG pin 8 configuration. */
+#define BSP_GPIOG_8_PORT          GPIOG
+#define BSP_GPIOG_8_PIN           GPIO_PIN_8
+#define BSP_GPIOG_8_INITIALIZE    true
+#define BSP_GPIOG_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_8_PULL          GPIO_NOPULL
+#define BSP_GPIOG_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_8_IS_OUTPUT     false
+
+/* GPIOG pin 9 configuration. */
+#define BSP_GPIOG_9_PORT          GPIOG
+#define BSP_GPIOG_9_PIN           GPIO_PIN_9
+#define BSP_GPIOG_9_INITIALIZE    true
+#define BSP_GPIOG_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_9_PULL          GPIO_NOPULL
+#define BSP_GPIOG_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_9_IS_OUTPUT     false
+
+/* GPIOG pin 10 configuration. */
+#define BSP_GPIOG_10_PORT          GPIOG
+#define BSP_GPIOG_10_PIN           GPIO_PIN_10
+#define BSP_GPIOG_10_INITIALIZE    true
+#define BSP_GPIOG_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_10_PULL          GPIO_NOPULL
+#define BSP_GPIOG_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_10_IS_OUTPUT     false
+
+/* GPIOG pin 11 configuration. */
+#define BSP_GPIOG_11_PORT          GPIOG
+#define BSP_GPIOG_11_PIN           GPIO_PIN_11
+#define BSP_GPIOG_11_INITIALIZE    true
+#define BSP_GPIOG_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_11_PULL          GPIO_NOPULL
+#define BSP_GPIOG_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_11_IS_OUTPUT     false
+
+/* GPIOG pin 12 configuration. */
+#define BSP_GPIOG_12_PORT          GPIOG
+#define BSP_GPIOG_12_PIN           GPIO_PIN_12
+#define BSP_GPIOG_12_INITIALIZE    true
+#define BSP_GPIOG_12_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_12_PULL          GPIO_NOPULL
+#define BSP_GPIOG_12_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_12_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_12_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_12_IS_OUTPUT     false
+
+/* GPIOG pin 13 configuration. */
+#define BSP_GPIOG_13_PORT          GPIOG
+#define BSP_GPIOG_13_PIN           GPIO_PIN_13
+#define BSP_GPIOG_13_INITIALIZE    true
+#define BSP_GPIOG_13_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_13_PULL          GPIO_NOPULL
+#define BSP_GPIOG_13_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_13_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_13_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_13_IS_OUTPUT     false
+
+/* GPIOG pin 14 configuration. */
+#define BSP_GPIOG_14_PORT          GPIOG
+#define BSP_GPIOG_14_PIN           GPIO_PIN_14
+#define BSP_GPIOG_14_INITIALIZE    true
+#define BSP_GPIOG_14_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_14_PULL          GPIO_NOPULL
+#define BSP_GPIOG_14_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_14_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_14_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_14_IS_OUTPUT     false
+
+/* GPIOG pin 15 configuration. */
+#define BSP_GPIOG_15_PORT          GPIOG
+#define BSP_GPIOG_15_PIN           GPIO_PIN_15
+#define BSP_GPIOG_15_INITIALIZE    true
+#define BSP_GPIOG_15_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOG_15_PULL          GPIO_NOPULL
+#define BSP_GPIOG_15_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOG_15_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOG_15_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOG_15_IS_OUTPUT     false
+
+/* GPIOH pin 0 configuration. */
+#define BSP_GPIOH_0_PORT          GPIOH
+#define BSP_GPIOH_0_PIN           GPIO_PIN_0
+#define BSP_GPIOH_0_INITIALIZE    false
+#define BSP_GPIOH_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_0_PULL          GPIO_NOPULL
+#define BSP_GPIOH_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_0_IS_OUTPUT     false
+
+/* GPIOH pin 1 configuration. */
+#define BSP_GPIOH_1_PORT          GPIOH
+#define BSP_GPIOH_1_PIN           GPIO_PIN_1
+#define BSP_GPIOH_1_INITIALIZE    false
+#define BSP_GPIOH_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_1_PULL          GPIO_NOPULL
+#define BSP_GPIOH_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_1_IS_OUTPUT     false
+
+/* GPIOH pin 2 configuration. */
+#define BSP_GPIOH_2_PORT          GPIOH
+#define BSP_GPIOH_2_PIN           GPIO_PIN_2
+#define BSP_GPIOH_2_INITIALIZE    true
+#define BSP_GPIOH_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_2_PULL          GPIO_NOPULL
+#define BSP_GPIOH_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_2_IS_OUTPUT     false
+
+/* GPIOH pin 3 configuration. */
+#define BSP_GPIOH_3_PORT          GPIOH
+#define BSP_GPIOH_3_PIN           GPIO_PIN_3
+#define BSP_GPIOH_3_INITIALIZE    true
+#define BSP_GPIOH_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_3_PULL          GPIO_NOPULL
+#define BSP_GPIOH_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_3_IS_OUTPUT     false
+
+/* GPIOH pin 4 configuration. */
+#define BSP_GPIOH_4_PORT          GPIOH
+#define BSP_GPIOH_4_PIN           GPIO_PIN_4
+#define BSP_GPIOH_4_INITIALIZE    true
+#define BSP_GPIOH_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_4_PULL          GPIO_NOPULL
+#define BSP_GPIOH_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_4_IS_OUTPUT     false
+
+/* GPIOH pin 5 configuration. */
+#define BSP_GPIOH_5_PORT          GPIOH
+#define BSP_GPIOH_5_PIN           GPIO_PIN_5
+#define BSP_GPIOH_5_INITIALIZE    true
+#define BSP_GPIOH_5_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_5_PULL          GPIO_NOPULL
+#define BSP_GPIOH_5_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_5_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_5_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_5_IS_OUTPUT     false
+
+/* GPIOH pin 6 configuration. */
+#define BSP_GPIOH_6_PORT          GPIOH
+#define BSP_GPIOH_6_PIN           GPIO_PIN_6
+#define BSP_GPIOH_6_INITIALIZE    true
+#define BSP_GPIOH_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_6_PULL          GPIO_NOPULL
+#define BSP_GPIOH_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_6_IS_OUTPUT     false
+
+/* GPIOH pin 7 configuration. */
+#define BSP_GPIOH_7_PORT          GPIOH
+#define BSP_GPIOH_7_PIN           GPIO_PIN_7
+#define BSP_GPIOH_7_INITIALIZE    true
+#define BSP_GPIOH_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_7_PULL          GPIO_NOPULL
+#define BSP_GPIOH_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_7_IS_OUTPUT     false
+
+/* GPIOH pin 8 configuration. */
+#define BSP_GPIOH_8_PORT          GPIOH
+#define BSP_GPIOH_8_PIN           GPIO_PIN_8
+#define BSP_GPIOH_8_INITIALIZE    true
+#define BSP_GPIOH_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_8_PULL          GPIO_NOPULL
+#define BSP_GPIOH_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_8_IS_OUTPUT     false
+
+/* GPIOH pin 9 configuration. */
+#define BSP_GPIOH_9_PORT          GPIOH
+#define BSP_GPIOH_9_PIN           GPIO_PIN_9
+#define BSP_GPIOH_9_INITIALIZE    true
+#define BSP_GPIOH_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_9_PULL          GPIO_NOPULL
+#define BSP_GPIOH_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_9_IS_OUTPUT     false
+
+/* GPIOH pin 10 configuration. */
+#define BSP_GPIOH_10_PORT          GPIOH
+#define BSP_GPIOH_10_PIN           GPIO_PIN_10
+#define BSP_GPIOH_10_INITIALIZE    true
+#define BSP_GPIOH_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_10_PULL          GPIO_NOPULL
+#define BSP_GPIOH_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_10_IS_OUTPUT     false
+
+/* GPIOH pin 11 configuration. */
+#define BSP_GPIOH_11_PORT          GPIOH
+#define BSP_GPIOH_11_PIN           GPIO_PIN_11
+#define BSP_GPIOH_11_INITIALIZE    true
+#define BSP_GPIOH_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_11_PULL          GPIO_NOPULL
+#define BSP_GPIOH_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_11_IS_OUTPUT     false
+
+/* GPIOH pin 12 configuration. */
+#define BSP_GPIOH_12_PORT          GPIOH
+#define BSP_GPIOH_12_PIN           GPIO_PIN_12
+#define BSP_GPIOH_12_INITIALIZE    true
+#define BSP_GPIOH_12_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_12_PULL          GPIO_NOPULL
+#define BSP_GPIOH_12_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_12_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_12_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_12_IS_OUTPUT     false
+
+/* GPIOH pin 13 configuration. */
+#define BSP_GPIOH_13_PORT          GPIOH
+#define BSP_GPIOH_13_PIN           GPIO_PIN_13
+#define BSP_GPIOH_13_INITIALIZE    true
+#define BSP_GPIOH_13_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_13_PULL          GPIO_NOPULL
+#define BSP_GPIOH_13_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_13_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_13_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_13_IS_OUTPUT     false
+
+/* GPIOH pin 14 configuration. */
+#define BSP_GPIOH_14_PORT          GPIOH
+#define BSP_GPIOH_14_PIN           GPIO_PIN_14
+#define BSP_GPIOH_14_INITIALIZE    true
+#define BSP_GPIOH_14_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_14_PULL          GPIO_NOPULL
+#define BSP_GPIOH_14_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_14_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_14_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_14_IS_OUTPUT     false
+
+/* GPIOH pin 15 configuration. */
+#define BSP_GPIOH_15_PORT          GPIOH
+#define BSP_GPIOH_15_PIN           GPIO_PIN_15
+#define BSP_GPIOH_15_INITIALIZE    true
+#define BSP_GPIOH_15_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOH_15_PULL          GPIO_NOPULL
+#define BSP_GPIOH_15_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOH_15_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOH_15_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOH_15_IS_OUTPUT     false
+
+/* GPIOI pin 0 configuration. */
+#define BSP_GPIOI_0_PORT          GPIOI
+#define BSP_GPIOI_0_PIN           GPIO_PIN_0
+#define BSP_GPIOI_0_INITIALIZE    true
+#define BSP_GPIOI_0_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_0_PULL          GPIO_NOPULL
+#define BSP_GPIOI_0_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_0_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_0_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_0_IS_OUTPUT     false
+
+/* GPIOI pin 1 configuration. */
+#define BSP_GPIOI_1_PORT          GPIOI
+#define BSP_GPIOI_1_PIN           GPIO_PIN_1
+#define BSP_GPIOI_1_INITIALIZE    true
+#define BSP_GPIOI_1_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_1_PULL          GPIO_NOPULL
+#define BSP_GPIOI_1_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_1_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_1_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_1_IS_OUTPUT     false
+
+/* GPIOI pin 2 configuration. */
+#define BSP_GPIOI_2_PORT          GPIOI
+#define BSP_GPIOI_2_PIN           GPIO_PIN_2
+#define BSP_GPIOI_2_INITIALIZE    true
+#define BSP_GPIOI_2_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_2_PULL          GPIO_NOPULL
+#define BSP_GPIOI_2_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_2_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_2_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_2_IS_OUTPUT     false
+
+/* GPIOI pin 3 configuration. */
+#define BSP_GPIOI_3_PORT          GPIOI
+#define BSP_GPIOI_3_PIN           GPIO_PIN_3
+#define BSP_GPIOI_3_INITIALIZE    true
+#define BSP_GPIOI_3_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_3_PULL          GPIO_NOPULL
+#define BSP_GPIOI_3_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_3_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_3_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_3_IS_OUTPUT     false
+
+/* GPIOI pin 4 configuration. */
+#define BSP_GPIOI_4_PORT          GPIOI
+#define BSP_GPIOI_4_PIN           GPIO_PIN_4
+#define BSP_GPIOI_4_INITIALIZE    true
+#define BSP_GPIOI_4_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_4_PULL          GPIO_NOPULL
+#define BSP_GPIOI_4_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_4_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_4_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_4_IS_OUTPUT     false
+
+/* GPIOI pin 5 configuration. */
+#define BSP_GPIOI_5_PORT          GPIOI
+#define BSP_GPIOI_5_PIN           GPIO_PIN_5
+#define BSP_GPIOI_5_INITIALIZE    true
+#define BSP_GPIOI_5_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_5_PULL          GPIO_NOPULL
+#define BSP_GPIOI_5_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_5_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_5_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_5_IS_OUTPUT     false
+
+/* GPIOI pin 6 configuration. */
+#define BSP_GPIOI_6_PORT          GPIOI
+#define BSP_GPIOI_6_PIN           GPIO_PIN_6
+#define BSP_GPIOI_6_INITIALIZE    true
+#define BSP_GPIOI_6_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_6_PULL          GPIO_NOPULL
+#define BSP_GPIOI_6_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_6_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_6_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_6_IS_OUTPUT     false
+
+/* GPIOI pin 7 configuration. */
+#define BSP_GPIOI_7_PORT          GPIOI
+#define BSP_GPIOI_7_PIN           GPIO_PIN_7
+#define BSP_GPIOI_7_INITIALIZE    true
+#define BSP_GPIOI_7_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_7_PULL          GPIO_NOPULL
+#define BSP_GPIOI_7_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_7_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_7_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_7_IS_OUTPUT     false
+
+/* GPIOI pin 8 configuration. */
+#define BSP_GPIOI_8_PORT          GPIOI
+#define BSP_GPIOI_8_PIN           GPIO_PIN_8
+#define BSP_GPIOI_8_INITIALIZE    true
+#define BSP_GPIOI_8_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_8_PULL          GPIO_NOPULL
+#define BSP_GPIOI_8_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_8_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_8_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_8_IS_OUTPUT     false
+
+/* GPIOI pin 9 configuration. */
+#define BSP_GPIOI_9_PORT          GPIOI
+#define BSP_GPIOI_9_PIN           GPIO_PIN_9
+#define BSP_GPIOI_9_INITIALIZE    true
+#define BSP_GPIOI_9_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_9_PULL          GPIO_NOPULL
+#define BSP_GPIOI_9_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_9_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_9_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_9_IS_OUTPUT     false
+
+/* GPIOI pin 10 configuration. */
+#define BSP_GPIOI_10_PORT          GPIOI
+#define BSP_GPIOI_10_PIN           GPIO_PIN_10
+#define BSP_GPIOI_10_INITIALIZE    true
+#define BSP_GPIOI_10_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_10_PULL          GPIO_NOPULL
+#define BSP_GPIOI_10_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_10_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_10_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_10_IS_OUTPUT     false
+
+/* GPIOI pin 11 configuration. */
+#define BSP_GPIOI_11_PORT          GPIOI
+#define BSP_GPIOI_11_PIN           GPIO_PIN_11
+#define BSP_GPIOI_11_INITIALIZE    true
+#define BSP_GPIOI_11_MODE          GPIO_MODE_ANALOG
+#define BSP_GPIOI_11_PULL          GPIO_NOPULL
+#define BSP_GPIOI_11_SPEED         GPIO_SPEED_FREQ_LOW
+#define BSP_GPIOI_11_INITIAL_STATE GPIO_PIN_RESET
+#define BSP_GPIOI_11_SAFE_STATE    GPIO_PIN_RESET
+#define BSP_GPIOI_11_IS_OUTPUT     false
+
+#define BSP_GPIO_PIN_CONFIG_LIST(APPLY) \
+    APPLY(BSP_GPIOA_0) \
+    APPLY(BSP_GPIOA_1) \
+    APPLY(BSP_GPIOA_2) \
+    APPLY(BSP_GPIOA_3) \
+    APPLY(BSP_GPIOA_4) \
+    APPLY(BSP_GPIOA_5) \
+    APPLY(BSP_GPIOA_6) \
+    APPLY(BSP_GPIOA_7) \
+    APPLY(BSP_GPIOA_8) \
+    APPLY(BSP_GPIOA_9) \
+    APPLY(BSP_GPIOA_10) \
+    APPLY(BSP_GPIOA_11) \
+    APPLY(BSP_GPIOA_12) \
+    APPLY(BSP_GPIOA_13) \
+    APPLY(BSP_GPIOA_14) \
+    APPLY(BSP_GPIOA_15) \
+    APPLY(BSP_GPIOB_0) \
+    APPLY(BSP_GPIOB_1) \
+    APPLY(BSP_GPIOB_2) \
+    APPLY(BSP_GPIOB_3) \
+    APPLY(BSP_GPIOB_4) \
+    APPLY(BSP_GPIOB_5) \
+    APPLY(BSP_GPIOB_6) \
+    APPLY(BSP_GPIOB_7) \
+    APPLY(BSP_GPIOB_8) \
+    APPLY(BSP_GPIOB_9) \
+    APPLY(BSP_GPIOB_10) \
+    APPLY(BSP_GPIOB_11) \
+    APPLY(BSP_GPIOB_12) \
+    APPLY(BSP_GPIOB_13) \
+    APPLY(BSP_GPIOB_14) \
+    APPLY(BSP_GPIOB_15) \
+    APPLY(BSP_GPIOC_0) \
+    APPLY(BSP_GPIOC_1) \
+    APPLY(BSP_GPIOC_2) \
+    APPLY(BSP_GPIOC_3) \
+    APPLY(BSP_GPIOC_4) \
+    APPLY(BSP_GPIOC_5) \
+    APPLY(BSP_GPIOC_6) \
+    APPLY(BSP_GPIOC_7) \
+    APPLY(BSP_GPIOC_8) \
+    APPLY(BSP_GPIOC_9) \
+    APPLY(BSP_GPIOC_10) \
+    APPLY(BSP_GPIOC_11) \
+    APPLY(BSP_GPIOC_12) \
+    APPLY(BSP_GPIOC_13) \
+    APPLY(BSP_GPIOC_14) \
+    APPLY(BSP_GPIOC_15) \
+    APPLY(BSP_GPIOD_0) \
+    APPLY(BSP_GPIOD_1) \
+    APPLY(BSP_GPIOD_2) \
+    APPLY(BSP_GPIOD_3) \
+    APPLY(BSP_GPIOD_4) \
+    APPLY(BSP_GPIOD_5) \
+    APPLY(BSP_GPIOD_6) \
+    APPLY(BSP_GPIOD_7) \
+    APPLY(BSP_GPIOD_8) \
+    APPLY(BSP_GPIOD_9) \
+    APPLY(BSP_GPIOD_10) \
+    APPLY(BSP_GPIOD_11) \
+    APPLY(BSP_GPIOD_12) \
+    APPLY(BSP_GPIOD_13) \
+    APPLY(BSP_GPIOD_14) \
+    APPLY(BSP_GPIOD_15) \
+    APPLY(BSP_GPIOE_0) \
+    APPLY(BSP_GPIOE_1) \
+    APPLY(BSP_GPIOE_2) \
+    APPLY(BSP_GPIOE_3) \
+    APPLY(BSP_GPIOE_4) \
+    APPLY(BSP_GPIOE_5) \
+    APPLY(BSP_GPIOE_6) \
+    APPLY(BSP_GPIOE_7) \
+    APPLY(BSP_GPIOE_8) \
+    APPLY(BSP_GPIOE_9) \
+    APPLY(BSP_GPIOE_10) \
+    APPLY(BSP_GPIOE_11) \
+    APPLY(BSP_GPIOE_12) \
+    APPLY(BSP_GPIOE_13) \
+    APPLY(BSP_GPIOE_14) \
+    APPLY(BSP_GPIOE_15) \
+    APPLY(BSP_GPIOF_0) \
+    APPLY(BSP_GPIOF_1) \
+    APPLY(BSP_GPIOF_2) \
+    APPLY(BSP_GPIOF_3) \
+    APPLY(BSP_GPIOF_4) \
+    APPLY(BSP_GPIOF_5) \
+    APPLY(BSP_GPIOF_6) \
+    APPLY(BSP_GPIOF_7) \
+    APPLY(BSP_GPIOF_8) \
+    APPLY(BSP_GPIOF_9) \
+    APPLY(BSP_GPIOF_10) \
+    APPLY(BSP_GPIOF_11) \
+    APPLY(BSP_GPIOF_12) \
+    APPLY(BSP_GPIOF_13) \
+    APPLY(BSP_GPIOF_14) \
+    APPLY(BSP_GPIOF_15) \
+    APPLY(BSP_GPIOG_0) \
+    APPLY(BSP_GPIOG_1) \
+    APPLY(BSP_GPIOG_2) \
+    APPLY(BSP_GPIOG_3) \
+    APPLY(BSP_GPIOG_4) \
+    APPLY(BSP_GPIOG_5) \
+    APPLY(BSP_GPIOG_6) \
+    APPLY(BSP_GPIOG_7) \
+    APPLY(BSP_GPIOG_8) \
+    APPLY(BSP_GPIOG_9) \
+    APPLY(BSP_GPIOG_10) \
+    APPLY(BSP_GPIOG_11) \
+    APPLY(BSP_GPIOG_12) \
+    APPLY(BSP_GPIOG_13) \
+    APPLY(BSP_GPIOG_14) \
+    APPLY(BSP_GPIOG_15) \
+    APPLY(BSP_GPIOH_0) \
+    APPLY(BSP_GPIOH_1) \
+    APPLY(BSP_GPIOH_2) \
+    APPLY(BSP_GPIOH_3) \
+    APPLY(BSP_GPIOH_4) \
+    APPLY(BSP_GPIOH_5) \
+    APPLY(BSP_GPIOH_6) \
+    APPLY(BSP_GPIOH_7) \
+    APPLY(BSP_GPIOH_8) \
+    APPLY(BSP_GPIOH_9) \
+    APPLY(BSP_GPIOH_10) \
+    APPLY(BSP_GPIOH_11) \
+    APPLY(BSP_GPIOH_12) \
+    APPLY(BSP_GPIOH_13) \
+    APPLY(BSP_GPIOH_14) \
+    APPLY(BSP_GPIOH_15) \
+    APPLY(BSP_GPIOI_0) \
+    APPLY(BSP_GPIOI_1) \
+    APPLY(BSP_GPIOI_2) \
+    APPLY(BSP_GPIOI_3) \
+    APPLY(BSP_GPIOI_4) \
+    APPLY(BSP_GPIOI_5) \
+    APPLY(BSP_GPIOI_6) \
+    APPLY(BSP_GPIOI_7) \
+    APPLY(BSP_GPIOI_8) \
+    APPLY(BSP_GPIOI_9) \
+    APPLY(BSP_GPIOI_10) \
+    APPLY(BSP_GPIOI_11)
+
+#define BSP_GPIO_LOAD_CASE(pin_name)                 \
+    case pin_name:                                   \
+        config.port          = pin_name##_PORT;      \
+        config.pin           = pin_name##_PIN;       \
+        config.initialize    = pin_name##_INITIALIZE;\
+        config.mode          = pin_name##_MODE;      \
+        config.pull          = pin_name##_PULL;      \
+        config.speed         = pin_name##_SPEED;     \
+        config.initial_state = pin_name##_INITIAL_STATE; \
+        config.safe_state    = pin_name##_SAFE_STATE;    \
+        config.is_output     = pin_name##_IS_OUTPUT; \
+        break;
+
+typedef struct
+{
+    GPIO_TypeDef  *port;
+    uint16_t       pin;
+    uint32_t       mode;
+    uint32_t       pull;
+    uint32_t       speed;
+    GPIO_PinState  initial_state;
+    GPIO_PinState  safe_state;
+    bool           initialize;
+    bool           is_output;
+} bsp_gpio_pin_config_t;
+
+static bool bsp_gpio_pin_is_valid(bsp_gpio_pin_t pin_id)
+{
+    return (uint32_t)pin_id < (uint32_t)BSP_GPIO_PIN_COUNT;
+}
+
+static bool bsp_gpio_level_is_valid(bsp_gpio_level_t level)
+{
+    return (level == BSP_GPIO_LEVEL_LOW) || (level == BSP_GPIO_LEVEL_HIGH);
+}
+
+static bsp_gpio_pin_config_t bsp_gpio_get_config(bsp_gpio_pin_t pin_id)
+{
+    bsp_gpio_pin_config_t config = {0};
+
+    switch(pin_id)
+    {
+        BSP_GPIO_PIN_CONFIG_LIST(BSP_GPIO_LOAD_CASE)
+
+        default:
+            break;
+    }
+
+    return config;
+}
+
+static void bsp_gpio_apply_level(GPIO_TypeDef *port, uint16_t pin, bsp_gpio_level_t level)
+{
+    uint32_t bsrr_value = (uint32_t)pin;
+
+    if(level == BSP_GPIO_LEVEL_LOW)
+    {
+        bsrr_value <<= 16U;
+    }
+    port->BSRR = bsrr_value;
+}
+
+static void bsp_gpio_enable_port_clocks(void)
+{
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+    __HAL_RCC_GPIOE_CLK_ENABLE();
+    __HAL_RCC_GPIOF_CLK_ENABLE();
+    __HAL_RCC_GPIOG_CLK_ENABLE();
+    __HAL_RCC_GPIOH_CLK_ENABLE();
+    __HAL_RCC_GPIOI_CLK_ENABLE();
+}
 
 void bsp_gpio_init(void)
 {
     GPIO_InitTypeDef gpio_config = {0};
+    uint32_t         pin_index   = 0U;
 
-    __HAL_RCC_GPIOD_CLK_ENABLE();
-    __HAL_RCC_GPIOA_CLK_ENABLE();
-    __HAL_RCC_GPIOC_CLK_ENABLE();
+    bsp_gpio_enable_port_clocks();
 
-    HAL_GPIO_WritePin(BSP_GPIO_LED_PORT, BSP_GPIO_LED_PIN, GPIO_PIN_SET);
+    for(pin_index = 0U; pin_index < (uint32_t)BSP_GPIO_PIN_COUNT; pin_index++)
+    {
+        bsp_gpio_pin_config_t config = bsp_gpio_get_config((bsp_gpio_pin_t)pin_index);
 
-    gpio_config.Pin   = BSP_GPIO_LED_PIN;
-    gpio_config.Mode  = GPIO_MODE_OUTPUT_PP;
-    gpio_config.Pull  = GPIO_NOPULL;
-    gpio_config.Speed = GPIO_SPEED_FREQ_HIGH;
-    HAL_GPIO_Init(BSP_GPIO_LED_PORT, &gpio_config);
+        if(!config.initialize)
+        {
+            continue;
+        }
+
+        if(config.is_output)
+        {
+            bsp_gpio_apply_level(config.port,
+                                 config.pin,
+                                 config.initial_state == GPIO_PIN_SET ? BSP_GPIO_LEVEL_HIGH
+                                                                      : BSP_GPIO_LEVEL_LOW);
+        }
+
+        gpio_config.Pin   = config.pin;
+        gpio_config.Mode  = config.mode;
+        gpio_config.Pull  = config.pull;
+        gpio_config.Speed = config.speed;
+        HAL_GPIO_Init(config.port, &gpio_config);
+    }
 }
 
-void bsp_gpio_led_toggle(void)
+bool bsp_gpio_write(bsp_gpio_pin_t pin_id, bsp_gpio_level_t level)
 {
-    HAL_GPIO_TogglePin(BSP_GPIO_LED_PORT, BSP_GPIO_LED_PIN);
+    bsp_gpio_pin_config_t config = {0};
+
+    if(!bsp_gpio_pin_is_valid(pin_id) || !bsp_gpio_level_is_valid(level))
+    {
+        return false;
+    }
+
+    config = bsp_gpio_get_config(pin_id);
+    if(!config.initialize || !config.is_output)
+    {
+        return false;
+    }
+
+    bsp_gpio_apply_level(config.port, config.pin, level);
+    return true;
+}
+
+bool bsp_gpio_toggle(bsp_gpio_pin_t pin_id)
+{
+    bsp_gpio_pin_config_t config = {0};
+
+    if(!bsp_gpio_pin_is_valid(pin_id))
+    {
+        return false;
+    }
+
+    config = bsp_gpio_get_config(pin_id);
+    if(!config.initialize || !config.is_output)
+    {
+        return false;
+    }
+
+    HAL_GPIO_TogglePin(config.port, config.pin);
+    return true;
+}
+
+bool bsp_gpio_read(bsp_gpio_pin_t pin_id, bsp_gpio_level_t *level)
+{
+    bsp_gpio_pin_config_t config    = {0};
+    GPIO_PinState         pin_state = GPIO_PIN_RESET;
+
+    if(!bsp_gpio_pin_is_valid(pin_id) || (level == NULL))
+    {
+        return false;
+    }
+
+    config = bsp_gpio_get_config(pin_id);
+    if(!config.initialize)
+    {
+        return false;
+    }
+
+    pin_state = HAL_GPIO_ReadPin(config.port, config.pin);
+    *level = pin_state == GPIO_PIN_SET ? BSP_GPIO_LEVEL_HIGH : BSP_GPIO_LEVEL_LOW;
+    return true;
 }
 
 void bsp_gpio_safe_state(void)
 {
-    /** Current board only has an active-low LED. Extend for actual actuators. */
-    BSP_GPIO_LED_PORT->BSRR = BSP_GPIO_LED_PIN;
+    uint32_t pin_index = 0U;
+
+    for(pin_index = 0U; pin_index < (uint32_t)BSP_GPIO_PIN_COUNT; pin_index++)
+    {
+        bsp_gpio_pin_config_t config = bsp_gpio_get_config((bsp_gpio_pin_t)pin_index);
+
+        if(config.initialize && config.is_output)
+        {
+            bsp_gpio_apply_level(config.port,
+                                 config.pin,
+                                 config.safe_state == GPIO_PIN_SET ? BSP_GPIO_LEVEL_HIGH
+                                                                   : BSP_GPIO_LEVEL_LOW);
+        }
+    }
 }
