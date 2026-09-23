@@ -40,6 +40,7 @@ target_include_directories(${FIRMWARE_TARGET} PRIVATE
     app/led
     core
     core/system_clock
+    core/version
     hardware/bsp/gpio
     service/led
     service/time

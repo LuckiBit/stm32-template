@@ -66,6 +66,7 @@ target_include_directories(${FIRMWARE_TARGET} PRIVATE
     app/system_manager
     core
     core/system_clock
+    core/version
     hardware/bsp/gpio
     hardware/bsp/uart
     service/led
