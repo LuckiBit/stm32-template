@@ -60,6 +60,11 @@ CCMRAM (xrw)      : ORIGIN = 0x10000000, LENGTH = 64K
 FLASH (rx)      : ORIGIN = 0x08008000, LENGTH = 864K
 }
 
+__flash_region_start__ = ORIGIN(FLASH);
+__flash_region_end__ = ORIGIN(FLASH) + LENGTH(FLASH);
+__ram_region_start__ = ORIGIN(RAM);
+__ram_region_end__ = ORIGIN(RAM) + LENGTH(RAM);
+
 /* Highest address of the user mode stack */
 _estack = ORIGIN(RAM) + LENGTH(RAM);    /* end of RAM */
 _sstack = _estack - _Min_Stack_Size;
@@ -207,6 +212,7 @@ SECTIONS
   PROVIDE( __data_source = LOADADDR(.data) );
   PROVIDE( __data_source_end = __tdata_source_end );
   PROVIDE( __data_source_size = __data_source_end - __data_source );
+  __flash_region_used_end__ = __data_source_end;
   /* Uninitialized data section */
   .tbss (NOLOAD) : ALIGN(4)
   {
@@ -255,6 +261,7 @@ SECTIONS
     . = . + _Min_Heap_Size;
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
+    __ram_region_used_end__ = .;
   } >RAM
 
 

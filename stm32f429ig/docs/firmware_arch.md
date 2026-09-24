@@ -50,12 +50,16 @@ stm32-template/
 │   │   └── linker/
 │   ├── hardware/
 │   │   ├── bsp/
+│   │   │   ├── gpio/bsp_gpio.c
+│   │   │   └── uart/bsp_uart.c
 │   │   ├── cmsis/
 │   │   └── stm32f4xx_hal_driver/
 │   ├── service/
 │   │   ├── led/led_service.c
+│   │   ├── my_printf/
 │   │   └── time/delay_service.c
-│   ├── middleware/                 # 预留，当前无编译模块
+│   ├── middleware/
+│   │   └── nanoprintf/
 │   ├── cmake/gcc-arm-none-eabi.cmake
 │   ├── CMakeLists.txt
 │   └── CMakePresets.json
@@ -132,7 +136,9 @@ LED 服务直接调用 BSP；`core` 为启动和致命故障处理调用应用�
 ```text
 Reset_Handler → SystemInit → main
     ↓
-system_init：HAL、时钟、GPIO 初始化
+system_init：HAL、时钟、GPIO、UART 初始化
+    ↓
+system_info_print：输出 Bootloader 版本、芯片、主频、Flash/RAM 占用与构建类型
     ↓
 led_run：每隔 100 ms 翻转 LED，共 4 次
     ↓
@@ -153,6 +159,9 @@ Application 重新执行自己的启动代码和硬件初始化。
 
 当前检查和跳转实现在 `core/application_boot.c`，不能把预留的 `service/app_check`
 和 `service/app_jump` 写成当前执行路径。Bootloader 没有升级任务或 RTOS 后台任务。
+
+Bootloader 使用 `service/my_printf` 的单线程裸机实现，经 `middleware/nanoprintf` 格式化后
+调用 `hardware/bsp/uart` 轮询发送；启动信息打印完成后再检查并跳转 Application。
 
 ## 4. Application 当前启动与运行
 

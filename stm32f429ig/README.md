@@ -29,7 +29,7 @@ Application 的 `app/tasks/tasks.h` 集中控制 16 个编号任务槽位和配�
 
 ## 调试串口
 
-Application 在 `system_init()` 中按开关初始化 F4 的 5 路串口，默认参数为 **115200、8 数据位、无校验、1 停止位**，
+Bootloader 和 Application 均在 `system_init()` 中按开关初始化 F4 的 5 路串口，默认参数为 **115200、8 数据位、无校验、1 停止位**，
 无硬件流控。当前仅启用串口 1：PA9 为 TX、PA10 为 RX。
 连接 3.3 V USB 转串口模块时，PA9 接模块 RX、PA10 接模块 TX，并共地。
 
@@ -37,7 +37,8 @@ Application 在 `system_init()` 中按开关初始化 F4 的 5 路串口，默�
 默认值可通过 CMake 编译定义覆盖；
 原始发送统一使用 `bsp_uart_transmit()`。格式化发送使用 `service/my_printf` 提供的 `my_printf()`，
 默认仅向串口 1 输出，可在 `my_printf_config.h` 中分别启用 1～5 路输出并修改缓冲区容量和超时；
-这些默认值也可通过 CMake 编译定义覆盖。服务通过静态互斥量串行化多任务发送，未重定向 libc `printf`。
+这些默认值也可通过 CMake 编译定义覆盖。Application 服务通过静态互斥量串行化多任务发送，
+Bootloader 服务使用单线程裸机实现；两者均未重定向 libc `printf`。
 
 每路配置独立成组：`BSP_UART_BAUD_RATE_n`、`BSP_UART_WORD_LENGTH_n`、
 `BSP_UART_STOP_BITS_n`、`BSP_UART_PARITY_n`、`BSP_UART_MODE_n`、

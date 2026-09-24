@@ -127,5 +127,5 @@
 引脚配置以当前源码为准，修改下列配置时应同步更新本表：
 
 - GPIO：`application/hardware/bsp/gpio/bsp_gpio.c` 与 `bootloader/hardware/bsp/gpio/bsp_gpio.c` 中对应物理引脚的独立配置宏
-- UART：`application/hardware/bsp/uart/bsp_uart.h`
+- UART：`application/hardware/bsp/uart/bsp_uart.h` 与 `bootloader/hardware/bsp/uart/bsp_uart.h`
 - HSE：`application/core/system_clock/system_clock.c` 与 `bootloader/core/system_clock/system_clock.c`

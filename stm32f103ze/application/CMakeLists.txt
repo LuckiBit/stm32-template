@@ -78,7 +78,13 @@ target_include_directories(${FIRMWARE_TARGET} PRIVATE
     ${NANOPRINTF_DIR}
 )
 
-target_compile_definitions(${FIRMWARE_TARGET} PRIVATE USE_HAL_DRIVER STM32F103xE)
+target_compile_definitions(${FIRMWARE_TARGET} PRIVATE
+    USE_HAL_DRIVER
+    STM32F103xE
+    SYSTEM_INFO_MCU_NAME="STM32F103ZE"
+    SYSTEM_INFO_FIRMWARE_NAME="${FIRMWARE_TARGET}"
+    SYSTEM_INFO_BUILD_TYPE="$<CONFIG>"
+)
 target_compile_options(${FIRMWARE_TARGET} PRIVATE -Wall -Wextra)
 target_link_options(${FIRMWARE_TARGET} PRIVATE
     -T${CMAKE_CURRENT_SOURCE_DIR}/core/linker/stm32f103ze.ld
