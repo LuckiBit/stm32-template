@@ -13,347 +13,347 @@
  */
 
 /** Task switches: 1 enables creation; 0 excludes the task and its static RTOS storage. */
-#ifndef TASK_ENABLE_0
-#define TASK_ENABLE_0 0
+#ifndef TASK_0_ENABLE
+#define TASK_0_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_1
-#define TASK_ENABLE_1 0
+#ifndef TASK_1_ENABLE
+#define TASK_1_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_2
-#define TASK_ENABLE_2 0
+#ifndef TASK_2_ENABLE
+#define TASK_2_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_3
-#define TASK_ENABLE_3 0
+#ifndef TASK_3_ENABLE
+#define TASK_3_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_4
-#define TASK_ENABLE_4 1
+#ifndef TASK_4_ENABLE
+#define TASK_4_ENABLE 1
 #endif
-#ifndef TASK_ENABLE_5
-#define TASK_ENABLE_5 0
+#ifndef TASK_5_ENABLE
+#define TASK_5_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_6
-#define TASK_ENABLE_6 0
+#ifndef TASK_6_ENABLE
+#define TASK_6_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_7
-#define TASK_ENABLE_7 0
+#ifndef TASK_7_ENABLE
+#define TASK_7_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_8
-#define TASK_ENABLE_8 0
+#ifndef TASK_8_ENABLE
+#define TASK_8_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_9
-#define TASK_ENABLE_9 0
+#ifndef TASK_9_ENABLE
+#define TASK_9_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_10
-#define TASK_ENABLE_10 0
+#ifndef TASK_10_ENABLE
+#define TASK_10_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_11
-#define TASK_ENABLE_11 0
+#ifndef TASK_11_ENABLE
+#define TASK_11_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_12
-#define TASK_ENABLE_12 0
+#ifndef TASK_12_ENABLE
+#define TASK_12_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_13
-#define TASK_ENABLE_13 0
+#ifndef TASK_13_ENABLE
+#define TASK_13_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_14
-#define TASK_ENABLE_14 0
+#ifndef TASK_14_ENABLE
+#define TASK_14_ENABLE 0
 #endif
-#ifndef TASK_ENABLE_15
-#define TASK_ENABLE_15 0
+#ifndef TASK_15_ENABLE
+#define TASK_15_ENABLE 0
 #endif
 
 /** Resource switches: 1 enables creation; 0 excludes the resource and its static storage. */
-#ifndef QUEUE_ENABLE_0
-#define QUEUE_ENABLE_0 0
+#ifndef QUEUE_0_ENABLE
+#define QUEUE_0_ENABLE 0
 #endif
-#ifndef QUEUE_ENABLE_1
-#define QUEUE_ENABLE_1 0
+#ifndef QUEUE_1_ENABLE
+#define QUEUE_1_ENABLE 0
 #endif
-#ifndef QUEUE_ENABLE_2
-#define QUEUE_ENABLE_2 0
+#ifndef QUEUE_2_ENABLE
+#define QUEUE_2_ENABLE 0
 #endif
-#ifndef QUEUE_ENABLE_3
-#define QUEUE_ENABLE_3 0
+#ifndef QUEUE_3_ENABLE
+#define QUEUE_3_ENABLE 0
 #endif
-#ifndef QUEUE_ENABLE_4
-#define QUEUE_ENABLE_4 0
+#ifndef QUEUE_4_ENABLE
+#define QUEUE_4_ENABLE 0
 #endif
-#ifndef QUEUE_ENABLE_5
-#define QUEUE_ENABLE_5 0
+#ifndef QUEUE_5_ENABLE
+#define QUEUE_5_ENABLE 0
 #endif
-#ifndef QUEUE_ENABLE_6
-#define QUEUE_ENABLE_6 0
+#ifndef QUEUE_6_ENABLE
+#define QUEUE_6_ENABLE 0
 #endif
-#ifndef QUEUE_ENABLE_7
-#define QUEUE_ENABLE_7 0
+#ifndef QUEUE_7_ENABLE
+#define QUEUE_7_ENABLE 0
 #endif
-#ifndef SEMAPHORE_ENABLE_0
-#define SEMAPHORE_ENABLE_0 0
+#ifndef SEMAPHORE_0_ENABLE
+#define SEMAPHORE_0_ENABLE 0
 #endif
-#ifndef SEMAPHORE_ENABLE_1
-#define SEMAPHORE_ENABLE_1 0
+#ifndef SEMAPHORE_1_ENABLE
+#define SEMAPHORE_1_ENABLE 0
 #endif
-#ifndef SEMAPHORE_ENABLE_2
-#define SEMAPHORE_ENABLE_2 0
+#ifndef SEMAPHORE_2_ENABLE
+#define SEMAPHORE_2_ENABLE 0
 #endif
-#ifndef SEMAPHORE_ENABLE_3
-#define SEMAPHORE_ENABLE_3 0
+#ifndef SEMAPHORE_3_ENABLE
+#define SEMAPHORE_3_ENABLE 0
 #endif
-#ifndef SEMAPHORE_ENABLE_4
-#define SEMAPHORE_ENABLE_4 0
+#ifndef SEMAPHORE_4_ENABLE
+#define SEMAPHORE_4_ENABLE 0
 #endif
-#ifndef SEMAPHORE_ENABLE_5
-#define SEMAPHORE_ENABLE_5 0
+#ifndef SEMAPHORE_5_ENABLE
+#define SEMAPHORE_5_ENABLE 0
 #endif
-#ifndef SEMAPHORE_ENABLE_6
-#define SEMAPHORE_ENABLE_6 0
+#ifndef SEMAPHORE_6_ENABLE
+#define SEMAPHORE_6_ENABLE 0
 #endif
-#ifndef SEMAPHORE_ENABLE_7
-#define SEMAPHORE_ENABLE_7 0
+#ifndef SEMAPHORE_7_ENABLE
+#define SEMAPHORE_7_ENABLE 0
 #endif
-#ifndef MUTEX_ENABLE_0
-#define MUTEX_ENABLE_0 0
+#ifndef MUTEX_0_ENABLE
+#define MUTEX_0_ENABLE 0
 #endif
-#ifndef MUTEX_ENABLE_1
-#define MUTEX_ENABLE_1 0
+#ifndef MUTEX_1_ENABLE
+#define MUTEX_1_ENABLE 0
 #endif
-#ifndef MUTEX_ENABLE_2
-#define MUTEX_ENABLE_2 0
+#ifndef MUTEX_2_ENABLE
+#define MUTEX_2_ENABLE 0
 #endif
-#ifndef MUTEX_ENABLE_3
-#define MUTEX_ENABLE_3 0
+#ifndef MUTEX_3_ENABLE
+#define MUTEX_3_ENABLE 0
 #endif
-#ifndef MUTEX_ENABLE_4
-#define MUTEX_ENABLE_4 0
+#ifndef MUTEX_4_ENABLE
+#define MUTEX_4_ENABLE 0
 #endif
-#ifndef MUTEX_ENABLE_5
-#define MUTEX_ENABLE_5 0
+#ifndef MUTEX_5_ENABLE
+#define MUTEX_5_ENABLE 0
 #endif
-#ifndef MUTEX_ENABLE_6
-#define MUTEX_ENABLE_6 0
+#ifndef MUTEX_6_ENABLE
+#define MUTEX_6_ENABLE 0
 #endif
-#ifndef MUTEX_ENABLE_7
-#define MUTEX_ENABLE_7 0
+#ifndef MUTEX_7_ENABLE
+#define MUTEX_7_ENABLE 0
 #endif
 
 /** Timer and event-group switches may follow the enable state of their dependencies. */
-#ifndef TIMER_ENABLE_0
-#define TIMER_ENABLE_0 TASK_ENABLE_0
+#ifndef TIMER_0_ENABLE
+#define TIMER_0_ENABLE TASK_0_ENABLE
 #endif
-#ifndef TIMER_ENABLE_1
-#define TIMER_ENABLE_1 TASK_ENABLE_1
+#ifndef TIMER_1_ENABLE
+#define TIMER_1_ENABLE TASK_1_ENABLE
 #endif
-#ifndef TIMER_ENABLE_2
-#define TIMER_ENABLE_2 0
+#ifndef TIMER_2_ENABLE
+#define TIMER_2_ENABLE 0
 #endif
-#ifndef TIMER_ENABLE_3
-#define TIMER_ENABLE_3 0
+#ifndef TIMER_3_ENABLE
+#define TIMER_3_ENABLE 0
 #endif
-#ifndef EVENT_GROUP_ENABLE_0
-#define EVENT_GROUP_ENABLE_0 (TASK_ENABLE_0 || TIMER_ENABLE_0)
+#ifndef EVENT_GROUP_0_ENABLE
+#define EVENT_GROUP_0_ENABLE (TASK_0_ENABLE || TIMER_0_ENABLE)
 #endif
-#ifndef EVENT_GROUP_ENABLE_1
-#define EVENT_GROUP_ENABLE_1 (TASK_ENABLE_1 || TIMER_ENABLE_1)
+#ifndef EVENT_GROUP_1_ENABLE
+#define EVENT_GROUP_1_ENABLE (TASK_1_ENABLE || TIMER_1_ENABLE)
 #endif
-#ifndef EVENT_GROUP_ENABLE_2
-#define EVENT_GROUP_ENABLE_2 0
+#ifndef EVENT_GROUP_2_ENABLE
+#define EVENT_GROUP_2_ENABLE 0
 #endif
-#ifndef EVENT_GROUP_ENABLE_3
-#define EVENT_GROUP_ENABLE_3 0
+#ifndef EVENT_GROUP_3_ENABLE
+#define EVENT_GROUP_3_ENABLE 0
 #endif
 
 #define TASK_ENABLED_COUNT                                                                         \
-    (TASK_ENABLE_0 + TASK_ENABLE_1 + TASK_ENABLE_2 + TASK_ENABLE_3 + TASK_ENABLE_4 +               \
-     TASK_ENABLE_5 + TASK_ENABLE_6 + TASK_ENABLE_7 + TASK_ENABLE_8 + TASK_ENABLE_9 +               \
-     TASK_ENABLE_10 + TASK_ENABLE_11 + TASK_ENABLE_12 + TASK_ENABLE_13 + TASK_ENABLE_14 +          \
-     TASK_ENABLE_15)
+    (TASK_0_ENABLE + TASK_1_ENABLE + TASK_2_ENABLE + TASK_3_ENABLE + TASK_4_ENABLE +               \
+     TASK_5_ENABLE + TASK_6_ENABLE + TASK_7_ENABLE + TASK_8_ENABLE + TASK_9_ENABLE +               \
+     TASK_10_ENABLE + TASK_11_ENABLE + TASK_12_ENABLE + TASK_13_ENABLE + TASK_14_ENABLE +          \
+     TASK_15_ENABLE)
 #define TASK_SOFTWARE_TIMERS_ENABLED                                                               \
-    (TIMER_ENABLE_0 || TIMER_ENABLE_1 || TIMER_ENABLE_2 || TIMER_ENABLE_3)
+    (TIMER_0_ENABLE || TIMER_1_ENABLE || TIMER_2_ENABLE || TIMER_3_ENABLE)
 
-#if(TASK_ENABLE_0 != 0) && (TASK_ENABLE_0 != 1)
-#error "TASK_ENABLE_0 must be 0 or 1"
+#if(TASK_0_ENABLE != 0) && (TASK_0_ENABLE != 1)
+#error "TASK_0_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_1 != 0) && (TASK_ENABLE_1 != 1)
-#error "TASK_ENABLE_1 must be 0 or 1"
+#if(TASK_1_ENABLE != 0) && (TASK_1_ENABLE != 1)
+#error "TASK_1_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_2 != 0) && (TASK_ENABLE_2 != 1)
-#error "TASK_ENABLE_2 must be 0 or 1"
+#if(TASK_2_ENABLE != 0) && (TASK_2_ENABLE != 1)
+#error "TASK_2_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_3 != 0) && (TASK_ENABLE_3 != 1)
-#error "TASK_ENABLE_3 must be 0 or 1"
+#if(TASK_3_ENABLE != 0) && (TASK_3_ENABLE != 1)
+#error "TASK_3_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_4 != 0) && (TASK_ENABLE_4 != 1)
-#error "TASK_ENABLE_4 must be 0 or 1"
+#if(TASK_4_ENABLE != 0) && (TASK_4_ENABLE != 1)
+#error "TASK_4_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_5 != 0) && (TASK_ENABLE_5 != 1)
-#error "TASK_ENABLE_5 must be 0 or 1"
+#if(TASK_5_ENABLE != 0) && (TASK_5_ENABLE != 1)
+#error "TASK_5_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_6 != 0) && (TASK_ENABLE_6 != 1)
-#error "TASK_ENABLE_6 must be 0 or 1"
+#if(TASK_6_ENABLE != 0) && (TASK_6_ENABLE != 1)
+#error "TASK_6_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_7 != 0) && (TASK_ENABLE_7 != 1)
-#error "TASK_ENABLE_7 must be 0 or 1"
+#if(TASK_7_ENABLE != 0) && (TASK_7_ENABLE != 1)
+#error "TASK_7_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_8 != 0) && (TASK_ENABLE_8 != 1)
-#error "TASK_ENABLE_8 must be 0 or 1"
+#if(TASK_8_ENABLE != 0) && (TASK_8_ENABLE != 1)
+#error "TASK_8_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_9 != 0) && (TASK_ENABLE_9 != 1)
-#error "TASK_ENABLE_9 must be 0 or 1"
+#if(TASK_9_ENABLE != 0) && (TASK_9_ENABLE != 1)
+#error "TASK_9_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_10 != 0) && (TASK_ENABLE_10 != 1)
-#error "TASK_ENABLE_10 must be 0 or 1"
+#if(TASK_10_ENABLE != 0) && (TASK_10_ENABLE != 1)
+#error "TASK_10_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_11 != 0) && (TASK_ENABLE_11 != 1)
-#error "TASK_ENABLE_11 must be 0 or 1"
+#if(TASK_11_ENABLE != 0) && (TASK_11_ENABLE != 1)
+#error "TASK_11_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_12 != 0) && (TASK_ENABLE_12 != 1)
-#error "TASK_ENABLE_12 must be 0 or 1"
+#if(TASK_12_ENABLE != 0) && (TASK_12_ENABLE != 1)
+#error "TASK_12_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_13 != 0) && (TASK_ENABLE_13 != 1)
-#error "TASK_ENABLE_13 must be 0 or 1"
+#if(TASK_13_ENABLE != 0) && (TASK_13_ENABLE != 1)
+#error "TASK_13_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_14 != 0) && (TASK_ENABLE_14 != 1)
-#error "TASK_ENABLE_14 must be 0 or 1"
+#if(TASK_14_ENABLE != 0) && (TASK_14_ENABLE != 1)
+#error "TASK_14_ENABLE must be 0 or 1"
 #endif
-#if(TASK_ENABLE_15 != 0) && (TASK_ENABLE_15 != 1)
-#error "TASK_ENABLE_15 must be 0 or 1"
+#if(TASK_15_ENABLE != 0) && (TASK_15_ENABLE != 1)
+#error "TASK_15_ENABLE must be 0 or 1"
 #endif
-#if(QUEUE_ENABLE_0 != 0) && (QUEUE_ENABLE_0 != 1)
-#error "QUEUE_ENABLE_0 must be 0 or 1"
+#if(QUEUE_0_ENABLE != 0) && (QUEUE_0_ENABLE != 1)
+#error "QUEUE_0_ENABLE must be 0 or 1"
 #endif
-#if(QUEUE_ENABLE_1 != 0) && (QUEUE_ENABLE_1 != 1)
-#error "QUEUE_ENABLE_1 must be 0 or 1"
+#if(QUEUE_1_ENABLE != 0) && (QUEUE_1_ENABLE != 1)
+#error "QUEUE_1_ENABLE must be 0 or 1"
 #endif
-#if(QUEUE_ENABLE_2 != 0) && (QUEUE_ENABLE_2 != 1)
-#error "QUEUE_ENABLE_2 must be 0 or 1"
+#if(QUEUE_2_ENABLE != 0) && (QUEUE_2_ENABLE != 1)
+#error "QUEUE_2_ENABLE must be 0 or 1"
 #endif
-#if(QUEUE_ENABLE_3 != 0) && (QUEUE_ENABLE_3 != 1)
-#error "QUEUE_ENABLE_3 must be 0 or 1"
+#if(QUEUE_3_ENABLE != 0) && (QUEUE_3_ENABLE != 1)
+#error "QUEUE_3_ENABLE must be 0 or 1"
 #endif
-#if(QUEUE_ENABLE_4 != 0) && (QUEUE_ENABLE_4 != 1)
-#error "QUEUE_ENABLE_4 must be 0 or 1"
+#if(QUEUE_4_ENABLE != 0) && (QUEUE_4_ENABLE != 1)
+#error "QUEUE_4_ENABLE must be 0 or 1"
 #endif
-#if(QUEUE_ENABLE_5 != 0) && (QUEUE_ENABLE_5 != 1)
-#error "QUEUE_ENABLE_5 must be 0 or 1"
+#if(QUEUE_5_ENABLE != 0) && (QUEUE_5_ENABLE != 1)
+#error "QUEUE_5_ENABLE must be 0 or 1"
 #endif
-#if(QUEUE_ENABLE_6 != 0) && (QUEUE_ENABLE_6 != 1)
-#error "QUEUE_ENABLE_6 must be 0 or 1"
+#if(QUEUE_6_ENABLE != 0) && (QUEUE_6_ENABLE != 1)
+#error "QUEUE_6_ENABLE must be 0 or 1"
 #endif
-#if(QUEUE_ENABLE_7 != 0) && (QUEUE_ENABLE_7 != 1)
-#error "QUEUE_ENABLE_7 must be 0 or 1"
+#if(QUEUE_7_ENABLE != 0) && (QUEUE_7_ENABLE != 1)
+#error "QUEUE_7_ENABLE must be 0 or 1"
 #endif
-#if(SEMAPHORE_ENABLE_0 != 0) && (SEMAPHORE_ENABLE_0 != 1)
-#error "SEMAPHORE_ENABLE_0 must be 0 or 1"
+#if(SEMAPHORE_0_ENABLE != 0) && (SEMAPHORE_0_ENABLE != 1)
+#error "SEMAPHORE_0_ENABLE must be 0 or 1"
 #endif
-#if(SEMAPHORE_ENABLE_1 != 0) && (SEMAPHORE_ENABLE_1 != 1)
-#error "SEMAPHORE_ENABLE_1 must be 0 or 1"
+#if(SEMAPHORE_1_ENABLE != 0) && (SEMAPHORE_1_ENABLE != 1)
+#error "SEMAPHORE_1_ENABLE must be 0 or 1"
 #endif
-#if(SEMAPHORE_ENABLE_2 != 0) && (SEMAPHORE_ENABLE_2 != 1)
-#error "SEMAPHORE_ENABLE_2 must be 0 or 1"
+#if(SEMAPHORE_2_ENABLE != 0) && (SEMAPHORE_2_ENABLE != 1)
+#error "SEMAPHORE_2_ENABLE must be 0 or 1"
 #endif
-#if(SEMAPHORE_ENABLE_3 != 0) && (SEMAPHORE_ENABLE_3 != 1)
-#error "SEMAPHORE_ENABLE_3 must be 0 or 1"
+#if(SEMAPHORE_3_ENABLE != 0) && (SEMAPHORE_3_ENABLE != 1)
+#error "SEMAPHORE_3_ENABLE must be 0 or 1"
 #endif
-#if(SEMAPHORE_ENABLE_4 != 0) && (SEMAPHORE_ENABLE_4 != 1)
-#error "SEMAPHORE_ENABLE_4 must be 0 or 1"
+#if(SEMAPHORE_4_ENABLE != 0) && (SEMAPHORE_4_ENABLE != 1)
+#error "SEMAPHORE_4_ENABLE must be 0 or 1"
 #endif
-#if(SEMAPHORE_ENABLE_5 != 0) && (SEMAPHORE_ENABLE_5 != 1)
-#error "SEMAPHORE_ENABLE_5 must be 0 or 1"
+#if(SEMAPHORE_5_ENABLE != 0) && (SEMAPHORE_5_ENABLE != 1)
+#error "SEMAPHORE_5_ENABLE must be 0 or 1"
 #endif
-#if(SEMAPHORE_ENABLE_6 != 0) && (SEMAPHORE_ENABLE_6 != 1)
-#error "SEMAPHORE_ENABLE_6 must be 0 or 1"
+#if(SEMAPHORE_6_ENABLE != 0) && (SEMAPHORE_6_ENABLE != 1)
+#error "SEMAPHORE_6_ENABLE must be 0 or 1"
 #endif
-#if(SEMAPHORE_ENABLE_7 != 0) && (SEMAPHORE_ENABLE_7 != 1)
-#error "SEMAPHORE_ENABLE_7 must be 0 or 1"
+#if(SEMAPHORE_7_ENABLE != 0) && (SEMAPHORE_7_ENABLE != 1)
+#error "SEMAPHORE_7_ENABLE must be 0 or 1"
 #endif
-#if(MUTEX_ENABLE_0 != 0) && (MUTEX_ENABLE_0 != 1)
-#error "MUTEX_ENABLE_0 must be 0 or 1"
+#if(MUTEX_0_ENABLE != 0) && (MUTEX_0_ENABLE != 1)
+#error "MUTEX_0_ENABLE must be 0 or 1"
 #endif
-#if(MUTEX_ENABLE_1 != 0) && (MUTEX_ENABLE_1 != 1)
-#error "MUTEX_ENABLE_1 must be 0 or 1"
+#if(MUTEX_1_ENABLE != 0) && (MUTEX_1_ENABLE != 1)
+#error "MUTEX_1_ENABLE must be 0 or 1"
 #endif
-#if(MUTEX_ENABLE_2 != 0) && (MUTEX_ENABLE_2 != 1)
-#error "MUTEX_ENABLE_2 must be 0 or 1"
+#if(MUTEX_2_ENABLE != 0) && (MUTEX_2_ENABLE != 1)
+#error "MUTEX_2_ENABLE must be 0 or 1"
 #endif
-#if(MUTEX_ENABLE_3 != 0) && (MUTEX_ENABLE_3 != 1)
-#error "MUTEX_ENABLE_3 must be 0 or 1"
+#if(MUTEX_3_ENABLE != 0) && (MUTEX_3_ENABLE != 1)
+#error "MUTEX_3_ENABLE must be 0 or 1"
 #endif
-#if(MUTEX_ENABLE_4 != 0) && (MUTEX_ENABLE_4 != 1)
-#error "MUTEX_ENABLE_4 must be 0 or 1"
+#if(MUTEX_4_ENABLE != 0) && (MUTEX_4_ENABLE != 1)
+#error "MUTEX_4_ENABLE must be 0 or 1"
 #endif
-#if(MUTEX_ENABLE_5 != 0) && (MUTEX_ENABLE_5 != 1)
-#error "MUTEX_ENABLE_5 must be 0 or 1"
+#if(MUTEX_5_ENABLE != 0) && (MUTEX_5_ENABLE != 1)
+#error "MUTEX_5_ENABLE must be 0 or 1"
 #endif
-#if(MUTEX_ENABLE_6 != 0) && (MUTEX_ENABLE_6 != 1)
-#error "MUTEX_ENABLE_6 must be 0 or 1"
+#if(MUTEX_6_ENABLE != 0) && (MUTEX_6_ENABLE != 1)
+#error "MUTEX_6_ENABLE must be 0 or 1"
 #endif
-#if(MUTEX_ENABLE_7 != 0) && (MUTEX_ENABLE_7 != 1)
-#error "MUTEX_ENABLE_7 must be 0 or 1"
+#if(MUTEX_7_ENABLE != 0) && (MUTEX_7_ENABLE != 1)
+#error "MUTEX_7_ENABLE must be 0 or 1"
 #endif
-#if(TIMER_ENABLE_0 != 0) && (TIMER_ENABLE_0 != 1)
-#error "TIMER_ENABLE_0 must be 0 or 1"
+#if(TIMER_0_ENABLE != 0) && (TIMER_0_ENABLE != 1)
+#error "TIMER_0_ENABLE must be 0 or 1"
 #endif
-#if(TIMER_ENABLE_1 != 0) && (TIMER_ENABLE_1 != 1)
-#error "TIMER_ENABLE_1 must be 0 or 1"
+#if(TIMER_1_ENABLE != 0) && (TIMER_1_ENABLE != 1)
+#error "TIMER_1_ENABLE must be 0 or 1"
 #endif
-#if(TIMER_ENABLE_2 != 0) && (TIMER_ENABLE_2 != 1)
-#error "TIMER_ENABLE_2 must be 0 or 1"
+#if(TIMER_2_ENABLE != 0) && (TIMER_2_ENABLE != 1)
+#error "TIMER_2_ENABLE must be 0 or 1"
 #endif
-#if(TIMER_ENABLE_3 != 0) && (TIMER_ENABLE_3 != 1)
-#error "TIMER_ENABLE_3 must be 0 or 1"
+#if(TIMER_3_ENABLE != 0) && (TIMER_3_ENABLE != 1)
+#error "TIMER_3_ENABLE must be 0 or 1"
 #endif
-#if(EVENT_GROUP_ENABLE_0 != 0) && (EVENT_GROUP_ENABLE_0 != 1)
-#error "EVENT_GROUP_ENABLE_0 must be 0 or 1"
+#if(EVENT_GROUP_0_ENABLE != 0) && (EVENT_GROUP_0_ENABLE != 1)
+#error "EVENT_GROUP_0_ENABLE must be 0 or 1"
 #endif
-#if(EVENT_GROUP_ENABLE_1 != 0) && (EVENT_GROUP_ENABLE_1 != 1)
-#error "EVENT_GROUP_ENABLE_1 must be 0 or 1"
+#if(EVENT_GROUP_1_ENABLE != 0) && (EVENT_GROUP_1_ENABLE != 1)
+#error "EVENT_GROUP_1_ENABLE must be 0 or 1"
 #endif
-#if(EVENT_GROUP_ENABLE_2 != 0) && (EVENT_GROUP_ENABLE_2 != 1)
-#error "EVENT_GROUP_ENABLE_2 must be 0 or 1"
+#if(EVENT_GROUP_2_ENABLE != 0) && (EVENT_GROUP_2_ENABLE != 1)
+#error "EVENT_GROUP_2_ENABLE must be 0 or 1"
 #endif
-#if(EVENT_GROUP_ENABLE_3 != 0) && (EVENT_GROUP_ENABLE_3 != 1)
-#error "EVENT_GROUP_ENABLE_3 must be 0 or 1"
+#if(EVENT_GROUP_3_ENABLE != 0) && (EVENT_GROUP_3_ENABLE != 1)
+#error "EVENT_GROUP_3_ENABLE must be 0 or 1"
 #endif
 
-#if TASK_ENABLE_0 && !TIMER_ENABLE_0
+#if TASK_0_ENABLE && !TIMER_0_ENABLE
 #error "Task 0 requires timer 0 in the current event example"
 #endif
-#if(TASK_ENABLE_0 || TIMER_ENABLE_0) && !EVENT_GROUP_ENABLE_0
+#if(TASK_0_ENABLE || TIMER_0_ENABLE) && !EVENT_GROUP_0_ENABLE
 #error "Task/timer 0 requires event group 0"
 #endif
 
-#if TASK_ENABLE_1 && !TIMER_ENABLE_1
+#if TASK_1_ENABLE && !TIMER_1_ENABLE
 #error "Task 1 requires timer 1 in the current event example"
 #endif
-#if(TASK_ENABLE_1 || TIMER_ENABLE_1) && !EVENT_GROUP_ENABLE_1
+#if(TASK_1_ENABLE || TIMER_1_ENABLE) && !EVENT_GROUP_1_ENABLE
 #error "Task/timer 1 requires event group 1"
 #endif
 
-#define TASK_READY_BIT_0  (1UL << 0)
-#define TASK_READY_BIT_1  (1UL << 1)
-#define TASK_READY_BIT_2  (1UL << 2)
-#define TASK_READY_BIT_3  (1UL << 3)
-#define TASK_READY_BIT_4  (1UL << 4)
-#define TASK_READY_BIT_5  (1UL << 5)
-#define TASK_READY_BIT_6  (1UL << 6)
-#define TASK_READY_BIT_7  (1UL << 7)
-#define TASK_READY_BIT_8  (1UL << 8)
-#define TASK_READY_BIT_9  (1UL << 9)
-#define TASK_READY_BIT_10 (1UL << 10)
-#define TASK_READY_BIT_11 (1UL << 11)
-#define TASK_READY_BIT_12 (1UL << 12)
-#define TASK_READY_BIT_13 (1UL << 13)
-#define TASK_READY_BIT_14 (1UL << 14)
-#define TASK_READY_BIT_15 (1UL << 15)
+#define TASK_0_READY_BIT  (1UL << 0)
+#define TASK_1_READY_BIT  (1UL << 1)
+#define TASK_2_READY_BIT  (1UL << 2)
+#define TASK_3_READY_BIT  (1UL << 3)
+#define TASK_4_READY_BIT  (1UL << 4)
+#define TASK_5_READY_BIT  (1UL << 5)
+#define TASK_6_READY_BIT  (1UL << 6)
+#define TASK_7_READY_BIT  (1UL << 7)
+#define TASK_8_READY_BIT  (1UL << 8)
+#define TASK_9_READY_BIT  (1UL << 9)
+#define TASK_10_READY_BIT (1UL << 10)
+#define TASK_11_READY_BIT (1UL << 11)
+#define TASK_12_READY_BIT (1UL << 12)
+#define TASK_13_READY_BIT (1UL << 13)
+#define TASK_14_READY_BIT (1UL << 14)
+#define TASK_15_READY_BIT (1UL << 15)
 #define REQUIRED_TASKS                                                                             \
-    ((TASK_ENABLE_0 * TASK_READY_BIT_0) | (TASK_ENABLE_1 * TASK_READY_BIT_1) |                     \
-     (TASK_ENABLE_2 * TASK_READY_BIT_2) | (TASK_ENABLE_3 * TASK_READY_BIT_3) |                     \
-     (TASK_ENABLE_4 * TASK_READY_BIT_4) | (TASK_ENABLE_5 * TASK_READY_BIT_5) |                     \
-     (TASK_ENABLE_6 * TASK_READY_BIT_6) | (TASK_ENABLE_7 * TASK_READY_BIT_7) |                     \
-     (TASK_ENABLE_8 * TASK_READY_BIT_8) | (TASK_ENABLE_9 * TASK_READY_BIT_9) |                     \
-     (TASK_ENABLE_10 * TASK_READY_BIT_10) | (TASK_ENABLE_11 * TASK_READY_BIT_11) |                 \
-     (TASK_ENABLE_12 * TASK_READY_BIT_12) | (TASK_ENABLE_13 * TASK_READY_BIT_13) |                 \
-     (TASK_ENABLE_14 * TASK_READY_BIT_14) | (TASK_ENABLE_15 * TASK_READY_BIT_15))
+    ((TASK_0_ENABLE * TASK_0_READY_BIT) | (TASK_1_ENABLE * TASK_1_READY_BIT) |                     \
+     (TASK_2_ENABLE * TASK_2_READY_BIT) | (TASK_3_ENABLE * TASK_3_READY_BIT) |                     \
+     (TASK_4_ENABLE * TASK_4_READY_BIT) | (TASK_5_ENABLE * TASK_5_READY_BIT) |                     \
+     (TASK_6_ENABLE * TASK_6_READY_BIT) | (TASK_7_ENABLE * TASK_7_READY_BIT) |                     \
+     (TASK_8_ENABLE * TASK_8_READY_BIT) | (TASK_9_ENABLE * TASK_9_READY_BIT) |                     \
+     (TASK_10_ENABLE * TASK_10_READY_BIT) | (TASK_11_ENABLE * TASK_11_READY_BIT) |                 \
+     (TASK_12_ENABLE * TASK_12_READY_BIT) | (TASK_13_ENABLE * TASK_13_READY_BIT) |                 \
+     (TASK_14_ENABLE * TASK_14_READY_BIT) | (TASK_15_ENABLE * TASK_15_READY_BIT))
 
 /**
  * @brief Creates module-owned static resources and enabled numbered tasks.

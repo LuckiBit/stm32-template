@@ -112,437 +112,437 @@
 #define EVENT_TIMER_BIT_0 ((EventBits_t)(1U << 0))
 #define EVENT_TIMER_BIT_1 ((EventBits_t)(1U << 0))
 
-#if QUEUE_ENABLE_0
+#if QUEUE_0_ENABLE
 static uint8_t s_queue_storage_0[QUEUE_LENGTH_0 * sizeof(QUEUE_ITEM_TYPE_0)];
 #endif
-#if QUEUE_ENABLE_1
+#if QUEUE_1_ENABLE
 static uint8_t s_queue_storage_1[QUEUE_LENGTH_1 * sizeof(QUEUE_ITEM_TYPE_1)];
 #endif
-#if QUEUE_ENABLE_2
+#if QUEUE_2_ENABLE
 static uint8_t s_queue_storage_2[QUEUE_LENGTH_2 * sizeof(QUEUE_ITEM_TYPE_2)];
 #endif
-#if QUEUE_ENABLE_3
+#if QUEUE_3_ENABLE
 static uint8_t s_queue_storage_3[QUEUE_LENGTH_3 * sizeof(QUEUE_ITEM_TYPE_3)];
 #endif
-#if QUEUE_ENABLE_4
+#if QUEUE_4_ENABLE
 static uint8_t s_queue_storage_4[QUEUE_LENGTH_4 * sizeof(QUEUE_ITEM_TYPE_4)];
 #endif
-#if QUEUE_ENABLE_5
+#if QUEUE_5_ENABLE
 static uint8_t s_queue_storage_5[QUEUE_LENGTH_5 * sizeof(QUEUE_ITEM_TYPE_5)];
 #endif
-#if QUEUE_ENABLE_6
+#if QUEUE_6_ENABLE
 static uint8_t s_queue_storage_6[QUEUE_LENGTH_6 * sizeof(QUEUE_ITEM_TYPE_6)];
 #endif
-#if QUEUE_ENABLE_7
+#if QUEUE_7_ENABLE
 static uint8_t s_queue_storage_7[QUEUE_LENGTH_7 * sizeof(QUEUE_ITEM_TYPE_7)];
 #endif
-#if TASK_ENABLE_0
+#if TASK_0_ENABLE
 static StackType_t s_task_stack_0[TASK_STACK_DEPTH_0];
 #endif
-#if TASK_ENABLE_1
+#if TASK_1_ENABLE
 static StackType_t s_task_stack_1[TASK_STACK_DEPTH_1];
 #endif
-#if TASK_ENABLE_2
+#if TASK_2_ENABLE
 static StackType_t s_task_stack_2[TASK_STACK_DEPTH_2];
 #endif
-#if TASK_ENABLE_3
+#if TASK_3_ENABLE
 static StackType_t s_task_stack_3[TASK_STACK_DEPTH_3];
 #endif
-#if TASK_ENABLE_4
+#if TASK_4_ENABLE
 static StackType_t s_task_stack_4[TASK_STACK_DEPTH_4];
 #endif
-#if TASK_ENABLE_5
+#if TASK_5_ENABLE
 static StackType_t s_task_stack_5[TASK_STACK_DEPTH_5];
 #endif
-#if TASK_ENABLE_6
+#if TASK_6_ENABLE
 static StackType_t s_task_stack_6[TASK_STACK_DEPTH_6];
 #endif
-#if TASK_ENABLE_7
+#if TASK_7_ENABLE
 static StackType_t s_task_stack_7[TASK_STACK_DEPTH_7];
 #endif
-#if TASK_ENABLE_8
+#if TASK_8_ENABLE
 static StackType_t s_task_stack_8[TASK_STACK_DEPTH_8];
 #endif
-#if TASK_ENABLE_9
+#if TASK_9_ENABLE
 static StackType_t s_task_stack_9[TASK_STACK_DEPTH_9];
 #endif
-#if TASK_ENABLE_10
+#if TASK_10_ENABLE
 static StackType_t s_task_stack_10[TASK_STACK_DEPTH_10];
 #endif
-#if TASK_ENABLE_11
+#if TASK_11_ENABLE
 static StackType_t s_task_stack_11[TASK_STACK_DEPTH_11];
 #endif
-#if TASK_ENABLE_12
+#if TASK_12_ENABLE
 static StackType_t s_task_stack_12[TASK_STACK_DEPTH_12];
 #endif
-#if TASK_ENABLE_13
+#if TASK_13_ENABLE
 static StackType_t s_task_stack_13[TASK_STACK_DEPTH_13];
 #endif
-#if TASK_ENABLE_14
+#if TASK_14_ENABLE
 static StackType_t s_task_stack_14[TASK_STACK_DEPTH_14];
 #endif
-#if TASK_ENABLE_15
+#if TASK_15_ENABLE
 static StackType_t s_task_stack_15[TASK_STACK_DEPTH_15];
 #endif
 
-#if TASK_ENABLE_0
+#if TASK_0_ENABLE
 static StaticTask_t s_task_buffer_0;
 #endif
-#if TASK_ENABLE_1
+#if TASK_1_ENABLE
 static StaticTask_t s_task_buffer_1;
 #endif
-#if TASK_ENABLE_2
+#if TASK_2_ENABLE
 static StaticTask_t s_task_buffer_2;
 #endif
-#if TASK_ENABLE_3
+#if TASK_3_ENABLE
 static StaticTask_t s_task_buffer_3;
 #endif
-#if TASK_ENABLE_4
+#if TASK_4_ENABLE
 static StaticTask_t s_task_buffer_4;
 #endif
-#if TASK_ENABLE_5
+#if TASK_5_ENABLE
 static StaticTask_t s_task_buffer_5;
 #endif
-#if TASK_ENABLE_6
+#if TASK_6_ENABLE
 static StaticTask_t s_task_buffer_6;
 #endif
-#if TASK_ENABLE_7
+#if TASK_7_ENABLE
 static StaticTask_t s_task_buffer_7;
 #endif
-#if TASK_ENABLE_8
+#if TASK_8_ENABLE
 static StaticTask_t s_task_buffer_8;
 #endif
-#if TASK_ENABLE_9
+#if TASK_9_ENABLE
 static StaticTask_t s_task_buffer_9;
 #endif
-#if TASK_ENABLE_10
+#if TASK_10_ENABLE
 static StaticTask_t s_task_buffer_10;
 #endif
-#if TASK_ENABLE_11
+#if TASK_11_ENABLE
 static StaticTask_t s_task_buffer_11;
 #endif
-#if TASK_ENABLE_12
+#if TASK_12_ENABLE
 static StaticTask_t s_task_buffer_12;
 #endif
-#if TASK_ENABLE_13
+#if TASK_13_ENABLE
 static StaticTask_t s_task_buffer_13;
 #endif
-#if TASK_ENABLE_14
+#if TASK_14_ENABLE
 static StaticTask_t s_task_buffer_14;
 #endif
-#if TASK_ENABLE_15
+#if TASK_15_ENABLE
 static StaticTask_t s_task_buffer_15;
 #endif
 
-#if SEMAPHORE_ENABLE_0
+#if SEMAPHORE_0_ENABLE
 static StaticSemaphore_t s_semaphore_buffer_0;
 #endif
-#if SEMAPHORE_ENABLE_1
+#if SEMAPHORE_1_ENABLE
 static StaticSemaphore_t s_semaphore_buffer_1;
 #endif
-#if SEMAPHORE_ENABLE_2
+#if SEMAPHORE_2_ENABLE
 static StaticSemaphore_t s_semaphore_buffer_2;
 #endif
-#if SEMAPHORE_ENABLE_3
+#if SEMAPHORE_3_ENABLE
 static StaticSemaphore_t s_semaphore_buffer_3;
 #endif
-#if SEMAPHORE_ENABLE_4
+#if SEMAPHORE_4_ENABLE
 static StaticSemaphore_t s_semaphore_buffer_4;
 #endif
-#if SEMAPHORE_ENABLE_5
+#if SEMAPHORE_5_ENABLE
 static StaticSemaphore_t s_semaphore_buffer_5;
 #endif
-#if SEMAPHORE_ENABLE_6
+#if SEMAPHORE_6_ENABLE
 static StaticSemaphore_t s_semaphore_buffer_6;
 #endif
-#if SEMAPHORE_ENABLE_7
+#if SEMAPHORE_7_ENABLE
 static StaticSemaphore_t s_semaphore_buffer_7;
 #endif
 
-#if MUTEX_ENABLE_0
+#if MUTEX_0_ENABLE
 static StaticSemaphore_t s_mutex_buffer_0;
 #endif
-#if MUTEX_ENABLE_1
+#if MUTEX_1_ENABLE
 static StaticSemaphore_t s_mutex_buffer_1;
 #endif
-#if MUTEX_ENABLE_2
+#if MUTEX_2_ENABLE
 static StaticSemaphore_t s_mutex_buffer_2;
 #endif
-#if MUTEX_ENABLE_3
+#if MUTEX_3_ENABLE
 static StaticSemaphore_t s_mutex_buffer_3;
 #endif
-#if MUTEX_ENABLE_4
+#if MUTEX_4_ENABLE
 static StaticSemaphore_t s_mutex_buffer_4;
 #endif
-#if MUTEX_ENABLE_5
+#if MUTEX_5_ENABLE
 static StaticSemaphore_t s_mutex_buffer_5;
 #endif
-#if MUTEX_ENABLE_6
+#if MUTEX_6_ENABLE
 static StaticSemaphore_t s_mutex_buffer_6;
 #endif
-#if MUTEX_ENABLE_7
+#if MUTEX_7_ENABLE
 static StaticSemaphore_t s_mutex_buffer_7;
 #endif
 
-#if QUEUE_ENABLE_0
+#if QUEUE_0_ENABLE
 static StaticQueue_t s_queue_buffer_0;
 #endif
-#if QUEUE_ENABLE_1
+#if QUEUE_1_ENABLE
 static StaticQueue_t s_queue_buffer_1;
 #endif
-#if QUEUE_ENABLE_2
+#if QUEUE_2_ENABLE
 static StaticQueue_t s_queue_buffer_2;
 #endif
-#if QUEUE_ENABLE_3
+#if QUEUE_3_ENABLE
 static StaticQueue_t s_queue_buffer_3;
 #endif
-#if QUEUE_ENABLE_4
+#if QUEUE_4_ENABLE
 static StaticQueue_t s_queue_buffer_4;
 #endif
-#if QUEUE_ENABLE_5
+#if QUEUE_5_ENABLE
 static StaticQueue_t s_queue_buffer_5;
 #endif
-#if QUEUE_ENABLE_6
+#if QUEUE_6_ENABLE
 static StaticQueue_t s_queue_buffer_6;
 #endif
-#if QUEUE_ENABLE_7
+#if QUEUE_7_ENABLE
 static StaticQueue_t s_queue_buffer_7;
 #endif
 
-#if EVENT_GROUP_ENABLE_0
+#if EVENT_GROUP_0_ENABLE
 static StaticEventGroup_t s_event_group_buffer_0;
 #endif
-#if EVENT_GROUP_ENABLE_1
+#if EVENT_GROUP_1_ENABLE
 static StaticEventGroup_t s_event_group_buffer_1;
 #endif
-#if EVENT_GROUP_ENABLE_2
+#if EVENT_GROUP_2_ENABLE
 static StaticEventGroup_t s_event_group_buffer_2;
 #endif
-#if EVENT_GROUP_ENABLE_3
+#if EVENT_GROUP_3_ENABLE
 static StaticEventGroup_t s_event_group_buffer_3;
 #endif
 
-#if TIMER_ENABLE_0
+#if TIMER_0_ENABLE
 static StaticTimer_t s_timer_buffer_0;
 #endif
-#if TIMER_ENABLE_1
+#if TIMER_1_ENABLE
 static StaticTimer_t s_timer_buffer_1;
 #endif
-#if TIMER_ENABLE_2
+#if TIMER_2_ENABLE
 static StaticTimer_t s_timer_buffer_2;
 #endif
-#if TIMER_ENABLE_3
+#if TIMER_3_ENABLE
 static StaticTimer_t s_timer_buffer_3;
 #endif
 
-#if TASK_ENABLE_0
+#if TASK_0_ENABLE
 static TaskHandle_t s_task_handle_0 = NULL;
 #endif
-#if TASK_ENABLE_1
+#if TASK_1_ENABLE
 static TaskHandle_t s_task_handle_1 = NULL;
 #endif
-#if TASK_ENABLE_2
+#if TASK_2_ENABLE
 static TaskHandle_t s_task_handle_2 = NULL;
 #endif
-#if TASK_ENABLE_3
+#if TASK_3_ENABLE
 static TaskHandle_t s_task_handle_3 = NULL;
 #endif
-#if TASK_ENABLE_4
+#if TASK_4_ENABLE
 static TaskHandle_t s_task_handle_4 = NULL;
 #endif
-#if TASK_ENABLE_5
+#if TASK_5_ENABLE
 static TaskHandle_t s_task_handle_5 = NULL;
 #endif
-#if TASK_ENABLE_6
+#if TASK_6_ENABLE
 static TaskHandle_t s_task_handle_6 = NULL;
 #endif
-#if TASK_ENABLE_7
+#if TASK_7_ENABLE
 static TaskHandle_t s_task_handle_7 = NULL;
 #endif
-#if TASK_ENABLE_8
+#if TASK_8_ENABLE
 static TaskHandle_t s_task_handle_8 = NULL;
 #endif
-#if TASK_ENABLE_9
+#if TASK_9_ENABLE
 static TaskHandle_t s_task_handle_9 = NULL;
 #endif
-#if TASK_ENABLE_10
+#if TASK_10_ENABLE
 static TaskHandle_t s_task_handle_10 = NULL;
 #endif
-#if TASK_ENABLE_11
+#if TASK_11_ENABLE
 static TaskHandle_t s_task_handle_11 = NULL;
 #endif
-#if TASK_ENABLE_12
+#if TASK_12_ENABLE
 static TaskHandle_t s_task_handle_12 = NULL;
 #endif
-#if TASK_ENABLE_13
+#if TASK_13_ENABLE
 static TaskHandle_t s_task_handle_13 = NULL;
 #endif
-#if TASK_ENABLE_14
+#if TASK_14_ENABLE
 static TaskHandle_t s_task_handle_14 = NULL;
 #endif
-#if TASK_ENABLE_15
+#if TASK_15_ENABLE
 static TaskHandle_t s_task_handle_15 = NULL;
 #endif
 
-#if SEMAPHORE_ENABLE_0
+#if SEMAPHORE_0_ENABLE
 static SemaphoreHandle_t s_semaphore_handle_0 = NULL;
 #endif
-#if SEMAPHORE_ENABLE_1
+#if SEMAPHORE_1_ENABLE
 static SemaphoreHandle_t s_semaphore_handle_1 = NULL;
 #endif
-#if SEMAPHORE_ENABLE_2
+#if SEMAPHORE_2_ENABLE
 static SemaphoreHandle_t s_semaphore_handle_2 = NULL;
 #endif
-#if SEMAPHORE_ENABLE_3
+#if SEMAPHORE_3_ENABLE
 static SemaphoreHandle_t s_semaphore_handle_3 = NULL;
 #endif
-#if SEMAPHORE_ENABLE_4
+#if SEMAPHORE_4_ENABLE
 static SemaphoreHandle_t s_semaphore_handle_4 = NULL;
 #endif
-#if SEMAPHORE_ENABLE_5
+#if SEMAPHORE_5_ENABLE
 static SemaphoreHandle_t s_semaphore_handle_5 = NULL;
 #endif
-#if SEMAPHORE_ENABLE_6
+#if SEMAPHORE_6_ENABLE
 static SemaphoreHandle_t s_semaphore_handle_6 = NULL;
 #endif
-#if SEMAPHORE_ENABLE_7
+#if SEMAPHORE_7_ENABLE
 static SemaphoreHandle_t s_semaphore_handle_7 = NULL;
 #endif
 
-#if MUTEX_ENABLE_0
+#if MUTEX_0_ENABLE
 static SemaphoreHandle_t s_mutex_handle_0 = NULL;
 #endif
-#if MUTEX_ENABLE_1
+#if MUTEX_1_ENABLE
 static SemaphoreHandle_t s_mutex_handle_1 = NULL;
 #endif
-#if MUTEX_ENABLE_2
+#if MUTEX_2_ENABLE
 static SemaphoreHandle_t s_mutex_handle_2 = NULL;
 #endif
-#if MUTEX_ENABLE_3
+#if MUTEX_3_ENABLE
 static SemaphoreHandle_t s_mutex_handle_3 = NULL;
 #endif
-#if MUTEX_ENABLE_4
+#if MUTEX_4_ENABLE
 static SemaphoreHandle_t s_mutex_handle_4 = NULL;
 #endif
-#if MUTEX_ENABLE_5
+#if MUTEX_5_ENABLE
 static SemaphoreHandle_t s_mutex_handle_5 = NULL;
 #endif
-#if MUTEX_ENABLE_6
+#if MUTEX_6_ENABLE
 static SemaphoreHandle_t s_mutex_handle_6 = NULL;
 #endif
-#if MUTEX_ENABLE_7
+#if MUTEX_7_ENABLE
 static SemaphoreHandle_t s_mutex_handle_7 = NULL;
 #endif
 
-#if QUEUE_ENABLE_0
+#if QUEUE_0_ENABLE
 static QueueHandle_t s_queue_handle_0 = NULL;
 #endif
-#if QUEUE_ENABLE_1
+#if QUEUE_1_ENABLE
 static QueueHandle_t s_queue_handle_1 = NULL;
 #endif
-#if QUEUE_ENABLE_2
+#if QUEUE_2_ENABLE
 static QueueHandle_t s_queue_handle_2 = NULL;
 #endif
-#if QUEUE_ENABLE_3
+#if QUEUE_3_ENABLE
 static QueueHandle_t s_queue_handle_3 = NULL;
 #endif
-#if QUEUE_ENABLE_4
+#if QUEUE_4_ENABLE
 static QueueHandle_t s_queue_handle_4 = NULL;
 #endif
-#if QUEUE_ENABLE_5
+#if QUEUE_5_ENABLE
 static QueueHandle_t s_queue_handle_5 = NULL;
 #endif
-#if QUEUE_ENABLE_6
+#if QUEUE_6_ENABLE
 static QueueHandle_t s_queue_handle_6 = NULL;
 #endif
-#if QUEUE_ENABLE_7
+#if QUEUE_7_ENABLE
 static QueueHandle_t s_queue_handle_7 = NULL;
 #endif
 
-#if EVENT_GROUP_ENABLE_0
+#if EVENT_GROUP_0_ENABLE
 static EventGroupHandle_t s_event_group_handle_0 = NULL;
 #endif
-#if EVENT_GROUP_ENABLE_1
+#if EVENT_GROUP_1_ENABLE
 static EventGroupHandle_t s_event_group_handle_1 = NULL;
 #endif
-#if EVENT_GROUP_ENABLE_2
+#if EVENT_GROUP_2_ENABLE
 static EventGroupHandle_t s_event_group_handle_2 = NULL;
 #endif
-#if EVENT_GROUP_ENABLE_3
+#if EVENT_GROUP_3_ENABLE
 static EventGroupHandle_t s_event_group_handle_3 = NULL;
 #endif
 
-#if TIMER_ENABLE_0
+#if TIMER_0_ENABLE
 static TimerHandle_t s_timer_handle_0 = NULL;
 #endif
-#if TIMER_ENABLE_1
+#if TIMER_1_ENABLE
 static TimerHandle_t s_timer_handle_1 = NULL;
 #endif
-#if TIMER_ENABLE_2
+#if TIMER_2_ENABLE
 static TimerHandle_t s_timer_handle_2 = NULL;
 #endif
-#if TIMER_ENABLE_3
+#if TIMER_3_ENABLE
 static TimerHandle_t s_timer_handle_3 = NULL;
 #endif
 
-#if TASK_ENABLE_0
+#if TASK_0_ENABLE
 static void task_0(void *argument);
 #endif
-#if TASK_ENABLE_1
+#if TASK_1_ENABLE
 static void task_1(void *argument);
 #endif
-#if TASK_ENABLE_2
+#if TASK_2_ENABLE
 static void task_2(void *argument);
 #endif
-#if TASK_ENABLE_3
+#if TASK_3_ENABLE
 static void task_3(void *argument);
 #endif
-#if TASK_ENABLE_4
+#if TASK_4_ENABLE
 static void task_4(void *argument);
 #endif
-#if TASK_ENABLE_5
+#if TASK_5_ENABLE
 static void task_5(void *argument);
 #endif
-#if TASK_ENABLE_6
+#if TASK_6_ENABLE
 static void task_6(void *argument);
 #endif
-#if TASK_ENABLE_7
+#if TASK_7_ENABLE
 static void task_7(void *argument);
 #endif
-#if TASK_ENABLE_8
+#if TASK_8_ENABLE
 static void task_8(void *argument);
 #endif
-#if TASK_ENABLE_9
+#if TASK_9_ENABLE
 static void task_9(void *argument);
 #endif
-#if TASK_ENABLE_10
+#if TASK_10_ENABLE
 static void task_10(void *argument);
 #endif
-#if TASK_ENABLE_11
+#if TASK_11_ENABLE
 static void task_11(void *argument);
 #endif
-#if TASK_ENABLE_12
+#if TASK_12_ENABLE
 static void task_12(void *argument);
 #endif
-#if TASK_ENABLE_13
+#if TASK_13_ENABLE
 static void task_13(void *argument);
 #endif
-#if TASK_ENABLE_14
+#if TASK_14_ENABLE
 static void task_14(void *argument);
 #endif
-#if TASK_ENABLE_15
+#if TASK_15_ENABLE
 static void task_15(void *argument);
 #endif
-#if TIMER_ENABLE_0
+#if TIMER_0_ENABLE
 static void timer_callback_0(TimerHandle_t timer);
 #endif
-#if TIMER_ENABLE_1
+#if TIMER_1_ENABLE
 static void timer_callback_1(TimerHandle_t timer);
 #endif
-#if TIMER_ENABLE_2
+#if TIMER_2_ENABLE
 static void timer_callback_2(TimerHandle_t timer);
 #endif
-#if TIMER_ENABLE_3
+#if TIMER_3_ENABLE
 static void timer_callback_3(TimerHandle_t timer);
 #endif
 
@@ -577,7 +577,7 @@ bool tasks_start(void)
 
 static BaseType_t create_objects(void)
 {
-#if SEMAPHORE_ENABLE_0
+#if SEMAPHORE_0_ENABLE
     {
         bool object_missing = false;
 
@@ -589,7 +589,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if SEMAPHORE_ENABLE_1
+#if SEMAPHORE_1_ENABLE
     {
         bool object_missing = false;
 
@@ -601,7 +601,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if SEMAPHORE_ENABLE_2
+#if SEMAPHORE_2_ENABLE
     {
         bool object_missing = false;
 
@@ -613,7 +613,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if SEMAPHORE_ENABLE_3
+#if SEMAPHORE_3_ENABLE
     {
         bool object_missing = false;
 
@@ -625,7 +625,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if SEMAPHORE_ENABLE_4
+#if SEMAPHORE_4_ENABLE
     {
         bool object_missing = false;
 
@@ -637,7 +637,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if SEMAPHORE_ENABLE_5
+#if SEMAPHORE_5_ENABLE
     {
         bool object_missing = false;
 
@@ -649,7 +649,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if SEMAPHORE_ENABLE_6
+#if SEMAPHORE_6_ENABLE
     {
         bool object_missing = false;
 
@@ -661,7 +661,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if SEMAPHORE_ENABLE_7
+#if SEMAPHORE_7_ENABLE
     {
         bool object_missing = false;
 
@@ -673,7 +673,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if MUTEX_ENABLE_0
+#if MUTEX_0_ENABLE
     {
         bool object_missing = false;
 
@@ -685,7 +685,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if MUTEX_ENABLE_1
+#if MUTEX_1_ENABLE
     {
         bool object_missing = false;
 
@@ -697,7 +697,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if MUTEX_ENABLE_2
+#if MUTEX_2_ENABLE
     {
         bool object_missing = false;
 
@@ -709,7 +709,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if MUTEX_ENABLE_3
+#if MUTEX_3_ENABLE
     {
         bool object_missing = false;
 
@@ -721,7 +721,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if MUTEX_ENABLE_4
+#if MUTEX_4_ENABLE
     {
         bool object_missing = false;
 
@@ -733,7 +733,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if MUTEX_ENABLE_5
+#if MUTEX_5_ENABLE
     {
         bool object_missing = false;
 
@@ -745,7 +745,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if MUTEX_ENABLE_6
+#if MUTEX_6_ENABLE
     {
         bool object_missing = false;
 
@@ -757,7 +757,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if MUTEX_ENABLE_7
+#if MUTEX_7_ENABLE
     {
         bool object_missing = false;
 
@@ -769,7 +769,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if QUEUE_ENABLE_0
+#if QUEUE_0_ENABLE
     {
         bool object_missing = false;
 
@@ -784,7 +784,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if QUEUE_ENABLE_1
+#if QUEUE_1_ENABLE
     {
         bool object_missing = false;
 
@@ -799,7 +799,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if QUEUE_ENABLE_2
+#if QUEUE_2_ENABLE
     {
         bool object_missing = false;
 
@@ -814,7 +814,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if QUEUE_ENABLE_3
+#if QUEUE_3_ENABLE
     {
         bool object_missing = false;
 
@@ -829,7 +829,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if QUEUE_ENABLE_4
+#if QUEUE_4_ENABLE
     {
         bool object_missing = false;
 
@@ -844,7 +844,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if QUEUE_ENABLE_5
+#if QUEUE_5_ENABLE
     {
         bool object_missing = false;
 
@@ -859,7 +859,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if QUEUE_ENABLE_6
+#if QUEUE_6_ENABLE
     {
         bool object_missing = false;
 
@@ -874,7 +874,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if QUEUE_ENABLE_7
+#if QUEUE_7_ENABLE
     {
         bool object_missing = false;
 
@@ -889,7 +889,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if EVENT_GROUP_ENABLE_0
+#if EVENT_GROUP_0_ENABLE
     {
         bool object_missing = false;
 
@@ -901,7 +901,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if EVENT_GROUP_ENABLE_1
+#if EVENT_GROUP_1_ENABLE
     {
         bool object_missing = false;
 
@@ -913,7 +913,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if EVENT_GROUP_ENABLE_2
+#if EVENT_GROUP_2_ENABLE
     {
         bool object_missing = false;
 
@@ -925,7 +925,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if EVENT_GROUP_ENABLE_3
+#if EVENT_GROUP_3_ENABLE
     {
         bool object_missing = false;
 
@@ -937,7 +937,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if TIMER_ENABLE_0
+#if TIMER_0_ENABLE
     {
         bool object_missing = false;
 
@@ -954,7 +954,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if TIMER_ENABLE_1
+#if TIMER_1_ENABLE
     {
         bool object_missing = false;
 
@@ -971,7 +971,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if TIMER_ENABLE_2
+#if TIMER_2_ENABLE
     {
         bool object_missing = false;
 
@@ -988,7 +988,7 @@ static BaseType_t create_objects(void)
         }
     }
 #endif
-#if TIMER_ENABLE_3
+#if TIMER_3_ENABLE
     {
         bool object_missing = false;
 
@@ -1014,7 +1014,7 @@ static BaseType_t create_tasks(void)
     bool task_missing = false;
 #endif
 
-#if TASK_ENABLE_0
+#if TASK_0_ENABLE
     s_task_handle_0 = xTaskCreateStatic(task_0,
                                         TASK_NAME_0,
                                         TASK_STACK_DEPTH_0,
@@ -1029,7 +1029,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_1
+#if TASK_1_ENABLE
     s_task_handle_1 = xTaskCreateStatic(task_1,
                                         TASK_NAME_1,
                                         TASK_STACK_DEPTH_1,
@@ -1044,7 +1044,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_2
+#if TASK_2_ENABLE
     s_task_handle_2 = xTaskCreateStatic(task_2,
                                         TASK_NAME_2,
                                         TASK_STACK_DEPTH_2,
@@ -1059,7 +1059,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_3
+#if TASK_3_ENABLE
     s_task_handle_3 = xTaskCreateStatic(task_3,
                                         TASK_NAME_3,
                                         TASK_STACK_DEPTH_3,
@@ -1074,7 +1074,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_4
+#if TASK_4_ENABLE
     s_task_handle_4 = xTaskCreateStatic(task_4,
                                         TASK_NAME_4,
                                         TASK_STACK_DEPTH_4,
@@ -1089,7 +1089,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_5
+#if TASK_5_ENABLE
     s_task_handle_5 = xTaskCreateStatic(task_5,
                                         TASK_NAME_5,
                                         TASK_STACK_DEPTH_5,
@@ -1104,7 +1104,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_6
+#if TASK_6_ENABLE
     s_task_handle_6 = xTaskCreateStatic(task_6,
                                         TASK_NAME_6,
                                         TASK_STACK_DEPTH_6,
@@ -1119,7 +1119,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_7
+#if TASK_7_ENABLE
     s_task_handle_7 = xTaskCreateStatic(task_7,
                                         TASK_NAME_7,
                                         TASK_STACK_DEPTH_7,
@@ -1134,7 +1134,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_8
+#if TASK_8_ENABLE
     s_task_handle_8 = xTaskCreateStatic(task_8,
                                         TASK_NAME_8,
                                         TASK_STACK_DEPTH_8,
@@ -1149,7 +1149,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_9
+#if TASK_9_ENABLE
     s_task_handle_9 = xTaskCreateStatic(task_9,
                                         TASK_NAME_9,
                                         TASK_STACK_DEPTH_9,
@@ -1164,7 +1164,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_10
+#if TASK_10_ENABLE
     s_task_handle_10 = xTaskCreateStatic(task_10,
                                          TASK_NAME_10,
                                          TASK_STACK_DEPTH_10,
@@ -1179,7 +1179,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_11
+#if TASK_11_ENABLE
     s_task_handle_11 = xTaskCreateStatic(task_11,
                                          TASK_NAME_11,
                                          TASK_STACK_DEPTH_11,
@@ -1194,7 +1194,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_12
+#if TASK_12_ENABLE
     s_task_handle_12 = xTaskCreateStatic(task_12,
                                          TASK_NAME_12,
                                          TASK_STACK_DEPTH_12,
@@ -1209,7 +1209,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_13
+#if TASK_13_ENABLE
     s_task_handle_13 = xTaskCreateStatic(task_13,
                                          TASK_NAME_13,
                                          TASK_STACK_DEPTH_13,
@@ -1224,7 +1224,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_14
+#if TASK_14_ENABLE
     s_task_handle_14 = xTaskCreateStatic(task_14,
                                          TASK_NAME_14,
                                          TASK_STACK_DEPTH_14,
@@ -1239,7 +1239,7 @@ static BaseType_t create_tasks(void)
     }
 #endif
 
-#if TASK_ENABLE_15
+#if TASK_15_ENABLE
     s_task_handle_15 = xTaskCreateStatic(task_15,
                                          TASK_NAME_15,
                                          TASK_STACK_DEPTH_15,
@@ -1263,7 +1263,7 @@ static BaseType_t start_timers(void)
     bool       start_failed = false;
     BaseType_t start_result = pdFAIL;
 #endif
-#if TIMER_ENABLE_0
+#if TIMER_0_ENABLE
     start_result = xTimerStart(s_timer_handle_0, 0U);
     start_failed = start_result != pdPASS;
     if(start_failed)
@@ -1271,7 +1271,7 @@ static BaseType_t start_timers(void)
         return pdFAIL;
     }
 #endif
-#if TIMER_ENABLE_1
+#if TIMER_1_ENABLE
     start_result = xTimerStart(s_timer_handle_1, 0U);
     start_failed = start_result != pdPASS;
     if(start_failed)
@@ -1279,7 +1279,7 @@ static BaseType_t start_timers(void)
         return pdFAIL;
     }
 #endif
-#if TIMER_ENABLE_2
+#if TIMER_2_ENABLE
     start_result = xTimerStart(s_timer_handle_2, 0U);
     start_failed = start_result != pdPASS;
     if(start_failed)
@@ -1287,7 +1287,7 @@ static BaseType_t start_timers(void)
         return pdFAIL;
     }
 #endif
-#if TIMER_ENABLE_3
+#if TIMER_3_ENABLE
     start_result = xTimerStart(s_timer_handle_3, 0U);
     start_failed = start_result != pdPASS;
     if(start_failed)
@@ -1298,13 +1298,13 @@ static BaseType_t start_timers(void)
     return pdPASS;
 }
 
-#if TASK_ENABLE_0
+#if TASK_0_ENABLE
 static void task_0(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_0);
+    system_manager_report_ready(TASK_0_READY_BIT);
     system_manager_wait_running();
 
     for(;;)
@@ -1318,13 +1318,13 @@ static void task_0(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_1
+#if TASK_1_ENABLE
 static void task_1(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_1);
+    system_manager_report_ready(TASK_1_READY_BIT);
     system_manager_wait_running();
 
     for(;;)
@@ -1338,13 +1338,13 @@ static void task_1(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_2
+#if TASK_2_ENABLE
 static void task_2(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_2);
+    system_manager_report_ready(TASK_2_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1357,13 +1357,13 @@ static void task_2(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_3
+#if TASK_3_ENABLE
 static void task_3(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_3);
+    system_manager_report_ready(TASK_3_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1376,26 +1376,26 @@ static void task_3(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_4
+#if TASK_4_ENABLE
 static void task_4(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_4);
+    system_manager_report_ready(TASK_4_READY_BIT);
     system_manager_wait_running();
 
     led_run();
 }
 #endif
 
-#if TASK_ENABLE_5
+#if TASK_5_ENABLE
 static void task_5(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_5);
+    system_manager_report_ready(TASK_5_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1408,13 +1408,13 @@ static void task_5(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_6
+#if TASK_6_ENABLE
 static void task_6(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_6);
+    system_manager_report_ready(TASK_6_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1427,13 +1427,13 @@ static void task_6(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_7
+#if TASK_7_ENABLE
 static void task_7(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_7);
+    system_manager_report_ready(TASK_7_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1446,13 +1446,13 @@ static void task_7(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_8
+#if TASK_8_ENABLE
 static void task_8(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_8);
+    system_manager_report_ready(TASK_8_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1465,13 +1465,13 @@ static void task_8(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_9
+#if TASK_9_ENABLE
 static void task_9(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_9);
+    system_manager_report_ready(TASK_9_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1484,13 +1484,13 @@ static void task_9(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_10
+#if TASK_10_ENABLE
 static void task_10(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_10);
+    system_manager_report_ready(TASK_10_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1503,13 +1503,13 @@ static void task_10(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_11
+#if TASK_11_ENABLE
 static void task_11(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_11);
+    system_manager_report_ready(TASK_11_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1522,13 +1522,13 @@ static void task_11(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_12
+#if TASK_12_ENABLE
 static void task_12(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_12);
+    system_manager_report_ready(TASK_12_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1541,13 +1541,13 @@ static void task_12(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_13
+#if TASK_13_ENABLE
 static void task_13(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_13);
+    system_manager_report_ready(TASK_13_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1560,13 +1560,13 @@ static void task_13(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_14
+#if TASK_14_ENABLE
 static void task_14(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_14);
+    system_manager_report_ready(TASK_14_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1579,13 +1579,13 @@ static void task_14(void *argument)
 }
 #endif
 
-#if TASK_ENABLE_15
+#if TASK_15_ENABLE
 static void task_15(void *argument)
 {
     (void)argument;
 
     /** Complete local initialization before reporting this slot ready. */
-    system_manager_report_ready(TASK_READY_BIT_15);
+    system_manager_report_ready(TASK_15_READY_BIT);
     system_manager_wait_running();
 
     /** Reserved business slot: block without polling until future work is assigned.
@@ -1598,7 +1598,7 @@ static void task_15(void *argument)
 }
 #endif
 
-#if TIMER_ENABLE_0
+#if TIMER_0_ENABLE
 static void timer_callback_0(TimerHandle_t timer)
 {
     (void)timer;
@@ -1606,7 +1606,7 @@ static void timer_callback_0(TimerHandle_t timer)
 }
 #endif
 
-#if TIMER_ENABLE_1
+#if TIMER_1_ENABLE
 static void timer_callback_1(TimerHandle_t timer)
 {
     (void)timer;
@@ -1614,7 +1614,7 @@ static void timer_callback_1(TimerHandle_t timer)
 }
 #endif
 
-#if TIMER_ENABLE_2
+#if TIMER_2_ENABLE
 static void timer_callback_2(TimerHandle_t timer)
 {
     (void)timer;
@@ -1622,7 +1622,7 @@ static void timer_callback_2(TimerHandle_t timer)
 }
 #endif
 
-#if TIMER_ENABLE_3
+#if TIMER_3_ENABLE
 static void timer_callback_3(TimerHandle_t timer)
 {
     (void)timer;

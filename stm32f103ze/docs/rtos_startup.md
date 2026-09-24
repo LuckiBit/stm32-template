@@ -48,18 +48,18 @@
 
 | 开关 | 可配置范围 | 默认设置 |
 | --- | --- | --- |
-| `TASK_ENABLE_n` | 0～15 | 只有 `TASK_ENABLE_4=1` |
-| `QUEUE_ENABLE_n` | 0～7 | 全部为 0 |
-| `SEMAPHORE_ENABLE_n` | 0～7 | 全部为 0 |
-| `MUTEX_ENABLE_n` | 0～7 | 全部为 0 |
-| `TIMER_ENABLE_n` | 0～3 | 0、1 默认跟随对应任务；2、3 默认为 0 |
-| `EVENT_GROUP_ENABLE_n` | 0～3 | 0、1 默认跟随对应任务或定时器；2、3 默认为 0 |
+| `TASK_n_ENABLE` | 0～15 | 只有 `TASK_4_ENABLE=1` |
+| `QUEUE_n_ENABLE` | 0～7 | 全部为 0 |
+| `SEMAPHORE_n_ENABLE` | 0～7 | 全部为 0 |
+| `MUTEX_n_ENABLE` | 0～7 | 全部为 0 |
+| `TIMER_n_ENABLE` | 0～3 | 0、1 默认跟随对应任务；2、3 默认为 0 |
+| `EVENT_GROUP_n_ENABLE` | 0～3 | 0、1 默认跟随对应任务或定时器；2、3 默认为 0 |
 
 例如，启用编号 15 的预留任务，将其默认值改为：
 
 ```c
-#ifndef TASK_ENABLE_15
-#define TASK_ENABLE_15 1
+#ifndef TASK_15_ENABLE
+#define TASK_15_ENABLE 1
 #endif
 ```
 
@@ -136,7 +136,7 @@ system：RUNNING，置位运行许可
 业务任务执行；管理任务常驻等待故障
 ```
 
-`tasks.h` 根据 `TASK_ENABLE_n` 计算 `REQUIRED_TASKS`，无需手动维护启用集合。
+`tasks.h` 根据 `TASK_n_ENABLE` 计算 `REQUIRED_TASKS`，无需手动维护启用集合。
 16 个任务槽位使用位 0～15；管理器用位 16 表示运行许可、位 17 表示故障，
 编译期检查确保控制位与允许的就绪位不重叠。必要任务集合为空时直接进入服务启动阶段。
 
