@@ -12,11 +12,21 @@
 #include <stdint.h>
 
 /* UART switches: 1 = enabled, 0 = disabled. */
+#ifndef BSP_UART_1_ENABLE
 #define BSP_UART_1_ENABLE 1
+#endif
+#ifndef BSP_UART_2_ENABLE
 #define BSP_UART_2_ENABLE 0
+#endif
+#ifndef BSP_UART_3_ENABLE
 #define BSP_UART_3_ENABLE 0
+#endif
+#ifndef BSP_UART_4_ENABLE
 #define BSP_UART_4_ENABLE 0
+#endif
+#ifndef BSP_UART_5_ENABLE
 #define BSP_UART_5_ENABLE 0
+#endif
 
 #if(BSP_UART_1_ENABLE != 0) && (BSP_UART_1_ENABLE != 1)
 #error "BSP_UART_1_ENABLE must be 0 or 1"
@@ -32,27 +42,6 @@
 #endif
 #if(BSP_UART_5_ENABLE != 0) && (BSP_UART_5_ENABLE != 1)
 #error "BSP_UART_5_ENABLE must be 0 or 1"
-#endif
-
-/* Map UART switches to presence macros used by the BSP. */
-#if BSP_UART_1_ENABLE
-#define BSP_UART_1_ENABLED
-#endif
-
-#if BSP_UART_2_ENABLE
-#define BSP_UART_2_ENABLED
-#endif
-
-#if BSP_UART_3_ENABLE
-#define BSP_UART_3_ENABLED
-#endif
-
-#if BSP_UART_4_ENABLE
-#define BSP_UART_4_ENABLED
-#endif
-
-#if BSP_UART_5_ENABLE
-#define BSP_UART_5_ENABLED
 #endif
 
 #define BSP_UART_BAUD_RATE_1          115200U

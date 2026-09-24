@@ -17,22 +17,6 @@
 
 #define MY_PRINTF_ERROR (-1)
 
-#if(MY_PRINTF_UART_1_ENABLE != 0) && (MY_PRINTF_UART_1_ENABLE != 1)
-#error "MY_PRINTF_UART_1_ENABLE must be 0 or 1"
-#endif
-#if(MY_PRINTF_UART_2_ENABLE != 0) && (MY_PRINTF_UART_2_ENABLE != 1)
-#error "MY_PRINTF_UART_2_ENABLE must be 0 or 1"
-#endif
-#if(MY_PRINTF_UART_3_ENABLE != 0) && (MY_PRINTF_UART_3_ENABLE != 1)
-#error "MY_PRINTF_UART_3_ENABLE must be 0 or 1"
-#endif
-#if(MY_PRINTF_UART_4_ENABLE != 0) && (MY_PRINTF_UART_4_ENABLE != 1)
-#error "MY_PRINTF_UART_4_ENABLE must be 0 or 1"
-#endif
-#if(MY_PRINTF_UART_5_ENABLE != 0) && (MY_PRINTF_UART_5_ENABLE != 1)
-#error "MY_PRINTF_UART_5_ENABLE must be 0 or 1"
-#endif
-
 #define MY_PRINTF_UART_ENABLED_COUNT                                                               \
     (MY_PRINTF_UART_1_ENABLE + MY_PRINTF_UART_2_ENABLE + MY_PRINTF_UART_3_ENABLE +                 \
      MY_PRINTF_UART_4_ENABLE + MY_PRINTF_UART_5_ENABLE)
@@ -40,19 +24,19 @@
 #if MY_PRINTF_UART_ENABLED_COUNT == 0
 #error "At least one MY_PRINTF_UART_n_ENABLE switch must be enabled"
 #endif
-#if defined(MY_PRINTF_UART_1_ENABLED) && !defined(BSP_UART_1_ENABLED)
+#if MY_PRINTF_UART_1_ENABLE && !BSP_UART_1_ENABLE
 #error "MY_PRINTF UART 1 output requires BSP_UART_1_ENABLE"
 #endif
-#if defined(MY_PRINTF_UART_2_ENABLED) && !defined(BSP_UART_2_ENABLED)
+#if MY_PRINTF_UART_2_ENABLE && !BSP_UART_2_ENABLE
 #error "MY_PRINTF UART 2 output requires BSP_UART_2_ENABLE"
 #endif
-#if defined(MY_PRINTF_UART_3_ENABLED) && !defined(BSP_UART_3_ENABLED)
+#if MY_PRINTF_UART_3_ENABLE && !BSP_UART_3_ENABLE
 #error "MY_PRINTF UART 3 output requires BSP_UART_3_ENABLE"
 #endif
-#if defined(MY_PRINTF_UART_4_ENABLED) && !defined(BSP_UART_4_ENABLED)
+#if MY_PRINTF_UART_4_ENABLE && !BSP_UART_4_ENABLE
 #error "MY_PRINTF UART 4 output requires BSP_UART_4_ENABLE"
 #endif
-#if defined(MY_PRINTF_UART_5_ENABLED) && !defined(BSP_UART_5_ENABLED)
+#if MY_PRINTF_UART_5_ENABLE && !BSP_UART_5_ENABLE
 #error "MY_PRINTF UART 5 output requires BSP_UART_5_ENABLE"
 #endif
 
@@ -85,35 +69,35 @@ static bool my_printf_transmit(const uint8_t *data, uint16_t length)
 {
     bool all_transmitted = true;
 
-#ifdef MY_PRINTF_UART_1_ENABLED
+#if MY_PRINTF_UART_1_ENABLE
     {
         bool current_transmitted = bsp_uart_transmit(1U, data, length, MY_PRINTF_TIMEOUT_MS);
 
         all_transmitted = all_transmitted && current_transmitted;
     }
 #endif
-#ifdef MY_PRINTF_UART_2_ENABLED
+#if MY_PRINTF_UART_2_ENABLE
     {
         bool current_transmitted = bsp_uart_transmit(2U, data, length, MY_PRINTF_TIMEOUT_MS);
 
         all_transmitted = all_transmitted && current_transmitted;
     }
 #endif
-#ifdef MY_PRINTF_UART_3_ENABLED
+#if MY_PRINTF_UART_3_ENABLE
     {
         bool current_transmitted = bsp_uart_transmit(3U, data, length, MY_PRINTF_TIMEOUT_MS);
 
         all_transmitted = all_transmitted && current_transmitted;
     }
 #endif
-#ifdef MY_PRINTF_UART_4_ENABLED
+#if MY_PRINTF_UART_4_ENABLE
     {
         bool current_transmitted = bsp_uart_transmit(4U, data, length, MY_PRINTF_TIMEOUT_MS);
 
         all_transmitted = all_transmitted && current_transmitted;
     }
 #endif
-#ifdef MY_PRINTF_UART_5_ENABLED
+#if MY_PRINTF_UART_5_ENABLE
     {
         bool current_transmitted = bsp_uart_transmit(5U, data, length, MY_PRINTF_TIMEOUT_MS);
 

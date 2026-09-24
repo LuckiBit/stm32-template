@@ -35,42 +35,224 @@ extern "C"
      */
 
 /* Module switches: 1 = enabled, 0 = disabled. */
-#define HAL_MODULE_ENABLE                1
-#define HAL_ADC_MODULE_ENABLE            0
-#define HAL_CRYP_MODULE_ENABLE           0
-#define HAL_CAN_MODULE_ENABLE            0
-#define HAL_CAN_LEGACY_MODULE_ENABLE     0
-#define HAL_CEC_MODULE_ENABLE            0
-#define HAL_CORTEX_MODULE_ENABLE         1
-#define HAL_CRC_MODULE_ENABLE            0
-#define HAL_DAC_MODULE_ENABLE            0
-#define HAL_DMA_MODULE_ENABLE            1
-#define HAL_ETH_MODULE_ENABLE            0
-#define HAL_EXTI_MODULE_ENABLE           1
-#define HAL_FLASH_MODULE_ENABLE          1
-#define HAL_GPIO_MODULE_ENABLE           1
-#define HAL_I2C_MODULE_ENABLE            0
-#define HAL_I2S_MODULE_ENABLE            0
-#define HAL_IRDA_MODULE_ENABLE           0
-#define HAL_IWDG_MODULE_ENABLE           0
-#define HAL_NOR_MODULE_ENABLE            0
-#define HAL_NAND_MODULE_ENABLE           0
-#define HAL_PCCARD_MODULE_ENABLE         0
-#define HAL_PCD_MODULE_ENABLE            0
-#define HAL_HCD_MODULE_ENABLE            0
-#define HAL_PWR_MODULE_ENABLE            1
-#define HAL_RCC_MODULE_ENABLE            1
-#define HAL_RTC_MODULE_ENABLE            0
-#define HAL_SD_MODULE_ENABLE             0
-#define HAL_MMC_MODULE_ENABLE            0
-#define HAL_SDRAM_MODULE_ENABLE          0
-#define HAL_SMARTCARD_MODULE_ENABLE      0
-#define HAL_SPI_MODULE_ENABLE            0
-#define HAL_SRAM_MODULE_ENABLE           0
-#define HAL_TIM_MODULE_ENABLE            0
-#define HAL_UART_MODULE_ENABLE           1
-#define HAL_USART_MODULE_ENABLE          0
-#define HAL_WWDG_MODULE_ENABLE           0
+#ifndef HAL_MODULE_ENABLE
+#define HAL_MODULE_ENABLE 1
+#endif
+#ifndef HAL_ADC_MODULE_ENABLE
+#define HAL_ADC_MODULE_ENABLE 0
+#endif
+#ifndef HAL_CRYP_MODULE_ENABLE
+#define HAL_CRYP_MODULE_ENABLE 0
+#endif
+#ifndef HAL_CAN_MODULE_ENABLE
+#define HAL_CAN_MODULE_ENABLE 0
+#endif
+#ifndef HAL_CAN_LEGACY_MODULE_ENABLE
+#define HAL_CAN_LEGACY_MODULE_ENABLE 0
+#endif
+#ifndef HAL_CEC_MODULE_ENABLE
+#define HAL_CEC_MODULE_ENABLE 0
+#endif
+#ifndef HAL_CORTEX_MODULE_ENABLE
+#define HAL_CORTEX_MODULE_ENABLE 1
+#endif
+#ifndef HAL_CRC_MODULE_ENABLE
+#define HAL_CRC_MODULE_ENABLE 0
+#endif
+#ifndef HAL_DAC_MODULE_ENABLE
+#define HAL_DAC_MODULE_ENABLE 0
+#endif
+#ifndef HAL_DMA_MODULE_ENABLE
+#define HAL_DMA_MODULE_ENABLE 1
+#endif
+#ifndef HAL_ETH_MODULE_ENABLE
+#define HAL_ETH_MODULE_ENABLE 0
+#endif
+#ifndef HAL_EXTI_MODULE_ENABLE
+#define HAL_EXTI_MODULE_ENABLE 1
+#endif
+#ifndef HAL_FLASH_MODULE_ENABLE
+#define HAL_FLASH_MODULE_ENABLE 1
+#endif
+#ifndef HAL_GPIO_MODULE_ENABLE
+#define HAL_GPIO_MODULE_ENABLE 1
+#endif
+#ifndef HAL_I2C_MODULE_ENABLE
+#define HAL_I2C_MODULE_ENABLE 0
+#endif
+#ifndef HAL_I2S_MODULE_ENABLE
+#define HAL_I2S_MODULE_ENABLE 0
+#endif
+#ifndef HAL_IRDA_MODULE_ENABLE
+#define HAL_IRDA_MODULE_ENABLE 0
+#endif
+#ifndef HAL_IWDG_MODULE_ENABLE
+#define HAL_IWDG_MODULE_ENABLE 0
+#endif
+#ifndef HAL_NOR_MODULE_ENABLE
+#define HAL_NOR_MODULE_ENABLE 0
+#endif
+#ifndef HAL_NAND_MODULE_ENABLE
+#define HAL_NAND_MODULE_ENABLE 0
+#endif
+#ifndef HAL_PCCARD_MODULE_ENABLE
+#define HAL_PCCARD_MODULE_ENABLE 0
+#endif
+#ifndef HAL_PCD_MODULE_ENABLE
+#define HAL_PCD_MODULE_ENABLE 0
+#endif
+#ifndef HAL_HCD_MODULE_ENABLE
+#define HAL_HCD_MODULE_ENABLE 0
+#endif
+#ifndef HAL_PWR_MODULE_ENABLE
+#define HAL_PWR_MODULE_ENABLE 1
+#endif
+#ifndef HAL_RCC_MODULE_ENABLE
+#define HAL_RCC_MODULE_ENABLE 1
+#endif
+#ifndef HAL_RTC_MODULE_ENABLE
+#define HAL_RTC_MODULE_ENABLE 0
+#endif
+#ifndef HAL_SD_MODULE_ENABLE
+#define HAL_SD_MODULE_ENABLE 0
+#endif
+#ifndef HAL_MMC_MODULE_ENABLE
+#define HAL_MMC_MODULE_ENABLE 0
+#endif
+#ifndef HAL_SDRAM_MODULE_ENABLE
+#define HAL_SDRAM_MODULE_ENABLE 0
+#endif
+#ifndef HAL_SMARTCARD_MODULE_ENABLE
+#define HAL_SMARTCARD_MODULE_ENABLE 0
+#endif
+#ifndef HAL_SPI_MODULE_ENABLE
+#define HAL_SPI_MODULE_ENABLE 0
+#endif
+#ifndef HAL_SRAM_MODULE_ENABLE
+#define HAL_SRAM_MODULE_ENABLE 0
+#endif
+#ifndef HAL_TIM_MODULE_ENABLE
+#define HAL_TIM_MODULE_ENABLE 0
+#endif
+#ifndef HAL_UART_MODULE_ENABLE
+#define HAL_UART_MODULE_ENABLE 1
+#endif
+#ifndef HAL_USART_MODULE_ENABLE
+#define HAL_USART_MODULE_ENABLE 0
+#endif
+#ifndef HAL_WWDG_MODULE_ENABLE
+#define HAL_WWDG_MODULE_ENABLE 0
+#endif
+
+/* Module switches accept only boolean values. */
+#if(HAL_MODULE_ENABLE != 0) && (HAL_MODULE_ENABLE != 1)
+#error "HAL_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_ADC_MODULE_ENABLE != 0) && (HAL_ADC_MODULE_ENABLE != 1)
+#error "HAL_ADC_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_CRYP_MODULE_ENABLE != 0) && (HAL_CRYP_MODULE_ENABLE != 1)
+#error "HAL_CRYP_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_CAN_MODULE_ENABLE != 0) && (HAL_CAN_MODULE_ENABLE != 1)
+#error "HAL_CAN_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_CAN_LEGACY_MODULE_ENABLE != 0) && (HAL_CAN_LEGACY_MODULE_ENABLE != 1)
+#error "HAL_CAN_LEGACY_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_CEC_MODULE_ENABLE != 0) && (HAL_CEC_MODULE_ENABLE != 1)
+#error "HAL_CEC_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_CORTEX_MODULE_ENABLE != 0) && (HAL_CORTEX_MODULE_ENABLE != 1)
+#error "HAL_CORTEX_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_CRC_MODULE_ENABLE != 0) && (HAL_CRC_MODULE_ENABLE != 1)
+#error "HAL_CRC_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_DAC_MODULE_ENABLE != 0) && (HAL_DAC_MODULE_ENABLE != 1)
+#error "HAL_DAC_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_DMA_MODULE_ENABLE != 0) && (HAL_DMA_MODULE_ENABLE != 1)
+#error "HAL_DMA_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_ETH_MODULE_ENABLE != 0) && (HAL_ETH_MODULE_ENABLE != 1)
+#error "HAL_ETH_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_EXTI_MODULE_ENABLE != 0) && (HAL_EXTI_MODULE_ENABLE != 1)
+#error "HAL_EXTI_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_FLASH_MODULE_ENABLE != 0) && (HAL_FLASH_MODULE_ENABLE != 1)
+#error "HAL_FLASH_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_GPIO_MODULE_ENABLE != 0) && (HAL_GPIO_MODULE_ENABLE != 1)
+#error "HAL_GPIO_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_I2C_MODULE_ENABLE != 0) && (HAL_I2C_MODULE_ENABLE != 1)
+#error "HAL_I2C_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_I2S_MODULE_ENABLE != 0) && (HAL_I2S_MODULE_ENABLE != 1)
+#error "HAL_I2S_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_IRDA_MODULE_ENABLE != 0) && (HAL_IRDA_MODULE_ENABLE != 1)
+#error "HAL_IRDA_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_IWDG_MODULE_ENABLE != 0) && (HAL_IWDG_MODULE_ENABLE != 1)
+#error "HAL_IWDG_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_NOR_MODULE_ENABLE != 0) && (HAL_NOR_MODULE_ENABLE != 1)
+#error "HAL_NOR_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_NAND_MODULE_ENABLE != 0) && (HAL_NAND_MODULE_ENABLE != 1)
+#error "HAL_NAND_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_PCCARD_MODULE_ENABLE != 0) && (HAL_PCCARD_MODULE_ENABLE != 1)
+#error "HAL_PCCARD_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_PCD_MODULE_ENABLE != 0) && (HAL_PCD_MODULE_ENABLE != 1)
+#error "HAL_PCD_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_HCD_MODULE_ENABLE != 0) && (HAL_HCD_MODULE_ENABLE != 1)
+#error "HAL_HCD_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_PWR_MODULE_ENABLE != 0) && (HAL_PWR_MODULE_ENABLE != 1)
+#error "HAL_PWR_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_RCC_MODULE_ENABLE != 0) && (HAL_RCC_MODULE_ENABLE != 1)
+#error "HAL_RCC_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_RTC_MODULE_ENABLE != 0) && (HAL_RTC_MODULE_ENABLE != 1)
+#error "HAL_RTC_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_SD_MODULE_ENABLE != 0) && (HAL_SD_MODULE_ENABLE != 1)
+#error "HAL_SD_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_MMC_MODULE_ENABLE != 0) && (HAL_MMC_MODULE_ENABLE != 1)
+#error "HAL_MMC_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_SDRAM_MODULE_ENABLE != 0) && (HAL_SDRAM_MODULE_ENABLE != 1)
+#error "HAL_SDRAM_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_SMARTCARD_MODULE_ENABLE != 0) && (HAL_SMARTCARD_MODULE_ENABLE != 1)
+#error "HAL_SMARTCARD_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_SPI_MODULE_ENABLE != 0) && (HAL_SPI_MODULE_ENABLE != 1)
+#error "HAL_SPI_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_SRAM_MODULE_ENABLE != 0) && (HAL_SRAM_MODULE_ENABLE != 1)
+#error "HAL_SRAM_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_TIM_MODULE_ENABLE != 0) && (HAL_TIM_MODULE_ENABLE != 1)
+#error "HAL_TIM_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_UART_MODULE_ENABLE != 0) && (HAL_UART_MODULE_ENABLE != 1)
+#error "HAL_UART_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_USART_MODULE_ENABLE != 0) && (HAL_USART_MODULE_ENABLE != 1)
+#error "HAL_USART_MODULE_ENABLE must be 0 or 1"
+#endif
+#if(HAL_WWDG_MODULE_ENABLE != 0) && (HAL_WWDG_MODULE_ENABLE != 1)
+#error "HAL_WWDG_MODULE_ENABLE must be 0 or 1"
+#endif
 
 /* Map module switches to the presence macros used by the HAL driver. */
 #if HAL_MODULE_ENABLE

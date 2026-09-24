@@ -575,83 +575,83 @@
 #define BSP_GPIOD_2_SAFE_STATE    GPIO_PIN_RESET
 #define BSP_GPIOD_2_IS_OUTPUT     false
 
-#define BSP_GPIO_PIN_CONFIG_LIST(APPLY) \
-    APPLY(BSP_GPIOA_0) \
-    APPLY(BSP_GPIOA_1) \
-    APPLY(BSP_GPIOA_2) \
-    APPLY(BSP_GPIOA_3) \
-    APPLY(BSP_GPIOA_4) \
-    APPLY(BSP_GPIOA_5) \
-    APPLY(BSP_GPIOA_6) \
-    APPLY(BSP_GPIOA_7) \
-    APPLY(BSP_GPIOA_8) \
-    APPLY(BSP_GPIOA_9) \
-    APPLY(BSP_GPIOA_10) \
-    APPLY(BSP_GPIOA_11) \
-    APPLY(BSP_GPIOA_12) \
-    APPLY(BSP_GPIOA_13) \
-    APPLY(BSP_GPIOA_14) \
-    APPLY(BSP_GPIOA_15) \
-    APPLY(BSP_GPIOB_0) \
-    APPLY(BSP_GPIOB_1) \
-    APPLY(BSP_GPIOB_2) \
-    APPLY(BSP_GPIOB_3) \
-    APPLY(BSP_GPIOB_4) \
-    APPLY(BSP_GPIOB_5) \
-    APPLY(BSP_GPIOB_6) \
-    APPLY(BSP_GPIOB_7) \
-    APPLY(BSP_GPIOB_8) \
-    APPLY(BSP_GPIOB_9) \
-    APPLY(BSP_GPIOB_10) \
-    APPLY(BSP_GPIOB_11) \
-    APPLY(BSP_GPIOB_12) \
-    APPLY(BSP_GPIOB_13) \
-    APPLY(BSP_GPIOB_14) \
-    APPLY(BSP_GPIOB_15) \
-    APPLY(BSP_GPIOC_0) \
-    APPLY(BSP_GPIOC_1) \
-    APPLY(BSP_GPIOC_2) \
-    APPLY(BSP_GPIOC_3) \
-    APPLY(BSP_GPIOC_4) \
-    APPLY(BSP_GPIOC_5) \
-    APPLY(BSP_GPIOC_6) \
-    APPLY(BSP_GPIOC_7) \
-    APPLY(BSP_GPIOC_8) \
-    APPLY(BSP_GPIOC_9) \
-    APPLY(BSP_GPIOC_10) \
-    APPLY(BSP_GPIOC_11) \
-    APPLY(BSP_GPIOC_12) \
-    APPLY(BSP_GPIOC_13) \
-    APPLY(BSP_GPIOC_14) \
-    APPLY(BSP_GPIOC_15) \
-    APPLY(BSP_GPIOD_0) \
-    APPLY(BSP_GPIOD_1) \
+#define BSP_GPIO_PIN_CONFIG_LIST(APPLY)                                                            \
+    APPLY(BSP_GPIOA_0)                                                                             \
+    APPLY(BSP_GPIOA_1)                                                                             \
+    APPLY(BSP_GPIOA_2)                                                                             \
+    APPLY(BSP_GPIOA_3)                                                                             \
+    APPLY(BSP_GPIOA_4)                                                                             \
+    APPLY(BSP_GPIOA_5)                                                                             \
+    APPLY(BSP_GPIOA_6)                                                                             \
+    APPLY(BSP_GPIOA_7)                                                                             \
+    APPLY(BSP_GPIOA_8)                                                                             \
+    APPLY(BSP_GPIOA_9)                                                                             \
+    APPLY(BSP_GPIOA_10)                                                                            \
+    APPLY(BSP_GPIOA_11)                                                                            \
+    APPLY(BSP_GPIOA_12)                                                                            \
+    APPLY(BSP_GPIOA_13)                                                                            \
+    APPLY(BSP_GPIOA_14)                                                                            \
+    APPLY(BSP_GPIOA_15)                                                                            \
+    APPLY(BSP_GPIOB_0)                                                                             \
+    APPLY(BSP_GPIOB_1)                                                                             \
+    APPLY(BSP_GPIOB_2)                                                                             \
+    APPLY(BSP_GPIOB_3)                                                                             \
+    APPLY(BSP_GPIOB_4)                                                                             \
+    APPLY(BSP_GPIOB_5)                                                                             \
+    APPLY(BSP_GPIOB_6)                                                                             \
+    APPLY(BSP_GPIOB_7)                                                                             \
+    APPLY(BSP_GPIOB_8)                                                                             \
+    APPLY(BSP_GPIOB_9)                                                                             \
+    APPLY(BSP_GPIOB_10)                                                                            \
+    APPLY(BSP_GPIOB_11)                                                                            \
+    APPLY(BSP_GPIOB_12)                                                                            \
+    APPLY(BSP_GPIOB_13)                                                                            \
+    APPLY(BSP_GPIOB_14)                                                                            \
+    APPLY(BSP_GPIOB_15)                                                                            \
+    APPLY(BSP_GPIOC_0)                                                                             \
+    APPLY(BSP_GPIOC_1)                                                                             \
+    APPLY(BSP_GPIOC_2)                                                                             \
+    APPLY(BSP_GPIOC_3)                                                                             \
+    APPLY(BSP_GPIOC_4)                                                                             \
+    APPLY(BSP_GPIOC_5)                                                                             \
+    APPLY(BSP_GPIOC_6)                                                                             \
+    APPLY(BSP_GPIOC_7)                                                                             \
+    APPLY(BSP_GPIOC_8)                                                                             \
+    APPLY(BSP_GPIOC_9)                                                                             \
+    APPLY(BSP_GPIOC_10)                                                                            \
+    APPLY(BSP_GPIOC_11)                                                                            \
+    APPLY(BSP_GPIOC_12)                                                                            \
+    APPLY(BSP_GPIOC_13)                                                                            \
+    APPLY(BSP_GPIOC_14)                                                                            \
+    APPLY(BSP_GPIOC_15)                                                                            \
+    APPLY(BSP_GPIOD_0)                                                                             \
+    APPLY(BSP_GPIOD_1)                                                                             \
     APPLY(BSP_GPIOD_2)
 
-#define BSP_GPIO_LOAD_CASE(pin_name)                 \
-    case pin_name:                                   \
-        config.port          = pin_name##_PORT;      \
-        config.pin           = pin_name##_PIN;       \
-        config.initialize    = pin_name##_INITIALIZE;\
-        config.mode          = pin_name##_MODE;      \
-        config.pull          = pin_name##_PULL;      \
-        config.speed         = pin_name##_SPEED;     \
-        config.initial_state = pin_name##_INITIAL_STATE; \
-        config.safe_state    = pin_name##_SAFE_STATE;    \
-        config.is_output     = pin_name##_IS_OUTPUT; \
+#define BSP_GPIO_LOAD_CASE(pin_name)                                                               \
+    case pin_name:                                                                                 \
+        config.port          = pin_name##_PORT;                                                    \
+        config.pin           = pin_name##_PIN;                                                     \
+        config.initialize    = pin_name##_INITIALIZE;                                              \
+        config.mode          = pin_name##_MODE;                                                    \
+        config.pull          = pin_name##_PULL;                                                    \
+        config.speed         = pin_name##_SPEED;                                                   \
+        config.initial_state = pin_name##_INITIAL_STATE;                                           \
+        config.safe_state    = pin_name##_SAFE_STATE;                                              \
+        config.is_output     = pin_name##_IS_OUTPUT;                                               \
         break;
 
 typedef struct
 {
-    GPIO_TypeDef  *port;
-    uint16_t       pin;
-    uint32_t       mode;
-    uint32_t       pull;
-    uint32_t       speed;
-    GPIO_PinState  initial_state;
-    GPIO_PinState  safe_state;
-    bool           initialize;
-    bool           is_output;
+    GPIO_TypeDef *port;
+    uint16_t      pin;
+    uint32_t      mode;
+    uint32_t      pull;
+    uint32_t      speed;
+    GPIO_PinState initial_state;
+    GPIO_PinState safe_state;
+    bool          initialize;
+    bool          is_output;
 } bsp_gpio_pin_config_t;
 
 static bool bsp_gpio_pin_is_valid(bsp_gpio_pin_t pin_id)
@@ -785,7 +785,7 @@ bool bsp_gpio_read(bsp_gpio_pin_t pin_id, bsp_gpio_level_t *level)
     }
 
     pin_state = HAL_GPIO_ReadPin(config.port, config.pin);
-    *level = pin_state == GPIO_PIN_SET ? BSP_GPIO_LEVEL_HIGH : BSP_GPIO_LEVEL_LOW;
+    *level    = pin_state == GPIO_PIN_SET ? BSP_GPIO_LEVEL_HIGH : BSP_GPIO_LEVEL_LOW;
     return true;
 }
 

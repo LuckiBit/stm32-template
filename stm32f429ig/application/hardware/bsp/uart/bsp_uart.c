@@ -6,19 +6,19 @@
 #include "bsp_uart.h"
 #include "stm32f4xx_hal.h"
 
-#ifdef BSP_UART_1_ENABLED
+#if BSP_UART_1_ENABLE
 static UART_HandleTypeDef s_uart_handle_1;
 #endif
-#ifdef BSP_UART_2_ENABLED
+#if BSP_UART_2_ENABLE
 static UART_HandleTypeDef s_uart_handle_2;
 #endif
-#ifdef BSP_UART_3_ENABLED
+#if BSP_UART_3_ENABLE
 static UART_HandleTypeDef s_uart_handle_3;
 #endif
-#ifdef BSP_UART_4_ENABLED
+#if BSP_UART_4_ENABLE
 static UART_HandleTypeDef s_uart_handle_4;
 #endif
-#ifdef BSP_UART_5_ENABLED
+#if BSP_UART_5_ENABLE
 static UART_HandleTypeDef s_uart_handle_5;
 #endif
 
@@ -28,27 +28,27 @@ static UART_HandleTypeDef *bsp_uart_get_handle(uint8_t uart_number)
 
     switch(uart_number)
     {
-#ifdef BSP_UART_1_ENABLED
+#if BSP_UART_1_ENABLE
         case 1U:
             uart_handle = &s_uart_handle_1;
             break;
 #endif
-#ifdef BSP_UART_2_ENABLED
+#if BSP_UART_2_ENABLE
         case 2U:
             uart_handle = &s_uart_handle_2;
             break;
 #endif
-#ifdef BSP_UART_3_ENABLED
+#if BSP_UART_3_ENABLE
         case 3U:
             uart_handle = &s_uart_handle_3;
             break;
 #endif
-#ifdef BSP_UART_4_ENABLED
+#if BSP_UART_4_ENABLE
         case 4U:
             uart_handle = &s_uart_handle_4;
             break;
 #endif
-#ifdef BSP_UART_5_ENABLED
+#if BSP_UART_5_ENABLE
         case 5U:
             uart_handle = &s_uart_handle_5;
             break;
@@ -77,7 +77,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
 
     (void)uart_handle;
 
-#ifdef BSP_UART_1_ENABLED
+#if BSP_UART_1_ENABLE
     {
         bool is_uart = uart_handle->Instance == USART1;
 
@@ -95,7 +95,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
     }
 #endif
 
-#ifdef BSP_UART_2_ENABLED
+#if BSP_UART_2_ENABLE
     {
         bool is_uart = uart_handle->Instance == USART2;
 
@@ -113,7 +113,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
     }
 #endif
 
-#ifdef BSP_UART_3_ENABLED
+#if BSP_UART_3_ENABLE
     {
         bool is_uart = uart_handle->Instance == USART3;
 
@@ -131,7 +131,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
     }
 #endif
 
-#ifdef BSP_UART_4_ENABLED
+#if BSP_UART_4_ENABLE
     {
         bool is_uart = uart_handle->Instance == UART4;
 
@@ -149,7 +149,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
     }
 #endif
 
-#ifdef BSP_UART_5_ENABLED
+#if BSP_UART_5_ENABLE
     {
         bool is_uart = uart_handle->Instance == UART5;
 
@@ -188,13 +188,13 @@ void HAL_UART_MspInit(UART_HandleTypeDef *uart_handle)
 bool bsp_uart_init(void)
 {
     bool initialized = true;
-#if defined(BSP_UART_1_ENABLED) || defined(BSP_UART_2_ENABLED) || defined(BSP_UART_3_ENABLED) ||   \
-    defined(BSP_UART_4_ENABLED) || defined(BSP_UART_5_ENABLED)
+#if BSP_UART_1_ENABLE || BSP_UART_2_ENABLE || BSP_UART_3_ENABLE || BSP_UART_4_ENABLE ||            \
+    BSP_UART_5_ENABLE
     bool              current = false;
     HAL_StatusTypeDef result  = HAL_ERROR;
 #endif
 
-#ifdef BSP_UART_1_ENABLED
+#if BSP_UART_1_ENABLE
     s_uart_handle_1.Instance          = USART1;
     s_uart_handle_1.Init.BaudRate     = BSP_UART_BAUD_RATE_1;
     s_uart_handle_1.Init.WordLength   = BSP_UART_WORD_LENGTH_1;
@@ -208,7 +208,7 @@ bool bsp_uart_init(void)
     current     = result == HAL_OK;
     initialized = initialized && current;
 #endif
-#ifdef BSP_UART_2_ENABLED
+#if BSP_UART_2_ENABLE
     s_uart_handle_2.Instance          = USART2;
     s_uart_handle_2.Init.BaudRate     = BSP_UART_BAUD_RATE_2;
     s_uart_handle_2.Init.WordLength   = BSP_UART_WORD_LENGTH_2;
@@ -222,7 +222,7 @@ bool bsp_uart_init(void)
     current     = result == HAL_OK;
     initialized = initialized && current;
 #endif
-#ifdef BSP_UART_3_ENABLED
+#if BSP_UART_3_ENABLE
     s_uart_handle_3.Instance          = USART3;
     s_uart_handle_3.Init.BaudRate     = BSP_UART_BAUD_RATE_3;
     s_uart_handle_3.Init.WordLength   = BSP_UART_WORD_LENGTH_3;
@@ -236,7 +236,7 @@ bool bsp_uart_init(void)
     current     = result == HAL_OK;
     initialized = initialized && current;
 #endif
-#ifdef BSP_UART_4_ENABLED
+#if BSP_UART_4_ENABLE
     s_uart_handle_4.Instance          = UART4;
     s_uart_handle_4.Init.BaudRate     = BSP_UART_BAUD_RATE_4;
     s_uart_handle_4.Init.WordLength   = BSP_UART_WORD_LENGTH_4;
@@ -250,7 +250,7 @@ bool bsp_uart_init(void)
     current     = result == HAL_OK;
     initialized = initialized && current;
 #endif
-#ifdef BSP_UART_5_ENABLED
+#if BSP_UART_5_ENABLE
     s_uart_handle_5.Instance          = UART5;
     s_uart_handle_5.Init.BaudRate     = BSP_UART_BAUD_RATE_5;
     s_uart_handle_5.Init.WordLength   = BSP_UART_WORD_LENGTH_5;
